@@ -32,7 +32,7 @@ namespace Imagem_Zoom
         }
         Image? Zoom(Image img, Size size)
         {
-            if(img != null)
+            if (img != null)
             {
                 Bitmap bmp = new Bitmap(img, img.Width + (img.Width * size.Width / 100), img.Height + (img.Height * size.Height / 100));
                 Graphics g = Graphics.FromImage(bmp);
@@ -46,7 +46,7 @@ namespace Imagem_Zoom
                 return null;
             }
         }
-        
+
         private void MouseWheel(object sender, MouseEventArgs e)
         {
             int delta = e.Delta / 12 * SystemInformation.MouseWheelScrollDelta / 120;

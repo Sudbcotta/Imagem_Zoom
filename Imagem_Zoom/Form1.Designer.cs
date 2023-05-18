@@ -44,10 +44,10 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(16, 13);
+            pictureBox1.Location = new Point(68, 14);
             pictureBox1.MaximumSize = new Size(1920, 1080);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(437, 269);
+            pictureBox1.Size = new Size(537, 369);
             pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
@@ -58,14 +58,14 @@
             button1.Name = "button1";
             button1.Size = new Size(118, 45);
             button1.TabIndex = 3;
-            button1.Text = "Abrir Arquivo";
+            button1.Text = "Open File";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
             // trackBar1
             // 
             trackBar1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            trackBar1.Location = new Point(344, 18);
+            trackBar1.Location = new Point(559, 12);
             trackBar1.Maximum = 200;
             trackBar1.Name = "trackBar1";
             trackBar1.Size = new Size(128, 45);
@@ -81,7 +81,7 @@
             panel1.Location = new Point(12, 69);
             panel1.MaximumSize = new Size(1920, 1080);
             panel1.Name = "panel1";
-            panel1.Size = new Size(475, 314);
+            panel1.Size = new Size(675, 399);
             panel1.TabIndex = 5;
             panel1.MouseWheel += MouseWheel;
             // 
@@ -108,7 +108,7 @@
             panel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label1);
-            panel2.Location = new Point(12, 378);
+            panel2.Location = new Point(12, 474);
             panel2.Name = "panel2";
             panel2.Size = new Size(118, 27);
             panel2.TabIndex = 8;
@@ -117,7 +117,7 @@
             // 
             label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label3.AutoSize = true;
-            label3.Location = new Point(385, 48);
+            label3.Location = new Point(605, 42);
             label3.Name = "label3";
             label3.Size = new Size(39, 15);
             label3.TabIndex = 2;
@@ -127,14 +127,14 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(499, 413);
+            ClientSize = new Size(699, 513);
             Controls.Add(label3);
             Controls.Add(trackBar1);
             Controls.Add(button1);
             Controls.Add(panel1);
             Controls.Add(panel2);
             Name = "Form1";
-            Text = "Form1";
+            Text = "Zoom_Image";
             FormClosing += Form1_FormClosing;
             Resize += Form1_Resize;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
