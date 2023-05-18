@@ -29,7 +29,7 @@ namespace Imagem_Zoom
                     imgOriginal = pictureBox1.Image;
                     Thread.Sleep(20);
                     ResizeContainer();
-                    label2.Text = $"{pictureBox1.Width};{pictureBox1.Height} px";
+                    label1.Text = $"Original Size : {imgOriginal.Width};{imgOriginal.Height} px";
                     CriacaoDaPastaEXml(pictureBox1.Width, pictureBox1.Height, nomeDaImagemComDiretorio);
 
                 }
@@ -40,7 +40,9 @@ namespace Imagem_Zoom
         {
             if (img != null)
             {
+
                 Bitmap bmp = new Bitmap(img, img.Width + (img.Width * size.Width / 100), img.Height + (img.Height * size.Height / 100));
+                label4.Text = $"Real-Time Size : {bmp.Width};{bmp.Height} px";
                 Graphics g = Graphics.FromImage(bmp);
                 g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                 ResizeContainer();
@@ -59,6 +61,7 @@ namespace Imagem_Zoom
 
             if ((trackBar1.Value + delta > trackBar1.Minimum) && (trackBar1.Value + delta < trackBar1.Maximum))
             {
+
                 trackBar1.Value = trackBar1.Value + delta;
 
                 if (trackBar1.Value > 0)
@@ -106,6 +109,9 @@ namespace Imagem_Zoom
         }
         private void CriacaoDaPastaEXml(int largura, int altura, string imagemComSeuDiretorio)
         {
+
+            //largAtual = pictureBox1;
+            //altAtual = pictureBox1;
             string img = Path.GetFileNameWithoutExtension(imagemComSeuDiretorio);
             string caminhoDoProjeto = $@"C:\{img}";
             string nomeDaImagemComExtensao = Path.GetFileName(imagemComSeuDiretorio);
@@ -126,10 +132,14 @@ namespace Imagem_Zoom
             arquivoXml.WriteElementString("NomeDaImagem", nomeDaImagemComExtensao);
             arquivoXml.WriteElementString("LarguraDaImagem", largura.ToString());
             arquivoXml.WriteElementString("AlturaDaImagem", altura.ToString());
+            //arquivoXml.WriteElementString("LarguraPósZoom",largAtual.ToString());
+            //arquivoXml.WriteElementString("AlturaPósZoom",altAtual.ToString());
+
             arquivoXml.Close();
-            MessageBox.Show("Arquivo XML gerado com sucesso.","Arquivo XML",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            MessageBox.Show("Arquivo XML gerado com sucesso.", "Arquivo XML", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
+
 
     }
 }
