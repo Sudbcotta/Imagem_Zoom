@@ -34,8 +34,8 @@
             panel1 = new Panel();
             label1 = new Label();
             panel2 = new Panel();
-            label3 = new Label();
             label4 = new Label();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)trackBar1).BeginInit();
             panel1.SuspendLayout();
@@ -89,8 +89,9 @@
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label1.AutoSize = true;
-            label1.Location = new Point(15, 451);
+            label1.Location = new Point(0, 12);
             label1.Name = "label1";
             label1.Size = new Size(120, 15);
             label1.TabIndex = 6;
@@ -99,11 +100,22 @@
             // panel2
             // 
             panel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            panel2.Controls.Add(label1);
             panel2.Controls.Add(label4);
             panel2.Location = new Point(12, 439);
             panel2.Name = "panel2";
             panel2.Size = new Size(449, 27);
             panel2.TabIndex = 8;
+            // 
+            // label4
+            // 
+            label4.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            label4.AutoSize = true;
+            label4.Location = new Point(147, 12);
+            label4.Name = "label4";
+            label4.Size = new Size(131, 15);
+            label4.TabIndex = 9;
+            label4.Text = "Real-Time Size : X ; Y px";
             // 
             // label3
             // 
@@ -115,22 +127,11 @@
             label3.TabIndex = 2;
             label3.Text = "Zoom";
             // 
-            // label4
-            // 
-            label4.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            label4.AutoSize = true;
-            label4.Location = new Point(150, 12);
-            label4.Name = "label4";
-            label4.Size = new Size(131, 15);
-            label4.TabIndex = 9;
-            label4.Text = "Real-Time Size : X ; Y px";
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(621, 474);
-            Controls.Add(label1);
             Controls.Add(label3);
             Controls.Add(trackBar1);
             Controls.Add(button1);

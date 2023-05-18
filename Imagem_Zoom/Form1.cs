@@ -12,7 +12,7 @@ namespace Imagem_Zoom
         {
             InitializeComponent();
             panel1.AutoScroll = true;
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
