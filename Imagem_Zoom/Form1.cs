@@ -9,6 +9,9 @@ namespace Imagem_Zoom
     {
         Image imgOriginal;
 
+        private int largS;
+        private int altS;
+        
         public Form1()
         {
             InitializeComponent();
@@ -45,6 +48,8 @@ namespace Imagem_Zoom
                     new Bitmap(img, img.Width + (img.Width * size.Width / 100), img.Height + (img.Height * size.Height / 100));
                 label4.Text = $"Real-Time Size : {bmp.Width};{bmp.Height} px";
                 Graphics g = Graphics.FromImage(bmp);
+                largS = bmp.Width;
+                altS = bmp.Height;
                 g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
                 ResizeContainer();
 
@@ -135,17 +140,17 @@ namespace Imagem_Zoom
             arquivoXml.WriteElementString("NomeDaImagem", nomeDaImagemComExtensao);
             arquivoXml.WriteElementString("LarguraDaImagem", largura.ToString());
             arquivoXml.WriteElementString("AlturaDaImagem", altura.ToString());
-            //arquivoXml.WriteElementString("LarguraPósZoom",largAtual.ToString());
-            //arquivoXml.WriteElementString("AlturaPósZoom",altAtual.ToString());
+            //arquivoXml.WriteElementString("LarguraPósZoom",largS.ToString());
+            //arquivoXml.WriteElementString("AlturaPósZoom",altS.ToString());
 
             arquivoXml.Close();
             MessageBox.Show("Arquivo XML gerado com sucesso.", "Arquivo XML", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+            
         }
-
+        
         private void button2_Click(object sender, EventArgs e)
         {
-            
+            //CriacaoDaPastaEXml();
         }
     }
 }
