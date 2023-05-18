@@ -59,11 +59,19 @@ namespace Imagem_Zoom
                 {
                     pictureBox1.Image = Zoom(imgOriginal, new Size(trackBar1.Value, trackBar1.Value));
                 }
+                else
+                {
+                    pictureBox1.Image = Zoom(imgOriginal, new Size(trackBar1.Value, trackBar1.Value));
+                }
             }
         }
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             if (trackBar1.Value > 0)
+            {
+                pictureBox1.Image = Zoom(imgOriginal, new Size(trackBar1.Value, trackBar1.Value));
+            }
+            else
             {
                 pictureBox1.Image = Zoom(imgOriginal, new Size(trackBar1.Value, trackBar1.Value));
             }

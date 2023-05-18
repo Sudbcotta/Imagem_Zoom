@@ -36,6 +36,7 @@
             label2 = new Label();
             panel2 = new Panel();
             label3 = new Label();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)trackBar1).BeginInit();
             panel1.SuspendLayout();
@@ -44,7 +45,7 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(68, 14);
+            pictureBox1.Location = new Point(88, 47);
             pictureBox1.MaximumSize = new Size(1920, 1080);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(537, 369);
@@ -65,8 +66,9 @@
             // trackBar1
             // 
             trackBar1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            trackBar1.Location = new Point(559, 12);
+            trackBar1.Location = new Point(466, 18);
             trackBar1.Maximum = 200;
+            trackBar1.Minimum = -100;
             trackBar1.Name = "trackBar1";
             trackBar1.Size = new Size(128, 45);
             trackBar1.TabIndex = 4;
@@ -76,12 +78,12 @@
             // 
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel1.AutoScroll = true;
-            panel1.BackColor = SystemColors.HotTrack;
+            panel1.BackColor = Color.Transparent;
             panel1.Controls.Add(pictureBox1);
             panel1.Location = new Point(12, 69);
-            panel1.MaximumSize = new Size(1920, 1080);
+            panel1.MaximumSize = new Size(2560, 1080);
             panel1.Name = "panel1";
-            panel1.Size = new Size(675, 399);
+            panel1.Size = new Size(597, 375);
             panel1.TabIndex = 5;
             panel1.MouseWheel += MouseWheel;
             // 
@@ -108,7 +110,7 @@
             panel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             panel2.Controls.Add(label2);
             panel2.Controls.Add(label1);
-            panel2.Location = new Point(12, 474);
+            panel2.Location = new Point(12, 439);
             panel2.Name = "panel2";
             panel2.Size = new Size(118, 27);
             panel2.TabIndex = 8;
@@ -117,24 +119,34 @@
             // 
             label3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label3.AutoSize = true;
-            label3.Location = new Point(605, 42);
+            label3.Location = new Point(507, 48);
             label3.Name = "label3";
             label3.Size = new Size(39, 15);
             label3.TabIndex = 2;
             label3.Text = "Zoom";
             // 
+            // button2
+            // 
+            button2.Location = new Point(136, 17);
+            button2.Name = "button2";
+            button2.Size = new Size(75, 34);
+            button2.TabIndex = 9;
+            button2.Text = "XML";
+            button2.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(699, 513);
+            ClientSize = new Size(621, 474);
+            Controls.Add(button2);
             Controls.Add(label3);
             Controls.Add(trackBar1);
             Controls.Add(button1);
             Controls.Add(panel1);
             Controls.Add(panel2);
             Name = "Form1";
-            Text = "Zoom_Image";
+            Text = "Imagem Zoom";
             FormClosing += Form1_FormClosing;
             Resize += Form1_Resize;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -156,5 +168,6 @@
         private Label label2;
         private Panel panel2;
         private Label label3;
+        private Button button2;
     }
 }
