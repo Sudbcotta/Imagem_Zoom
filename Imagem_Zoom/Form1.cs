@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace Imagem_Zoom
 {
@@ -11,7 +12,8 @@ namespace Imagem_Zoom
 
         private int largS;
         private int altS;
-        
+        private string camiProj;
+        private string imgS;
         public Form1()
         {
             InitializeComponent();
@@ -140,17 +142,25 @@ namespace Imagem_Zoom
             arquivoXml.WriteElementString("NomeDaImagem", nomeDaImagemComExtensao);
             arquivoXml.WriteElementString("LarguraDaImagem", largura.ToString());
             arquivoXml.WriteElementString("AlturaDaImagem", altura.ToString());
-            //arquivoXml.WriteElementString("LarguraPósZoom",largS.ToString());
-            //arquivoXml.WriteElementString("AlturaPósZoom",altS.ToString());
+            
 
             arquivoXml.Close();
             MessageBox.Show("Arquivo XML gerado com sucesso.", "Arquivo XML", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            
+            imgS = img;
+            camiProj = caminhoDoProjeto;
         }
-        
+
         private void button2_Click(object sender, EventArgs e)
         {
-            //CriacaoDaPastaEXml();
+            XElement x = new XElement("Atualização");
+            
+            x.Add(new XElement("LarguraPosZoom", largS.ToString()));
+            x.Add(new XElement("AlturaPosZoom", altS.ToString()));
+            
+            XElement xml = XElement.Load($@"{camiProj + "\\" + imgS}.xml");
+            xml.Add(x);
+            xml.Save($@"{camiProj + "\\" + imgS}.xml");
+            MessageBox.Show("Arquivo XML atualizado com sucesso.", "Arquivo XML", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

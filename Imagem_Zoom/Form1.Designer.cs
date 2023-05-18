@@ -84,7 +84,7 @@
             trackBar1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             trackBar1.Location = new Point(466, 18);
             trackBar1.Maximum = 300;
-            trackBar1.Minimum = -100;
+            trackBar1.Minimum = -99;
             trackBar1.Name = "trackBar1";
             trackBar1.Size = new Size(128, 45);
             trackBar1.TabIndex = 4;
@@ -95,6 +95,7 @@
             panel1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel1.AutoScroll = true;
             panel1.BackColor = Color.Transparent;
+            panel1.BorderStyle = BorderStyle.FixedSingle;
             panel1.Controls.Add(pictureBox1);
             panel1.Location = new Point(12, 69);
             panel1.MaximumSize = new Size(2560, 1080);
