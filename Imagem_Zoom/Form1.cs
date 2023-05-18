@@ -12,8 +12,7 @@ namespace Imagem_Zoom
         {
             InitializeComponent();
             panel1.AutoScroll = true;
-            //pictureBox1.MouseWheel += pictureBox1_MouseWheel;
-            //pictureBox1.MouseWheel += pictureBox1_MouseMove;
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
