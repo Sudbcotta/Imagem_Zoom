@@ -28,14 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             pictureBox1 = new PictureBox();
             button1 = new Button();
+            imageList1 = new ImageList(components);
             trackBar1 = new TrackBar();
             panel1 = new Panel();
             label1 = new Label();
             panel2 = new Panel();
             label4 = new Label();
             label3 = new Label();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)trackBar1).BeginInit();
             panel1.SuspendLayout();
@@ -55,20 +59,32 @@
             // 
             // button1
             // 
+            button1.ImageAlign = ContentAlignment.MiddleLeft;
+            button1.ImageKey = "101671.png";
+            button1.ImageList = imageList1;
             button1.Location = new Point(12, 12);
             button1.Name = "button1";
-            button1.Size = new Size(118, 45);
+            button1.Size = new Size(83, 23);
             button1.TabIndex = 3;
             button1.Text = "Open File";
+            button1.TextAlign = ContentAlignment.MiddleRight;
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
+            // 
+            // imageList1
+            // 
+            imageList1.ColorDepth = ColorDepth.Depth8Bit;
+            imageList1.ImageStream = (ImageListStreamer)resources.GetObject("imageList1.ImageStream");
+            imageList1.TransparentColor = Color.Transparent;
+            imageList1.Images.SetKeyName(0, "Custom-Icon-Design-Mono-General-4-Refresh.512.png");
+            imageList1.Images.SetKeyName(1, "101671.png");
             // 
             // trackBar1
             // 
             trackBar1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             trackBar1.Location = new Point(466, 18);
             trackBar1.Maximum = 300;
-            trackBar1.Minimum = -200;
+            trackBar1.Minimum = -100;
             trackBar1.Name = "trackBar1";
             trackBar1.Size = new Size(128, 45);
             trackBar1.TabIndex = 4;
@@ -99,19 +115,19 @@
             // 
             // panel2
             // 
-            panel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            panel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel2.Controls.Add(label1);
             panel2.Controls.Add(label4);
             panel2.Location = new Point(12, 439);
             panel2.Name = "panel2";
-            panel2.Size = new Size(449, 27);
+            panel2.Size = new Size(597, 27);
             panel2.TabIndex = 8;
             // 
             // label4
             // 
             label4.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label4.AutoSize = true;
-            label4.Location = new Point(147, 12);
+            label4.Location = new Point(440, 11);
             label4.Name = "label4";
             label4.Size = new Size(131, 15);
             label4.TabIndex = 9;
@@ -127,11 +143,26 @@
             label3.TabIndex = 2;
             label3.Text = "Zoom";
             // 
+            // button2
+            // 
+            button2.ImageAlign = ContentAlignment.MiddleLeft;
+            button2.ImageKey = "Custom-Icon-Design-Mono-General-4-Refresh.512.png";
+            button2.ImageList = imageList1;
+            button2.Location = new Point(12, 40);
+            button2.Name = "button2";
+            button2.Size = new Size(100, 23);
+            button2.TabIndex = 9;
+            button2.Text = "Refresh XML";
+            button2.TextAlign = ContentAlignment.MiddleRight;
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(621, 474);
+            Controls.Add(button2);
             Controls.Add(label3);
             Controls.Add(trackBar1);
             Controls.Add(button1);
@@ -160,5 +191,7 @@
         private Panel panel2;
         private Label label3;
         private Label label4;
+        private Button button2;
+        private ImageList imageList1;
     }
 }

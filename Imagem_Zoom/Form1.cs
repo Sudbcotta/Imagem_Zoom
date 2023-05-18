@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Xml;
 
@@ -40,7 +41,8 @@ namespace Imagem_Zoom
             if (img != null)
             {
 
-                Bitmap bmp = new Bitmap(img, img.Width + (img.Width * size.Width / 100), img.Height + (img.Height * size.Height / 100));
+                Bitmap bmp =
+                    new Bitmap(img, img.Width + (img.Width * size.Width / 100), img.Height + (img.Height * size.Height / 100));
                 label4.Text = $"Real-Time Size : {bmp.Width};{bmp.Height} px";
                 Graphics g = Graphics.FromImage(bmp);
                 g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
@@ -87,6 +89,7 @@ namespace Imagem_Zoom
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+
             if (pictureBox1.Image != null)
             {
                 pictureBox1.Dispose();
@@ -128,6 +131,7 @@ namespace Imagem_Zoom
             arquivoXml.WriteStartDocument();
             arquivoXml.Formatting = Formatting.Indented;
             arquivoXml.WriteStartElement("Dados");
+            arquivoXml.WriteComment("");
             arquivoXml.WriteElementString("NomeDaImagem", nomeDaImagemComExtensao);
             arquivoXml.WriteElementString("LarguraDaImagem", largura.ToString());
             arquivoXml.WriteElementString("AlturaDaImagem", altura.ToString());
@@ -139,6 +143,9 @@ namespace Imagem_Zoom
 
         }
 
-
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
