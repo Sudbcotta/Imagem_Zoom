@@ -18,18 +18,19 @@ namespace Imagem_Zoom
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //string nomeDaImagemComDiretorio = "";
+            string nomeDaImagemComDiretorio = "";
             using (OpenFileDialog cleiton = new OpenFileDialog()
             { Multiselect = false, ValidateNames = true, Filter = "JPEG|*.jpg" })
             {
                 if (cleiton.ShowDialog() == DialogResult.OK)
                 {
-                    //nomeDaImagemComDiretorio = cleiton.FileName;
+                    nomeDaImagemComDiretorio = cleiton.FileName;
                     pictureBox1.Image = Image.FromFile(cleiton.FileName);
                     imgOriginal = pictureBox1.Image;
                     Thread.Sleep(20);
                     ResizeContainer();
                     label2.Text = $"{pictureBox1.Width};{pictureBox1.Height} px";
+                    CriacaoDaPastaEXml(pictureBox1.Width, pictureBox1.Height, nomeDaImagemComDiretorio);
 
                 }
 
@@ -126,13 +127,9 @@ namespace Imagem_Zoom
             arquivoXml.WriteElementString("LarguraDaImagem", largura.ToString());
             arquivoXml.WriteElementString("AlturaDaImagem", altura.ToString());
             arquivoXml.Close();
-            MessageBox.Show("Arquivo XML gerado com sucesso.");
+            MessageBox.Show("Arquivo XML gerado com sucesso.","Arquivo XML",MessageBoxButtons.OK,MessageBoxIcon.Information);
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            
-        }
     }
 }

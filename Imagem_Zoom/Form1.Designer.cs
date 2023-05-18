@@ -36,7 +36,6 @@
             label2 = new Label();
             panel2 = new Panel();
             label3 = new Label();
-            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)trackBar1).BeginInit();
             panel1.SuspendLayout();
@@ -127,22 +126,11 @@
             label3.TabIndex = 2;
             label3.Text = "Zoom";
             // 
-            // button2
-            // 
-            button2.Location = new Point(136, 12);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 45);
-            button2.TabIndex = 9;
-            button2.Text = "XML";
-            button2.UseVisualStyleBackColor = true;
-            
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(621, 474);
-            Controls.Add(button2);
             Controls.Add(label3);
             Controls.Add(trackBar1);
             Controls.Add(button1);
@@ -171,6 +159,5 @@
         private Label label2;
         private Panel panel2;
         private Label label3;
-        private Button button2;
     }
 }
