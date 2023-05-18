@@ -45,9 +45,11 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(88, 47);
+            pictureBox1.Location = new Point(45, 28);
+            pictureBox1.Margin = new Padding(20);
             pictureBox1.MaximumSize = new Size(1920, 1080);
             pictureBox1.Name = "pictureBox1";
+            pictureBox1.Padding = new Padding(20);
             pictureBox1.Size = new Size(537, 369);
             pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
             pictureBox1.TabIndex = 1;
@@ -127,12 +129,13 @@
             // 
             // button2
             // 
-            button2.Location = new Point(136, 17);
+            button2.Location = new Point(136, 12);
             button2.Name = "button2";
-            button2.Size = new Size(75, 34);
+            button2.Size = new Size(75, 45);
             button2.TabIndex = 9;
             button2.Text = "XML";
             button2.UseVisualStyleBackColor = true;
+            
             // 
             // Form1
             // 

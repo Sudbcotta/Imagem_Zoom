@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Security.Cryptography;
+using System.Xml;
 
 namespace Imagem_Zoom
 {
@@ -17,15 +18,19 @@ namespace Imagem_Zoom
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog cleiton = new OpenFileDialog() { Multiselect = false, ValidateNames = true, Filter = "JPEG|*.jpg" })
+            //string nomeDaImagemComDiretorio = "";
+            using (OpenFileDialog cleiton = new OpenFileDialog()
+            { Multiselect = false, ValidateNames = true, Filter = "JPEG|*.jpg" })
             {
                 if (cleiton.ShowDialog() == DialogResult.OK)
                 {
+                    //nomeDaImagemComDiretorio = cleiton.FileName;
                     pictureBox1.Image = Image.FromFile(cleiton.FileName);
                     imgOriginal = pictureBox1.Image;
                     Thread.Sleep(20);
                     ResizeContainer();
                     label2.Text = $"{pictureBox1.Width};{pictureBox1.Height} px";
+
                 }
 
             }
@@ -98,7 +103,36 @@ namespace Imagem_Zoom
         {
             ResizeContainer();
         }
+        private void CriacaoDaPastaEXml(int largura, int altura, string imagemComSeuDiretorio)
+        {
+            string img = Path.GetFileNameWithoutExtension(imagemComSeuDiretorio);
+            string caminhoDoProjeto = $@"C:\{img}";
+            string nomeDaImagemComExtensao = Path.GetFileName(imagemComSeuDiretorio);
 
+            if (!Directory.Exists(caminhoDoProjeto))
+                Directory.CreateDirectory(caminhoDoProjeto);
 
+            System.IO.File.Copy(imagemComSeuDiretorio, caminhoDoProjeto + "\\" + nomeDaImagemComExtensao, true);
+
+            //Se o diretório existir, cria o arquivo xml
+            //if (Directory.Exists($@"C:\{somenteNomeDaImagem})
+
+            XmlTextWriter arquivoXml =
+                new XmlTextWriter($@"{caminhoDoProjeto + "\\" + img}.xml", System.Text.Encoding.UTF8);
+            arquivoXml.WriteStartDocument();
+            arquivoXml.Formatting = Formatting.Indented;
+            arquivoXml.WriteStartElement("Dados");
+            arquivoXml.WriteElementString("NomeDaImagem", nomeDaImagemComExtensao);
+            arquivoXml.WriteElementString("LarguraDaImagem", largura.ToString());
+            arquivoXml.WriteElementString("AlturaDaImagem", altura.ToString());
+            arquivoXml.Close();
+            MessageBox.Show("Arquivo XML gerado com sucesso.");
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
