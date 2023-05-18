@@ -11,8 +11,7 @@ namespace Imagem_Zoom
         {
             InitializeComponent();
             panel1.AutoScroll = true;
-            //pictureBox1.MouseWheel += pictureBox1_MouseWheel;
-            //pictureBox1.MouseWheel += pictureBox1_MouseMove;
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -97,6 +96,33 @@ namespace Imagem_Zoom
         private void Form1_Resize(object sender, EventArgs e)
         {
             ResizeContainer();
+        }
+        private void CriacaoDaPastaEXml(int largura, int altura, string imagemComSeuDiretorio)
+        {
+            string img = Path.GetFileNameWithoutExtension(imagemComSeuDiretorio);
+            string caminhoDoProjeto = $@"C:\{img}";
+            string nomeDaImagemComExtensao = Path.GetFileName(imagemComSeuDiretorio);
+
+            if (!Directory.Exists(caminhoDoProjeto))
+                Directory.CreateDirectory(caminhoDoProjeto);
+
+            System.IO.File.Copy(imagemComSeuDiretorio, caminhoDoProjeto + "\\" + nomeDaImagemComExtensao, true);
+
+            //Se o diretório existir, cria o arquivo xml
+            //if (Directory.Exists($@"C:\{somenteNomeDaImagem})
+
+            XmlTextWriter arquivoXml =
+                new XmlTextWriter($@"{caminhoDoProjeto + "\\" + img}.xml", System.Text.Encoding.UTF8);
+            arquivoXml.WriteStartDocument();
+            arquivoXml.Formatting = Formatting.Indented;
+            arquivoXml.WriteStartElement("Dados");
+            arquivoXml.WriteElementString("NomeDaImagem", nomeDaImagemComExtensao);
+            arquivoXml.WriteElementString("LarguraDaImagem", largura.ToString());
+            arquivoXml.WriteElementString("AlturaDaImagem", altura.ToString());
+
+            arquivoXml.Close();
+            MessageBox.Show("Arquivo XML gerado com sucesso.", "Arquivo XML", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
 
 
