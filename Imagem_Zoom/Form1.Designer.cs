@@ -99,7 +99,7 @@
             // 
             lblImagemComTamanhoOriginal.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblImagemComTamanhoOriginal.AutoSize = true;
-            lblImagemComTamanhoOriginal.Location = new Point(39, 10);
+            lblImagemComTamanhoOriginal.Location = new Point(107, 10);
             lblImagemComTamanhoOriginal.Name = "lblImagemComTamanhoOriginal";
             lblImagemComTamanhoOriginal.Size = new Size(143, 15);
             lblImagemComTamanhoOriginal.TabIndex = 6;
@@ -119,7 +119,7 @@
             // 
             lblImagemComTamanhoEmTempoReal.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblImagemComTamanhoEmTempoReal.AutoSize = true;
-            lblImagemComTamanhoEmTempoReal.Location = new Point(234, 10);
+            lblImagemComTamanhoEmTempoReal.Location = new Point(327, 10);
             lblImagemComTamanhoEmTempoReal.Name = "lblImagemComTamanhoEmTempoReal";
             lblImagemComTamanhoEmTempoReal.Size = new Size(251, 15);
             lblImagemComTamanhoEmTempoReal.TabIndex = 9;
@@ -129,9 +129,9 @@
             // 
             btnAtualizaXml.ImageKey = "Custom-Icon-Design-Mono-General-4-Refresh.512.png";
             btnAtualizaXml.ImageList = imageList1;
-            btnAtualizaXml.Location = new Point(5, 120);
+            btnAtualizaXml.Location = new Point(10, 109);
             btnAtualizaXml.Name = "btnAtualizaXml";
-            btnAtualizaXml.Size = new Size(86, 23);
+            btnAtualizaXml.Size = new Size(81, 23);
             btnAtualizaXml.TabIndex = 9;
             btnAtualizaXml.TextAlign = ContentAlignment.MiddleRight;
             btnAtualizaXml.UseVisualStyleBackColor = true;
@@ -139,8 +139,9 @@
             // 
             // trbZoomDaImagem
             // 
-            trbZoomDaImagem.Location = new Point(3, 58);
+            trbZoomDaImagem.Location = new Point(10, 58);
             trbZoomDaImagem.Maximum = 300;
+            trbZoomDaImagem.Minimum = -50;
             trbZoomDaImagem.Name = "trbZoomDaImagem";
             trbZoomDaImagem.Size = new Size(81, 45);
             trbZoomDaImagem.TabIndex = 4;
@@ -162,7 +163,7 @@
             // lblZoom
             // 
             lblZoom.AutoSize = true;
-            lblZoom.Location = new Point(22, 88);
+            lblZoom.Location = new Point(32, 88);
             lblZoom.Name = "lblZoom";
             lblZoom.Size = new Size(39, 15);
             lblZoom.TabIndex = 10;
@@ -179,7 +180,6 @@
             Name = "Form1";
             Text = "Imagem Zoom";
             FormClosing += Form1_FormClosing;
-            Resize += Form1_Resize;
             ((System.ComponentModel.ISupportInitialize)picImagemDaAnalise).EndInit();
             pnlPlanoDeFundoDaImagem.ResumeLayout(false);
             pnlPlanoDeFundoDaImagem.PerformLayout();

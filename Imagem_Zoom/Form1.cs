@@ -2,6 +2,7 @@ using System.Security.Cryptography;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Imagem_Zoom
 {
@@ -47,20 +48,20 @@ namespace Imagem_Zoom
         }
 
 
-        private void RedimensionarConteudo()
-        {
-            Control recipiente = pnlPlanoDeFundoDaImagem;
-            Control janelaDeExibicao = picImagemDaAnalise;
+        //private void RedimensionarConteudo()
+        //{
+        //    Control recipiente = pnlPlanoDeFundoDaImagem;
+        //    Control janelaDeExibicao = picImagemDaAnalise;
 
-            janelaDeExibicao.Left = recipiente.Width / 2 - janelaDeExibicao.Width / 2; //= x;
-            janelaDeExibicao.Top = recipiente.Height / 2 - janelaDeExibicao.Height / 2;//= y;
+        //    janelaDeExibicao.Left = recipiente.Width / 2 - janelaDeExibicao.Width / 2; //= x;
+        //    janelaDeExibicao.Top = recipiente.Height / 2 - janelaDeExibicao.Height / 2;//= y;
 
-        }
+        //}
 
-        private void Form1_Resize(object sender, EventArgs e)
-        {
-            RedimensionarConteudo();
-        }
+        //private void Form1_Resize(object sender, EventArgs e)
+        //{
+        //    RedimensionarConteudo();
+        //}
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -123,7 +124,7 @@ namespace Imagem_Zoom
                 lblZoom.Visible = true;
                 btnAtualizaXml.Visible = true;
                 Thread.Sleep(20);
-                RedimensionarConteudo();
+                //RedimensionarConteudo();
 
                 lblImagemComTamanhoOriginal.Text = $"Tamanho Original: {imgOriginal.Width}; {imgOriginal.Height} px";
 
@@ -157,6 +158,14 @@ namespace Imagem_Zoom
                 {
                     picImagemDaAnalise.Image = Zoom(imgOriginal, new Size(trbZoomDaImagem.Value, trbZoomDaImagem.Value));
                 }
+                if (trbZoomDaImagem.Value <= -49)
+                {
+                    MessageBox.Show("A função Zoom Out chegou ao seu limite.", "Zoom", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                if (trbZoomDaImagem.Value >= 290)
+                {
+                    MessageBox.Show("A função Zoom In chegou ao seu limite.", "Zoom", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
                 else
                 {
                     picImagemDaAnalise.Image = Zoom(imgOriginal, new Size(trbZoomDaImagem.Value, trbZoomDaImagem.Value));
@@ -168,9 +177,19 @@ namespace Imagem_Zoom
         private void trbZoomDaImagem_Scroll(object sender, EventArgs e)
         {
             if (trbZoomDaImagem.Value >= 0)
+
                 picImagemDaAnalise.Image = Zoom(imgOriginal, new Size(trbZoomDaImagem.Value, trbZoomDaImagem.Value));
 
+            if (trbZoomDaImagem.Value <= -49)
+
+                MessageBox.Show("A função Zoom Out chegou ao seu limite.", "Zoom", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            if (trbZoomDaImagem.Value >= 290)
+
+                MessageBox.Show("A função Zoom In chegou ao seu limite.", "Zoom", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             else
+
                 picImagemDaAnalise.Image = Zoom(imgOriginal, new Size(trbZoomDaImagem.Value, trbZoomDaImagem.Value));
         }
 
@@ -189,7 +208,7 @@ namespace Imagem_Zoom
                 AlturaAposZoom = bmp.Height;
 
                 g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                RedimensionarConteudo();
+                //RedimensionarConteudo();
 
                 return bmp;
             }
