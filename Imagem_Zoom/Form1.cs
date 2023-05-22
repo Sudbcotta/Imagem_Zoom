@@ -13,6 +13,7 @@ namespace Imagem_Zoom
 
         private int largS;
         private int altS;
+        //private int junin;
         private string camiProj;
         private string imgS;
 
@@ -61,6 +62,7 @@ namespace Imagem_Zoom
                     (img, img.Width + (img.Width * size.Width / 100),
                     img.Height + (img.Height * size.Height / 100));
                 label4.Text = $"Real-Time Size : {bmp.Width};{bmp.Height} px";
+                //label3.Text = $"Delta : {junin}";
                 Graphics g = Graphics.FromImage(bmp);
                 largS = bmp.Width;
                 altS = bmp.Height;
@@ -77,8 +79,9 @@ namespace Imagem_Zoom
 
         private void MouseWheel(object sender, MouseEventArgs e)
         {
-            int delta = e.Delta / 12 * SystemInformation.MouseWheelScrollDelta / 120;
-
+            int delta = e.Delta / 10 * SystemInformation.MouseWheelScrollDelta / 100;
+            //valor de cada etapa do scroll do mouse
+            //junin = delta ++;
             if ((trackBar1.Value + delta >= trackBar1.Minimum) && (trackBar1.Value + delta <= trackBar1.Maximum))
             {
 
@@ -88,6 +91,14 @@ namespace Imagem_Zoom
                 {
                     pictureBox1.Image = Zoom(imgOriginal, new Size(trackBar1.Value, trackBar1.Value));
                 }
+                if (trackBar1.Value <= -42)
+                {
+                    MessageBox.Show("A função Zoom Out chegou ao seu limite.", "Zoom", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                if (trackBar1.Value >= 290)
+                {
+                    MessageBox.Show("A função Zoom In chegou ao seu limite.", "Zoom", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
                 else
                 {
                     pictureBox1.Image = Zoom(imgOriginal, new Size(trackBar1.Value, trackBar1.Value));
@@ -95,13 +106,32 @@ namespace Imagem_Zoom
 
             }
         }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            trackBar1.Minimum = -50;
+            trackBar1.Maximum = 300;
+            trackBar1.SmallChange = 1;
+            trackBar1.LargeChange = 1;
+            trackBar1.UseWaitCursor = false;
 
+            this.DoubleBuffered = true; //minimizes the strutter
+
+        }
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            
+
+
             if (trackBar1.Value >= 0)
             {
                 pictureBox1.Image = Zoom(imgOriginal, new Size(trackBar1.Value, trackBar1.Value));
+            }
+            if (trackBar1.Value >= 290)
+            {
+                MessageBox.Show("A função Zoom In chegou ao seu limite.", "Zoom", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            if (trackBar1.Value <= -42)
+            {
+                MessageBox.Show("A função Zoom Out chegou ao seu limite.", "Zoom", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
@@ -135,6 +165,8 @@ namespace Imagem_Zoom
         {
             ResizeContainer();
         }
+
+        //Cria o XML com o nome da pintura e o tamanho original dela
         private void CriacaoDaPastaEXml(int largura, int altura, string imagemComSeuDiretorio)
         {
             string img = Path.GetFileNameWithoutExtension(imagemComSeuDiretorio);
@@ -166,6 +198,7 @@ namespace Imagem_Zoom
             camiProj = caminhoDoProjeto;
         }
 
+        //atualiza o XML (tamanho)
         private void button2_Click(object sender, EventArgs e)
         {
             XElement x = new XElement("Atualização");
@@ -179,6 +212,7 @@ namespace Imagem_Zoom
             MessageBox.Show("Arquivo XML atualizado com sucesso.", "Arquivo XML", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        
+
+
     }
 }

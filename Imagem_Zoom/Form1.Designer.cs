@@ -50,14 +50,13 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(12, 3);
+            pictureBox1.Location = new Point(19, 8);
             pictureBox1.Margin = new Padding(0, 80, 0, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(458, 449);
+            pictureBox1.Size = new Size(458, 389);
             pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
-            
             // 
             // button1
             // 
@@ -91,7 +90,7 @@
             panel1.Controls.Add(pictureBox1);
             panel1.Location = new Point(109, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(500, 408);
+            panel1.Size = new Size(499, 423);
             panel1.TabIndex = 5;
             panel1.MouseWheel += MouseWheel;
             // 
@@ -99,7 +98,7 @@
             // 
             label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label1.AutoSize = true;
-            label1.Location = new Point(0, 0);
+            label1.Location = new Point(158, 6);
             label1.Name = "label1";
             label1.Size = new Size(120, 15);
             label1.TabIndex = 6;
@@ -110,16 +109,16 @@
             panel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel2.Controls.Add(label4);
             panel2.Controls.Add(label1);
-            panel2.Location = new Point(12, 426);
+            panel2.Location = new Point(12, 441);
             panel2.Name = "panel2";
-            panel2.Size = new Size(596, 37);
+            panel2.Size = new Size(596, 22);
             panel2.TabIndex = 8;
             // 
             // label4
             // 
             label4.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label4.AutoSize = true;
-            label4.Location = new Point(0, 21);
+            label4.Location = new Point(0, 6);
             label4.Name = "label4";
             label4.Size = new Size(131, 15);
             label4.TabIndex = 9;
@@ -139,8 +138,9 @@
             // 
             // trackBar1
             // 
-            trackBar1.Location = new Point(3, 58);
+            trackBar1.Location = new Point(5, 58);
             trackBar1.Maximum = 300;
+            trackBar1.Minimum = -50;
             trackBar1.Name = "trackBar1";
             trackBar1.Size = new Size(81, 45);
             trackBar1.TabIndex = 4;
@@ -155,13 +155,13 @@
             panel3.Controls.Add(trackBar1);
             panel3.Location = new Point(12, 12);
             panel3.Name = "panel3";
-            panel3.Size = new Size(91, 408);
+            panel3.Size = new Size(91, 423);
             panel3.TabIndex = 2;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(22, 88);
+            label2.Location = new Point(26, 88);
             label2.Name = "label2";
             label2.Size = new Size(39, 15);
             label2.TabIndex = 10;
@@ -179,7 +179,6 @@
             Name = "Form1";
             Text = "Imagem Zoom";
             FormClosing += Form1_FormClosing;
-            Resize += Form1_Resize;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
