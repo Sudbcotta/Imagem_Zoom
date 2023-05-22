@@ -36,6 +36,7 @@ namespace Imagem_Zoom
         }
 
 
+
         public Form1()
         {
             InitializeComponent();
