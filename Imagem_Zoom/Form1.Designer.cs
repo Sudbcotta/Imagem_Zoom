@@ -51,10 +51,10 @@
             // 
             // picImagemDaAnalise
             // 
-            picImagemDaAnalise.Location = new Point(12, 3);
-            picImagemDaAnalise.Margin = new Padding(0, 80, 0, 0);
+            picImagemDaAnalise.Location = new Point(0, 0);
+            picImagemDaAnalise.Margin = new Padding(0);
             picImagemDaAnalise.Name = "picImagemDaAnalise";
-            picImagemDaAnalise.Size = new Size(458, 449);
+            picImagemDaAnalise.Size = new Size(917, 471);
             picImagemDaAnalise.SizeMode = PictureBoxSizeMode.AutoSize;
             picImagemDaAnalise.TabIndex = 1;
             picImagemDaAnalise.TabStop = false;
@@ -141,7 +141,7 @@
             // 
             trbZoomDaImagem.Location = new Point(10, 58);
             trbZoomDaImagem.Maximum = 300;
-            trbZoomDaImagem.Minimum = -50;
+            trbZoomDaImagem.Minimum = -300;
             trbZoomDaImagem.Name = "trbZoomDaImagem";
             trbZoomDaImagem.Size = new Size(81, 45);
             trbZoomDaImagem.TabIndex = 4;
@@ -180,6 +180,7 @@
             Name = "Form1";
             Text = "Imagem Zoom";
             FormClosing += Form1_FormClosing;
+            Resize += Form1_Resize;
             ((System.ComponentModel.ISupportInitialize)picImagemDaAnalise).EndInit();
             pnlPlanoDeFundoDaImagem.ResumeLayout(false);
             pnlPlanoDeFundoDaImagem.PerformLayout();

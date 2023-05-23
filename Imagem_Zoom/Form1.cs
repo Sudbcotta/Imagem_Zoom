@@ -14,6 +14,8 @@ namespace Imagem_Zoom
         private int alturaAposZoom;
         private string imagemDaAnalise;
         private string diretorioDoProjeto;
+        private int RsWidth;
+        private int RsHeight;
 
         public int LarguraAposZoom
         {
@@ -47,21 +49,10 @@ namespace Imagem_Zoom
             btnAtualizaXml.Visible = false;
         }
 
-
-        //private void RedimensionarConteudo()
-        //{
-        //    Control recipiente = pnlPlanoDeFundoDaImagem;
-        //    Control janelaDeExibicao = picImagemDaAnalise;
-
-        //    janelaDeExibicao.Left = recipiente.Width / 2 - janelaDeExibicao.Width / 2; //= x;
-        //    janelaDeExibicao.Top = recipiente.Height / 2 - janelaDeExibicao.Height / 2;//= y;
-
-        //}
-
-        //private void Form1_Resize(object sender, EventArgs e)
-        //{
-        //    RedimensionarConteudo();
-        //}
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            ArrumaPdImagem();
+        }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -71,12 +62,14 @@ namespace Imagem_Zoom
                 picImagemDaAnalise.Dispose();
             }
         }
-
+        // Criação da pasta com a imagem e o XML
         private void CriacaoDaPastaEXml(int largura, int altura, string imagemComSeuDiretorio)
         {
+
             string img = Path.GetFileNameWithoutExtension(imagemComSeuDiretorio);
             string caminhoDoProjeto = $@"C:\{img}";
             string nomeDaImagemComExtensao = Path.GetFileName(imagemComSeuDiretorio);
+            ArrumaPdImagem();
 
             if (!Directory.Exists(caminhoDoProjeto))
                 Directory.CreateDirectory(caminhoDoProjeto);
@@ -101,8 +94,9 @@ namespace Imagem_Zoom
             MessageBox.Show("Arquivo XML gerado com sucesso.", "Arquivo XML", MessageBoxButtons.OK, MessageBoxIcon.Information);
             ImagemDaAnalise = img;
             DiretorioDoProjeto = caminhoDoProjeto;
+            
         }
-
+        // Interação para abrir o arquivo
         private void btnAbrirProjeto_Click(object sender, EventArgs e)
         {
 
@@ -129,9 +123,12 @@ namespace Imagem_Zoom
                 lblImagemComTamanhoOriginal.Text = $"Tamanho Original: {imgOriginal.Width}; {imgOriginal.Height} px";
 
                 CriacaoDaPastaEXml(picImagemDaAnalise.Width, picImagemDaAnalise.Height, nomeDaImagemComDiretorio);
+                
             }
-        }
+            ArrumaPdImagem();
 
+        }
+        // botão para atualizar os dados do XML
         private void btnAtualizaXml_Click(object sender, EventArgs e)
         {
             XElement escreveXml = new XElement("Atualização");
@@ -145,6 +142,7 @@ namespace Imagem_Zoom
             MessageBox.Show("Arquivo XML atualizado com sucesso.", "Arquivo XML", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        //zoom aplicado ao mouse wheel
         private void MouseWheel(object sender, MouseEventArgs e)
         {
             int delta = e.Delta / 12 * SystemInformation.MouseWheelScrollDelta / 120;
@@ -158,7 +156,7 @@ namespace Imagem_Zoom
                 {
                     picImagemDaAnalise.Image = Zoom(imgOriginal, new Size(trbZoomDaImagem.Value, trbZoomDaImagem.Value));
                 }
-                if (trbZoomDaImagem.Value <= -49)
+                if (trbZoomDaImagem.Value <= -290)
                 {
                     MessageBox.Show("A função Zoom Out chegou ao seu limite.", "Zoom", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -172,6 +170,7 @@ namespace Imagem_Zoom
                 }
 
             }
+            ArrumaPdImagem();
         }
 
         private void trbZoomDaImagem_Scroll(object sender, EventArgs e)
@@ -180,7 +179,7 @@ namespace Imagem_Zoom
 
                 picImagemDaAnalise.Image = Zoom(imgOriginal, new Size(trbZoomDaImagem.Value, trbZoomDaImagem.Value));
 
-            if (trbZoomDaImagem.Value <= -49)
+            if (trbZoomDaImagem.Value <= -290)
 
                 MessageBox.Show("A função Zoom Out chegou ao seu limite.", "Zoom", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -191,6 +190,7 @@ namespace Imagem_Zoom
             else
 
                 picImagemDaAnalise.Image = Zoom(imgOriginal, new Size(trbZoomDaImagem.Value, trbZoomDaImagem.Value));
+
         }
 
         Image? Zoom(Image imagemDaAnaliseSemZoom, Size tamanho)
@@ -201,7 +201,7 @@ namespace Imagem_Zoom
                 Bitmap bmp = new Bitmap(imagemDaAnaliseSemZoom, imagemDaAnaliseSemZoom.Width + (imagemDaAnaliseSemZoom.Width * tamanho.Width / 100),
                                         imagemDaAnaliseSemZoom.Height + (imagemDaAnaliseSemZoom.Height * tamanho.Height / 100));
 
-                lblImagemComTamanhoEmTempoReal.Text = $"Imagm com tamanho em tempo real: {bmp.Width};{bmp.Height} px";
+                lblImagemComTamanhoEmTempoReal.Text = $"Imagem com tamanho em tempo real: {bmp.Width};{bmp.Height} px";
                 Graphics g = Graphics.FromImage(bmp);
 
                 LarguraAposZoom = bmp.Width;
@@ -214,8 +214,16 @@ namespace Imagem_Zoom
             }
             else
                 return null;
-        }
 
+        }
+        //Centraliza a imagem no meio da tela
+        private void ArrumaPdImagem()
+        {
+            RsWidth = (pnlPlanoDeFundoDaImagem.Width - picImagemDaAnalise.Width) / 2;
+            RsHeight = (pnlPlanoDeFundoDaImagem.Height - picImagemDaAnalise.Height) / 2;
+
+            pnlPlanoDeFundoDaImagem.Padding = new Padding(RsWidth, RsHeight, RsWidth, RsHeight);
+        }
     }
 }
 
