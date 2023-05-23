@@ -20,6 +20,7 @@ namespace Imagem_Zoom
         private Point MouseP;
         private int MouseClickX;
         private int MouseClickY;
+
         public int LarguraAposZoom
         {
             get { return larguraAposZoom; }
@@ -135,6 +136,8 @@ namespace Imagem_Zoom
 
             escreveXml.Add(new XElement("LarguraPosZoom", LarguraAposZoom.ToString()));
             escreveXml.Add(new XElement("AlturaPosZoom", AlturaAposZoom.ToString()));
+            escreveXml.Add(new XElement("Coordenada-X-do-Clique", MouseClickX.ToString()));
+            escreveXml.Add(new XElement("Coordenada-Y-do-Clique", MouseClickY.ToString()));
 
             XElement xml = XElement.Load($@"{DiretorioDoProjeto + "\\" + ImagemDaAnalise}.xml");
             xml.Add(escreveXml);
@@ -156,14 +159,6 @@ namespace Imagem_Zoom
                 {
                     picImagemDaAnalise.Image = Zoom(imgOriginal, new Size(trbZoomDaImagem.Value, trbZoomDaImagem.Value));
                 }
-                if (trbZoomDaImagem.Value <= -90)
-                {
-                    MessageBox.Show("A função Zoom Out chegou ao seu limite.", "Zoom", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                if (trbZoomDaImagem.Value >= 290)
-                {
-                    MessageBox.Show("A função Zoom In chegou ao seu limite.", "Zoom", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
                 else
                 {
                     picImagemDaAnalise.Image = Zoom(imgOriginal, new Size(trbZoomDaImagem.Value, trbZoomDaImagem.Value));
@@ -176,16 +171,14 @@ namespace Imagem_Zoom
         private void trbZoomDaImagem_Scroll(object sender, EventArgs e)
         {
             if (trbZoomDaImagem.Value >= 0)
+            {
                 picImagemDaAnalise.Image = Zoom(imgOriginal, new Size(trbZoomDaImagem.Value, trbZoomDaImagem.Value));
-
-            if (trbZoomDaImagem.Value <= -90)
-                MessageBox.Show("A função Zoom Out chegou ao seu limite.", "Zoom", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            if (trbZoomDaImagem.Value >= 290)
-                MessageBox.Show("A função Zoom In chegou ao seu limite.", "Zoom", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+            }
             else
+            {
                 picImagemDaAnalise.Image = Zoom(imgOriginal, new Size(trbZoomDaImagem.Value, trbZoomDaImagem.Value));
+            }
+                
 
         }
 
@@ -224,8 +217,10 @@ namespace Imagem_Zoom
         {
             MouseClickX = (e.X);
             MouseClickY = (e.Y);
+
             MouseP = picImagemDaAnalise.PointToClient(Cursor.Position);
             label1.Text = $"Coordenadas do Click: {MouseClickX}; {MouseClickY} px";
+            btnAtualizaXml_Click(sender, e);
 
         }
     }

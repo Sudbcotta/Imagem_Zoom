@@ -153,7 +153,7 @@
             // 
             trbZoomDaImagem.Location = new Point(10, 58);
             trbZoomDaImagem.Maximum = 300;
-            trbZoomDaImagem.Minimum = -100;
+            trbZoomDaImagem.Minimum = -90;
             trbZoomDaImagem.Name = "trbZoomDaImagem";
             trbZoomDaImagem.Size = new Size(81, 45);
             trbZoomDaImagem.TabIndex = 4;
