@@ -36,6 +36,7 @@
             pnlPlanoDeFundoDaImagem = new Panel();
             lblImagemComTamanhoOriginal = new Label();
             pnlPlanoDeFundoParaDimensoesDaImagem = new Panel();
+            label1 = new Label();
             lblImagemComTamanhoEmTempoReal = new Label();
             btnAtualizaXml = new Button();
             trbZoomDaImagem = new TrackBar();
@@ -58,6 +59,7 @@
             picImagemDaAnalise.SizeMode = PictureBoxSizeMode.AutoSize;
             picImagemDaAnalise.TabIndex = 1;
             picImagemDaAnalise.TabStop = false;
+            picImagemDaAnalise.MouseClick += picImagemDaAnalise_Click;
             // 
             // btnAbrirProjeto
             // 
@@ -108,12 +110,22 @@
             // pnlPlanoDeFundoParaDimensoesDaImagem
             // 
             pnlPlanoDeFundoParaDimensoesDaImagem.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pnlPlanoDeFundoParaDimensoesDaImagem.Controls.Add(label1);
             pnlPlanoDeFundoParaDimensoesDaImagem.Controls.Add(lblImagemComTamanhoEmTempoReal);
             pnlPlanoDeFundoParaDimensoesDaImagem.Controls.Add(lblImagemComTamanhoOriginal);
             pnlPlanoDeFundoParaDimensoesDaImagem.Location = new Point(12, 491);
             pnlPlanoDeFundoParaDimensoesDaImagem.Name = "pnlPlanoDeFundoParaDimensoesDaImagem";
             pnlPlanoDeFundoParaDimensoesDaImagem.Size = new Size(1025, 37);
             pnlPlanoDeFundoParaDimensoesDaImagem.TabIndex = 8;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(664, 10);
+            label1.Name = "label1";
+            label1.Size = new Size(146, 15);
+            label1.TabIndex = 10;
+            label1.Text = "Coordenadas do Click: X;Y";
             // 
             // lblImagemComTamanhoEmTempoReal
             // 
@@ -141,7 +153,7 @@
             // 
             trbZoomDaImagem.Location = new Point(10, 58);
             trbZoomDaImagem.Maximum = 300;
-            trbZoomDaImagem.Minimum = -300;
+            trbZoomDaImagem.Minimum = -100;
             trbZoomDaImagem.Name = "trbZoomDaImagem";
             trbZoomDaImagem.Size = new Size(81, 45);
             trbZoomDaImagem.TabIndex = 4;
@@ -205,5 +217,6 @@
         private Label lblZoom;
         private OpenFileDialog ofdAbrirImagem;
         private ImageList imageList1;
+        private Label label1;
     }
 }

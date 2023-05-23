@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 using System.Xml;
@@ -16,7 +17,9 @@ namespace Imagem_Zoom
         private string diretorioDoProjeto;
         private int RsWidth;
         private int RsHeight;
-
+        private Point MouseP;
+        private int MouseClickX;
+        private int MouseClickY;
         public int LarguraAposZoom
         {
             get { return larguraAposZoom; }
@@ -89,17 +92,15 @@ namespace Imagem_Zoom
             arquivoXml.WriteElementString("LarguraDaImagem", largura.ToString());
             arquivoXml.WriteElementString("AlturaDaImagem", altura.ToString());
 
-
             arquivoXml.Close();
             MessageBox.Show("Arquivo XML gerado com sucesso.", "Arquivo XML", MessageBoxButtons.OK, MessageBoxIcon.Information);
             ImagemDaAnalise = img;
             DiretorioDoProjeto = caminhoDoProjeto;
-            
+
         }
         // Interação para abrir o arquivo
         private void btnAbrirProjeto_Click(object sender, EventArgs e)
         {
-
             string nomeDaImagemComDiretorio = string.Empty;
 
             ofdAbrirImagem.FileName = "";
@@ -118,12 +119,11 @@ namespace Imagem_Zoom
                 lblZoom.Visible = true;
                 btnAtualizaXml.Visible = true;
                 Thread.Sleep(20);
-                //RedimensionarConteudo();
 
                 lblImagemComTamanhoOriginal.Text = $"Tamanho Original: {imgOriginal.Width}; {imgOriginal.Height} px";
-
+                label1.Text = $"Coordenadas do Click: {MouseClickX}; {MouseClickY} px";
                 CriacaoDaPastaEXml(picImagemDaAnalise.Width, picImagemDaAnalise.Height, nomeDaImagemComDiretorio);
-                
+
             }
             ArrumaPdImagem();
 
@@ -156,7 +156,7 @@ namespace Imagem_Zoom
                 {
                     picImagemDaAnalise.Image = Zoom(imgOriginal, new Size(trbZoomDaImagem.Value, trbZoomDaImagem.Value));
                 }
-                if (trbZoomDaImagem.Value <= -290)
+                if (trbZoomDaImagem.Value <= -90)
                 {
                     MessageBox.Show("A função Zoom Out chegou ao seu limite.", "Zoom", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -176,19 +176,15 @@ namespace Imagem_Zoom
         private void trbZoomDaImagem_Scroll(object sender, EventArgs e)
         {
             if (trbZoomDaImagem.Value >= 0)
-
                 picImagemDaAnalise.Image = Zoom(imgOriginal, new Size(trbZoomDaImagem.Value, trbZoomDaImagem.Value));
 
-            if (trbZoomDaImagem.Value <= -290)
-
+            if (trbZoomDaImagem.Value <= -90)
                 MessageBox.Show("A função Zoom Out chegou ao seu limite.", "Zoom", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             if (trbZoomDaImagem.Value >= 290)
-
                 MessageBox.Show("A função Zoom In chegou ao seu limite.", "Zoom", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             else
-
                 picImagemDaAnalise.Image = Zoom(imgOriginal, new Size(trbZoomDaImagem.Value, trbZoomDaImagem.Value));
 
         }
@@ -208,7 +204,6 @@ namespace Imagem_Zoom
                 AlturaAposZoom = bmp.Height;
 
                 g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
-                //RedimensionarConteudo();
 
                 return bmp;
             }
@@ -223,6 +218,15 @@ namespace Imagem_Zoom
             RsHeight = (pnlPlanoDeFundoDaImagem.Height - picImagemDaAnalise.Height) / 2;
 
             pnlPlanoDeFundoDaImagem.Padding = new Padding(RsWidth, RsHeight, RsWidth, RsHeight);
+        }
+
+        private void picImagemDaAnalise_Click(object sender, MouseEventArgs e)
+        {
+            MouseClickX = (e.X);
+            MouseClickY = (e.Y);
+            MouseP = picImagemDaAnalise.PointToClient(Cursor.Position);
+            label1.Text = $"Coordenadas do Click: {MouseClickX}; {MouseClickY} px";
+
         }
     }
 }
