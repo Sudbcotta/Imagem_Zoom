@@ -51,6 +51,7 @@ namespace Imagem_Zoom
             trbZoomDaImagem.Visible = false;
             lblZoom.Visible = false;
             btnAtualizaXml.Visible = false;
+
         }
 
         private void Form1_Resize(object sender, EventArgs e)
@@ -119,10 +120,11 @@ namespace Imagem_Zoom
                 trbZoomDaImagem.Visible = true;
                 lblZoom.Visible = true;
                 btnAtualizaXml.Visible = true;
+
                 Thread.Sleep(20);
 
                 lblImagemComTamanhoOriginal.Text = $"Tamanho Original: {imgOriginal.Width}; {imgOriginal.Height} px";
-                label1.Text = $"Coordenadas do Click: {MouseClickX}; {MouseClickY} px";
+                lblCoordenada.Text = $"Coordenadas do Click: {MouseClickX}; {MouseClickY} px";
                 CriacaoDaPastaEXml(picImagemDaAnalise.Width, picImagemDaAnalise.Height, nomeDaImagemComDiretorio);
 
             }
@@ -148,7 +150,7 @@ namespace Imagem_Zoom
         //zoom aplicado ao mouse wheel
         private void MouseWheel(object sender, MouseEventArgs e)
         {
-            int delta = e.Delta / 12 * SystemInformation.MouseWheelScrollDelta / 120;
+            int delta = (e.Delta / 12 * SystemInformation.MouseWheelScrollDelta / 120);
 
             if ((trbZoomDaImagem.Value + delta >= trbZoomDaImagem.Minimum) && (trbZoomDaImagem.Value + delta <= trbZoomDaImagem.Maximum))
             {
@@ -178,7 +180,7 @@ namespace Imagem_Zoom
             {
                 picImagemDaAnalise.Image = Zoom(imgOriginal, new Size(trbZoomDaImagem.Value, trbZoomDaImagem.Value));
             }
-                
+
 
         }
 
@@ -209,7 +211,6 @@ namespace Imagem_Zoom
         {
             RsWidth = (pnlPlanoDeFundoDaImagem.Width - picImagemDaAnalise.Width) / 2;
             RsHeight = (pnlPlanoDeFundoDaImagem.Height - picImagemDaAnalise.Height) / 2;
-
             pnlPlanoDeFundoDaImagem.Padding = new Padding(RsWidth, RsHeight, RsWidth, RsHeight);
         }
 
@@ -219,7 +220,7 @@ namespace Imagem_Zoom
             MouseClickY = (e.Y);
 
             MouseP = picImagemDaAnalise.PointToClient(Cursor.Position);
-            label1.Text = $"Coordenadas do Click: {MouseClickX}; {MouseClickY} px";
+            lblCoordenada.Text = $"Coordenadas do Click: {MouseClickX}; {MouseClickY} px";
             btnAtualizaXml_Click(sender, e);
 
         }

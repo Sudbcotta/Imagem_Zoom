@@ -36,7 +36,7 @@
             pnlPlanoDeFundoDaImagem = new Panel();
             lblImagemComTamanhoOriginal = new Label();
             pnlPlanoDeFundoParaDimensoesDaImagem = new Panel();
-            label1 = new Label();
+            lblCoordenada = new Label();
             lblImagemComTamanhoEmTempoReal = new Label();
             btnAtualizaXml = new Button();
             trbZoomDaImagem = new TrackBar();
@@ -110,7 +110,7 @@
             // pnlPlanoDeFundoParaDimensoesDaImagem
             // 
             pnlPlanoDeFundoParaDimensoesDaImagem.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            pnlPlanoDeFundoParaDimensoesDaImagem.Controls.Add(label1);
+            pnlPlanoDeFundoParaDimensoesDaImagem.Controls.Add(lblCoordenada);
             pnlPlanoDeFundoParaDimensoesDaImagem.Controls.Add(lblImagemComTamanhoEmTempoReal);
             pnlPlanoDeFundoParaDimensoesDaImagem.Controls.Add(lblImagemComTamanhoOriginal);
             pnlPlanoDeFundoParaDimensoesDaImagem.Location = new Point(12, 491);
@@ -118,14 +118,14 @@
             pnlPlanoDeFundoParaDimensoesDaImagem.Size = new Size(1025, 37);
             pnlPlanoDeFundoParaDimensoesDaImagem.TabIndex = 8;
             // 
-            // label1
+            // lblCoordenada
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(664, 10);
-            label1.Name = "label1";
-            label1.Size = new Size(146, 15);
-            label1.TabIndex = 10;
-            label1.Text = "Coordenadas do Click: X;Y";
+            lblCoordenada.AutoSize = true;
+            lblCoordenada.Location = new Point(664, 10);
+            lblCoordenada.Name = "lblCoordenada";
+            lblCoordenada.Size = new Size(149, 15);
+            lblCoordenada.TabIndex = 10;
+            lblCoordenada.Text = "Coordenadas do Click: X; Y";
             // 
             // lblImagemComTamanhoEmTempoReal
             // 
@@ -141,7 +141,7 @@
             // 
             btnAtualizaXml.ImageKey = "Custom-Icon-Design-Mono-General-4-Refresh.512.png";
             btnAtualizaXml.ImageList = imageList1;
-            btnAtualizaXml.Location = new Point(10, 109);
+            btnAtualizaXml.Location = new Point(9, 48);
             btnAtualizaXml.Name = "btnAtualizaXml";
             btnAtualizaXml.Size = new Size(81, 23);
             btnAtualizaXml.TabIndex = 9;
@@ -151,7 +151,7 @@
             // 
             // trbZoomDaImagem
             // 
-            trbZoomDaImagem.Location = new Point(10, 58);
+            trbZoomDaImagem.Location = new Point(9, 77);
             trbZoomDaImagem.Maximum = 300;
             trbZoomDaImagem.Minimum = -90;
             trbZoomDaImagem.Name = "trbZoomDaImagem";
@@ -175,7 +175,7 @@
             // lblZoom
             // 
             lblZoom.AutoSize = true;
-            lblZoom.Location = new Point(32, 88);
+            lblZoom.Location = new Point(31, 107);
             lblZoom.Name = "lblZoom";
             lblZoom.Size = new Size(39, 15);
             lblZoom.TabIndex = 10;
@@ -217,6 +217,6 @@
         private Label lblZoom;
         private OpenFileDialog ofdAbrirImagem;
         private ImageList imageList1;
-        private Label label1;
+        private Label lblCoordenada;
     }
 }
