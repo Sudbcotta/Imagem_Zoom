@@ -51,7 +51,9 @@ namespace Imagem_Zoom
             trbZoomDaImagem.Visible = false;
             lblZoom.Visible = false;
             btnAtualizaXml.Visible = false;
-
+            lblCoordenada.Visible = false;
+            lblImagemComTamanhoEmTempoReal.Visible = false; 
+            lblImagemComTamanhoOriginal.Visible = false;    
         }
 
         private void Form1_Resize(object sender, EventArgs e)
@@ -117,9 +119,14 @@ namespace Imagem_Zoom
                 nomeDaImagemComDiretorio = ofdAbrirImagem.FileName;
                 picImagemDaAnalise.Image = Image.FromFile(ofdAbrirImagem.FileName);
                 imgOriginal = picImagemDaAnalise.Image;
+
+                //deixa as entidades visiveis para o usuario
                 trbZoomDaImagem.Visible = true;
                 lblZoom.Visible = true;
                 btnAtualizaXml.Visible = true;
+                lblCoordenada.Visible = true;
+                lblImagemComTamanhoEmTempoReal.Visible = true;
+                lblImagemComTamanhoOriginal.Visible = true;
 
                 Thread.Sleep(20);
 
@@ -134,6 +141,7 @@ namespace Imagem_Zoom
         // botão para atualizar os dados do XML
         private void btnAtualizaXml_Click(object sender, EventArgs e)
         {
+            
             XElement escreveXml = new XElement("Atualização");
 
             escreveXml.Add(new XElement("LarguraPosZoom", LarguraAposZoom.ToString()));
@@ -150,6 +158,7 @@ namespace Imagem_Zoom
         //zoom aplicado ao mouse wheel
         private void MouseWheel(object sender, MouseEventArgs e)
         {
+            //gera um valor para cada rodada no scroll do mouse 
             int delta = (e.Delta / 12 * SystemInformation.MouseWheelScrollDelta / 120);
 
             if ((trbZoomDaImagem.Value + delta >= trbZoomDaImagem.Minimum) && (trbZoomDaImagem.Value + delta <= trbZoomDaImagem.Maximum))
@@ -180,7 +189,7 @@ namespace Imagem_Zoom
             {
                 picImagemDaAnalise.Image = Zoom(imgOriginal, new Size(trbZoomDaImagem.Value, trbZoomDaImagem.Value));
             }
-
+            ArrumaPdImagem();
 
         }
 
@@ -188,16 +197,18 @@ namespace Imagem_Zoom
         {
             if (imagemDaAnaliseSemZoom != null)
             {
-
+                //calculo do zoom
                 Bitmap bmp = new Bitmap(imagemDaAnaliseSemZoom, imagemDaAnaliseSemZoom.Width + (imagemDaAnaliseSemZoom.Width * tamanho.Width / 100),
                                         imagemDaAnaliseSemZoom.Height + (imagemDaAnaliseSemZoom.Height * tamanho.Height / 100));
 
+                //exibe o tamanho da imagem em tempo real (a cada etapa de zoom)
                 lblImagemComTamanhoEmTempoReal.Text = $"Imagem com tamanho em tempo real: {bmp.Width};{bmp.Height} px";
                 Graphics g = Graphics.FromImage(bmp);
 
                 LarguraAposZoom = bmp.Width;
                 AlturaAposZoom = bmp.Height;
 
+                //gera a interpolação da imagem para que o zoom não tire qualidade da mesma
                 g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
 
                 return bmp;
@@ -209,8 +220,11 @@ namespace Imagem_Zoom
         //Centraliza a imagem no meio da tela
         private void ArrumaPdImagem()
         {
+            //pega a largura do panel, diminue pela da imagem e dps divide por 2
             RsWidth = (pnlPlanoDeFundoDaImagem.Width - picImagemDaAnalise.Width) / 2;
+            //pega a altura do panel, diminue pela altura da imagem e dps divide por 2
             RsHeight = (pnlPlanoDeFundoDaImagem.Height - picImagemDaAnalise.Height) / 2;
+            //transforma o parding do panel de acordo com o tamanho do panel em relação a imagem
             pnlPlanoDeFundoDaImagem.Padding = new Padding(RsWidth, RsHeight, RsWidth, RsHeight);
         }
 
@@ -218,9 +232,11 @@ namespace Imagem_Zoom
         {
             MouseClickX = (e.X);
             MouseClickY = (e.Y);
-
+            //pega as coordenadas do click do mouse (x,y)
             MouseP = picImagemDaAnalise.PointToClient(Cursor.Position);
+            //atualiza a label onde exibe as coordenadas do click
             lblCoordenada.Text = $"Coordenadas do Click: {MouseClickX}; {MouseClickY} px";
+            //chama a atualização do xml após cada click do mouse na imagem
             btnAtualizaXml_Click(sender, e);
 
         }

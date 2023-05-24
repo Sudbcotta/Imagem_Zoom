@@ -66,7 +66,7 @@
             btnAbrirProjeto.ImageAlign = ContentAlignment.MiddleLeft;
             btnAbrirProjeto.ImageKey = "101671.png";
             btnAbrirProjeto.ImageList = imageList1;
-            btnAbrirProjeto.Location = new Point(9, 19);
+            btnAbrirProjeto.Location = new Point(9, 13);
             btnAbrirProjeto.Name = "btnAbrirProjeto";
             btnAbrirProjeto.Size = new Size(81, 23);
             btnAbrirProjeto.TabIndex = 3;
@@ -141,7 +141,7 @@
             // 
             btnAtualizaXml.ImageKey = "Custom-Icon-Design-Mono-General-4-Refresh.512.png";
             btnAtualizaXml.ImageList = imageList1;
-            btnAtualizaXml.Location = new Point(9, 48);
+            btnAtualizaXml.Location = new Point(9, 42);
             btnAtualizaXml.Name = "btnAtualizaXml";
             btnAtualizaXml.Size = new Size(81, 23);
             btnAtualizaXml.TabIndex = 9;
@@ -151,7 +151,7 @@
             // 
             // trbZoomDaImagem
             // 
-            trbZoomDaImagem.Location = new Point(9, 77);
+            trbZoomDaImagem.Location = new Point(9, 71);
             trbZoomDaImagem.Maximum = 300;
             trbZoomDaImagem.Minimum = -90;
             trbZoomDaImagem.Name = "trbZoomDaImagem";
@@ -175,7 +175,7 @@
             // lblZoom
             // 
             lblZoom.AutoSize = true;
-            lblZoom.Location = new Point(31, 107);
+            lblZoom.Location = new Point(31, 98);
             lblZoom.Name = "lblZoom";
             lblZoom.Size = new Size(39, 15);
             lblZoom.TabIndex = 10;
