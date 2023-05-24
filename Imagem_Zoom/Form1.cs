@@ -1,8 +1,10 @@
+using Microsoft.VisualBasic.ApplicationServices;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
+using WinFormsApp1;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Imagem_Zoom
@@ -11,6 +13,7 @@ namespace Imagem_Zoom
     {
         Image imgOriginal;
 
+        private List<UserControlMarca> user ;
         private int larguraAposZoom;
         private int alturaAposZoom;
         private string imagemDaAnalise;
@@ -52,8 +55,8 @@ namespace Imagem_Zoom
             lblZoom.Visible = false;
             btnAtualizaXml.Visible = false;
             lblCoordenada.Visible = false;
-            lblImagemComTamanhoEmTempoReal.Visible = false; 
-            lblImagemComTamanhoOriginal.Visible = false;    
+            lblImagemComTamanhoEmTempoReal.Visible = false;
+            lblImagemComTamanhoOriginal.Visible = false;
         }
 
         private void Form1_Resize(object sender, EventArgs e)
@@ -141,14 +144,14 @@ namespace Imagem_Zoom
         // botão para atualizar os dados do XML
         private void btnAtualizaXml_Click(object sender, EventArgs e)
         {
-            
+
             XElement escreveXml = new XElement("Atualização");
 
             escreveXml.Add(new XElement("LarguraPosZoom", LarguraAposZoom.ToString()));
             escreveXml.Add(new XElement("AlturaPosZoom", AlturaAposZoom.ToString()));
+
             escreveXml.Add(new XElement("Coordenada-X-do-Clique", MouseClickX.ToString()));
             escreveXml.Add(new XElement("Coordenada-Y-do-Clique", MouseClickY.ToString()));
-
             XElement xml = XElement.Load($@"{DiretorioDoProjeto + "\\" + ImagemDaAnalise}.xml");
             xml.Add(escreveXml);
             xml.Save($@"{DiretorioDoProjeto + "\\" + ImagemDaAnalise}.xml");
@@ -238,6 +241,24 @@ namespace Imagem_Zoom
             lblCoordenada.Text = $"Coordenadas do Click: {MouseClickX}; {MouseClickY} px";
             //chama a atualização do xml após cada click do mouse na imagem
             btnAtualizaXml_Click(sender, e);
+
+            //Lista para user Control Marcar
+            List<UserControlMarca> userControlMarcas = new List<UserControlMarca>();
+
+            
+            var user = new UserControlMarca();
+            user.Name = string.Format($"UserControlMarca{userControlMarcas.Count()}");
+            user.Id = userControlMarcas.Count();
+            user.label1.Text = $"Pt_{userControlMarcas.Count()}";
+            var PosX = MouseClickX - user.Width / 2;
+            var PosY = MouseClickY - user.Height / 2;
+
+            user.Location = new Point(PosX, PosY);
+
+            var pic = (PictureBox)sender;
+            pic.Controls.Add(user);
+
+            userControlMarcas.Add(user);
 
         }
     }

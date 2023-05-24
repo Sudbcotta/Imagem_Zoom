@@ -121,7 +121,7 @@
             // lblCoordenada
             // 
             lblCoordenada.AutoSize = true;
-            lblCoordenada.Location = new Point(664, 10);
+            lblCoordenada.Location = new Point(614, 10);
             lblCoordenada.Name = "lblCoordenada";
             lblCoordenada.Size = new Size(149, 15);
             lblCoordenada.TabIndex = 10;
@@ -131,7 +131,7 @@
             // 
             lblImagemComTamanhoEmTempoReal.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblImagemComTamanhoEmTempoReal.AutoSize = true;
-            lblImagemComTamanhoEmTempoReal.Location = new Point(327, 10);
+            lblImagemComTamanhoEmTempoReal.Location = new Point(298, 10);
             lblImagemComTamanhoEmTempoReal.Name = "lblImagemComTamanhoEmTempoReal";
             lblImagemComTamanhoEmTempoReal.Size = new Size(251, 15);
             lblImagemComTamanhoEmTempoReal.TabIndex = 9;
@@ -139,12 +139,15 @@
             // 
             // btnAtualizaXml
             // 
+            btnAtualizaXml.ImageAlign = ContentAlignment.MiddleLeft;
             btnAtualizaXml.ImageKey = "Custom-Icon-Design-Mono-General-4-Refresh.512.png";
             btnAtualizaXml.ImageList = imageList1;
             btnAtualizaXml.Location = new Point(9, 42);
             btnAtualizaXml.Name = "btnAtualizaXml";
+            btnAtualizaXml.Padding = new Padding(0, 0, 7, 0);
             btnAtualizaXml.Size = new Size(81, 23);
             btnAtualizaXml.TabIndex = 9;
+            btnAtualizaXml.Text = "Refresh";
             btnAtualizaXml.TextAlign = ContentAlignment.MiddleRight;
             btnAtualizaXml.UseVisualStyleBackColor = true;
             btnAtualizaXml.Click += btnAtualizaXml_Click;
