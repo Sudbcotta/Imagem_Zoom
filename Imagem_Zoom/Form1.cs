@@ -249,7 +249,7 @@ namespace Imagem_Zoom
             var user = new UserControlMarca();
             user.Name = string.Format($"UserControlMarca{userControlMarcas.Count()}");
             user.Id = userControlMarcas.Count();
-            user.label1.Text = $"Pt_{userControlMarcas.Count()}";
+            user.lblPonto.Text = $"Pt_{userControlMarcas.Count()}";
             var PosX = MouseClickX - user.Width / 2;
             var PosY = MouseClickY - user.Height / 2;
 

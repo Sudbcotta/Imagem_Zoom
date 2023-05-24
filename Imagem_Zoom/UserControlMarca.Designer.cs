@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControlMarca));
-            label1 = new Label();
+            lblPonto = new Label();
             linkLabel1 = new LinkLabel();
             SuspendLayout();
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(0, 5);
-            label1.Name = "label1";
-            label1.Size = new Size(38, 15);
-            label1.TabIndex = 0;
-            label1.Text = "label1";
+            lblPonto.AutoSize = true;
+            lblPonto.ForeColor = Color.White;
+            lblPonto.Location = new Point(0, 5);
+            lblPonto.Name = "label1";
+            lblPonto.Size = new Size(38, 15);
+            lblPonto.TabIndex = 0;
+            lblPonto.Text = "label1";
             // 
             // linkLabel1
             // 
@@ -61,7 +61,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Center;
             Controls.Add(linkLabel1);
-            Controls.Add(label1);
+            Controls.Add(lblPonto);
             Cursor = Cursors.Hand;
             DoubleBuffered = true;
             MaximumSize = new Size(30, 20);
@@ -74,7 +74,7 @@
 
         #endregion
 
-        public Label label1;
+        public Label lblPonto;
         private LinkLabel linkLabel1;
     }
 }
