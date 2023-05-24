@@ -23,7 +23,8 @@ namespace Imagem_Zoom
         private Point MouseP;
         private int MouseClickX;
         private int MouseClickY;
-
+        private int PointPositionX;
+        private int PointPositionY;
         public int LarguraAposZoom
         {
             get { return larguraAposZoom; }
@@ -163,7 +164,7 @@ namespace Imagem_Zoom
         {
             //gera um valor para cada rodada no scroll do mouse 
             int delta = (e.Delta / 12 * SystemInformation.MouseWheelScrollDelta / 120);
-
+            
             if ((trbZoomDaImagem.Value + delta >= trbZoomDaImagem.Minimum) && (trbZoomDaImagem.Value + delta <= trbZoomDaImagem.Maximum))
             {
 
@@ -172,10 +173,14 @@ namespace Imagem_Zoom
                 if (trbZoomDaImagem.Value >= 0)
                 {
                     picImagemDaAnalise.Image = Zoom(imgOriginal, new Size(trbZoomDaImagem.Value, trbZoomDaImagem.Value));
+                    PointPositionX =(int) (PointPositionX*0.10);
+                    PointPositionY = (int)(PointPositionY * 0.10);
                 }
                 else
                 {
                     picImagemDaAnalise.Image = Zoom(imgOriginal, new Size(trbZoomDaImagem.Value, trbZoomDaImagem.Value));
+                    PointPositionX = (int)(PointPositionX * 0.10);
+                    PointPositionY = (int)(PointPositionY * 0.10);
                 }
 
             }
@@ -187,10 +192,14 @@ namespace Imagem_Zoom
             if (trbZoomDaImagem.Value >= 0)
             {
                 picImagemDaAnalise.Image = Zoom(imgOriginal, new Size(trbZoomDaImagem.Value, trbZoomDaImagem.Value));
+                PointPositionX = (int)(PointPositionX * 0.10);
+                PointPositionY = (int)(PointPositionY * 0.10);
             }
             else
             {
                 picImagemDaAnalise.Image = Zoom(imgOriginal, new Size(trbZoomDaImagem.Value, trbZoomDaImagem.Value));
+                PointPositionX = (int)(PointPositionX * 0.10);
+                PointPositionY = (int)(PointPositionY * 0.10);
             }
             ArrumaPdImagem();
 
@@ -253,8 +262,9 @@ namespace Imagem_Zoom
             var PosX = MouseClickX - user.Width / 2;
             var PosY = MouseClickY - user.Height / 2;
 
-            user.Location = new Point(PosX, PosY);
-
+            user.Location = new Point(PointPositionX,PointPositionY);
+            PointPositionX = (PosX);
+            PointPositionY = (PosY);
             var pic = (PictureBox)sender;
             pic.Controls.Add(user);
 
