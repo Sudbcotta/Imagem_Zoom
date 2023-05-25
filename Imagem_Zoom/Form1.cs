@@ -146,7 +146,7 @@ namespace Imagem_Zoom
                 CriacaoDaPastaEXml(picImagemDaAnalise.Width, picImagemDaAnalise.Height, nomeDaImagemComDiretorio);
 
             }
-            //ArrumaPdImagem();
+            
 
         }
         // botão para atualizar os dados do XML
@@ -157,7 +157,6 @@ namespace Imagem_Zoom
 
             escreveXml.Add(new XElement("LarguraPosZoom", LarguraAposZoom.ToString()));
             escreveXml.Add(new XElement("AlturaPosZoom", AlturaAposZoom.ToString()));
-
             escreveXml.Add(new XElement("Coordenada-X-do-Clique", MouseClickX.ToString()));
             escreveXml.Add(new XElement("Coordenada-Y-do-Clique", MouseClickY.ToString()));
             XElement xml = XElement.Load($@"{DiretorioDoProjeto + "\\" + ImagemDaAnalise}.xml");
@@ -174,19 +173,19 @@ namespace Imagem_Zoom
             //deltaM = deltaM + delta;
             if ((trbZoomDaImagem.Value + delta >= trbZoomDaImagem.Minimum) && (trbZoomDaImagem.Value + delta <= trbZoomDaImagem.Maximum))
             {
-
                 trbZoomDaImagem.Value = trbZoomDaImagem.Value + delta;
 
                 picImagemDaAnalise.Image = Zoom(imgOriginal, trbZoomDaImagem.Value / 100f);
-
             }
             ArrumaPdImagem();
+            Conserta_ponto();
         }
 
         private void trbZoomDaImagem_Scroll(object sender, EventArgs e)
         {
             picImagemDaAnalise.Image = Zoom(imgOriginal, trbZoomDaImagem.Value / 100f);
             ArrumaPdImagem();
+            Conserta_ponto();
         }
 
         Image? Zoom(Image imagemDaAnaliseSemZoom, double zoomFactor)
@@ -206,7 +205,7 @@ namespace Imagem_Zoom
                 AlturaAposZoom = bmp.Height;
 
                 //gera a interpolação da imagem para que o zoom não tire qualidade da mesma
-                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bicubic;
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Low;
 
                 return bmp;
             }
@@ -232,7 +231,7 @@ namespace Imagem_Zoom
                 RsHeight = 0;
             }
             pnlPlanoDeFundoDaImagem.Padding = new Padding(RsWidth, RsHeight, RsWidth, RsHeight);
-            Conserta_ponto();
+            
         }
 
         private void picImagemDaAnalise_Click(object sender, MouseEventArgs e)
@@ -246,7 +245,6 @@ namespace Imagem_Zoom
             //chama a atualização do xml após cada click do mouse na imagem
             btnAtualizaXml_Click(sender, e);
 
-            // userControlMarcas.Id = 1;
             //Lista para user Control Marcar
 
             var user = new UserControlMarca();
@@ -266,7 +264,6 @@ namespace Imagem_Zoom
             pic.Controls.Add(user);
 
             userControlMarcas.Add(user);
-            MessageBox.Show(userControlMarcas.Count().ToString());
         }
         private void Conserta_ponto()
         {
