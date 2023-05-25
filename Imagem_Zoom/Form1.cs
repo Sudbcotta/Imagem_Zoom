@@ -1,5 +1,6 @@
 using Microsoft.VisualBasic.ApplicationServices;
 using System.Diagnostics;
+using System.Net.Http.Headers;
 using System.Security.Cryptography;
 using System.Windows.Forms;
 using System.Xml;
@@ -13,7 +14,7 @@ namespace Imagem_Zoom
     {
         Image imgOriginal;
 
-        private List<UserControlMarca> user ;
+        //private List<UserControlMarca> user;
         private int larguraAposZoom;
         private int alturaAposZoom;
         private string imagemDaAnalise;
@@ -23,8 +24,13 @@ namespace Imagem_Zoom
         private Point MouseP;
         private int MouseClickX;
         private int MouseClickY;
-        private int PointPositionX;
-        private int PointPositionY;
+        private int Xponto;
+        private int Yponto;
+        private int vetorx;
+        private int vetory;
+        private int deltaM;
+        private List<UserControlMarca> userControlMarcas { get; set; }
+
         public int LarguraAposZoom
         {
             get { return larguraAposZoom; }
@@ -58,6 +64,7 @@ namespace Imagem_Zoom
             lblCoordenada.Visible = false;
             lblImagemComTamanhoEmTempoReal.Visible = false;
             lblImagemComTamanhoOriginal.Visible = false;
+            userControlMarcas = new List<UserControlMarca>();
         }
 
         private void Form1_Resize(object sender, EventArgs e)
@@ -139,7 +146,7 @@ namespace Imagem_Zoom
                 CriacaoDaPastaEXml(picImagemDaAnalise.Width, picImagemDaAnalise.Height, nomeDaImagemComDiretorio);
 
             }
-            ArrumaPdImagem();
+            //ArrumaPdImagem();
 
         }
         // botão para atualizar os dados do XML
@@ -164,24 +171,13 @@ namespace Imagem_Zoom
         {
             //gera um valor para cada rodada no scroll do mouse 
             int delta = (e.Delta / 12 * SystemInformation.MouseWheelScrollDelta / 120);
-            
+            //deltaM = deltaM + delta;
             if ((trbZoomDaImagem.Value + delta >= trbZoomDaImagem.Minimum) && (trbZoomDaImagem.Value + delta <= trbZoomDaImagem.Maximum))
             {
 
                 trbZoomDaImagem.Value = trbZoomDaImagem.Value + delta;
 
-                if (trbZoomDaImagem.Value >= 0)
-                {
-                    picImagemDaAnalise.Image = Zoom(imgOriginal, new Size(trbZoomDaImagem.Value, trbZoomDaImagem.Value));
-                    PointPositionX =(int) (PointPositionX*0.10);
-                    PointPositionY = (int)(PointPositionY * 0.10);
-                }
-                else
-                {
-                    picImagemDaAnalise.Image = Zoom(imgOriginal, new Size(trbZoomDaImagem.Value, trbZoomDaImagem.Value));
-                    PointPositionX = (int)(PointPositionX * 0.10);
-                    PointPositionY = (int)(PointPositionY * 0.10);
-                }
+                picImagemDaAnalise.Image = Zoom(imgOriginal, trbZoomDaImagem.Value / 100f);
 
             }
             ArrumaPdImagem();
@@ -189,44 +185,34 @@ namespace Imagem_Zoom
 
         private void trbZoomDaImagem_Scroll(object sender, EventArgs e)
         {
-            if (trbZoomDaImagem.Value >= 0)
-            {
-                picImagemDaAnalise.Image = Zoom(imgOriginal, new Size(trbZoomDaImagem.Value, trbZoomDaImagem.Value));
-                PointPositionX = (int)(PointPositionX * 0.10);
-                PointPositionY = (int)(PointPositionY * 0.10);
-            }
-            else
-            {
-                picImagemDaAnalise.Image = Zoom(imgOriginal, new Size(trbZoomDaImagem.Value, trbZoomDaImagem.Value));
-                PointPositionX = (int)(PointPositionX * 0.10);
-                PointPositionY = (int)(PointPositionY * 0.10);
-            }
+            picImagemDaAnalise.Image = Zoom(imgOriginal, trbZoomDaImagem.Value / 100f);
             ArrumaPdImagem();
-
         }
 
-        Image? Zoom(Image imagemDaAnaliseSemZoom, Size tamanho)
+        Image? Zoom(Image imagemDaAnaliseSemZoom, double zoomFactor)
         {
             if (imagemDaAnaliseSemZoom != null)
             {
                 //calculo do zoom
-                Bitmap bmp = new Bitmap(imagemDaAnaliseSemZoom, imagemDaAnaliseSemZoom.Width + (imagemDaAnaliseSemZoom.Width * tamanho.Width / 100),
-                                        imagemDaAnaliseSemZoom.Height + (imagemDaAnaliseSemZoom.Height * tamanho.Height / 100));
+                int width = (int)(imagemDaAnaliseSemZoom.Width * zoomFactor);
+                int height = (int)(imagemDaAnaliseSemZoom.Height * zoomFactor);
+                Bitmap bmp = new Bitmap(imagemDaAnaliseSemZoom, width, height);
 
                 //exibe o tamanho da imagem em tempo real (a cada etapa de zoom)
                 lblImagemComTamanhoEmTempoReal.Text = $"Imagem com tamanho em tempo real: {bmp.Width};{bmp.Height} px";
                 Graphics g = Graphics.FromImage(bmp);
-
+                lblCoordenada.Text = $"Coordenadas do Click: {MouseClickX}; {MouseClickY} px";
                 LarguraAposZoom = bmp.Width;
                 AlturaAposZoom = bmp.Height;
 
                 //gera a interpolação da imagem para que o zoom não tire qualidade da mesma
-                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.Bicubic;
 
                 return bmp;
             }
             else
                 return null;
+
 
         }
         //Centraliza a imagem no meio da tela
@@ -237,7 +223,16 @@ namespace Imagem_Zoom
             //pega a altura do panel, diminue pela altura da imagem e dps divide por 2
             RsHeight = (pnlPlanoDeFundoDaImagem.Height - picImagemDaAnalise.Height) / 2;
             //transforma o parding do panel de acordo com o tamanho do panel em relação a imagem
+            if (RsWidth < 0)
+            {
+                RsWidth = 0;
+            }
+            if (RsHeight < 0)
+            {
+                RsHeight = 0;
+            }
             pnlPlanoDeFundoDaImagem.Padding = new Padding(RsWidth, RsHeight, RsWidth, RsHeight);
+            Conserta_ponto();
         }
 
         private void picImagemDaAnalise_Click(object sender, MouseEventArgs e)
@@ -251,24 +246,40 @@ namespace Imagem_Zoom
             //chama a atualização do xml após cada click do mouse na imagem
             btnAtualizaXml_Click(sender, e);
 
+            // userControlMarcas.Id = 1;
             //Lista para user Control Marcar
-            List<UserControlMarca> userControlMarcas = new List<UserControlMarca>();
 
-            
             var user = new UserControlMarca();
             user.Name = string.Format($"UserControlMarca{userControlMarcas.Count()}");
             user.Id = userControlMarcas.Count();
             user.lblPonto.Text = $"Pt_{userControlMarcas.Count()}";
-            var PosX = MouseClickX - user.Width / 2;
-            var PosY = MouseClickY - user.Height / 2;
 
-            user.Location = new Point(PointPositionX,PointPositionY);
-            PointPositionX = (PosX);
-            PointPositionY = (PosY);
+            double zoom = trbZoomDaImagem.Value / 100;
+            user.RelativeLocation = new Point((int)(MouseClickX * zoom), (int)(MouseClickY * zoom));
+
+            MouseClickX += -user.Width / 2;
+            MouseClickY += -user.Height / 2;
+
+            user.Location = new Point(MouseClickX, MouseClickY);
+            
             var pic = (PictureBox)sender;
             pic.Controls.Add(user);
 
             userControlMarcas.Add(user);
+            MessageBox.Show(userControlMarcas.Count().ToString());
+        }
+        private void Conserta_ponto()
+        {
+            foreach (UserControlMarca user in userControlMarcas)
+            {
+                double x = (trbZoomDaImagem.Value / 100f) * user.RelativeLocation.X;
+                double y = (trbZoomDaImagem.Value / 100f) * user.RelativeLocation.Y;
+
+                x += -user.Width / 2;
+                y += -user.Height / 2;
+
+                user.Location = new Point((int)x, (int)y);
+            }
 
         }
     }

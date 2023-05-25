@@ -13,6 +13,7 @@ namespace WinFormsApp1
     public partial class UserControlMarca : UserControl
     {
         public int Id { get; set; }
+        public Point RelativeLocation { get; set; }
         public UserControlMarca()
         {
             InitializeComponent();

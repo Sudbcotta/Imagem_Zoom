@@ -155,12 +155,12 @@
             // trbZoomDaImagem
             // 
             trbZoomDaImagem.Location = new Point(9, 71);
-            trbZoomDaImagem.Maximum = 300;
-            trbZoomDaImagem.Minimum = -90;
+            trbZoomDaImagem.Maximum = 400;
+            trbZoomDaImagem.Minimum = 10;
             trbZoomDaImagem.Name = "trbZoomDaImagem";
             trbZoomDaImagem.Size = new Size(81, 45);
             trbZoomDaImagem.TabIndex = 4;
-            trbZoomDaImagem.Value = 1;
+            trbZoomDaImagem.Value = 100;
             trbZoomDaImagem.Visible = false;
             trbZoomDaImagem.Scroll += trbZoomDaImagem_Scroll;
             // 
