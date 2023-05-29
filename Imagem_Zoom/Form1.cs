@@ -26,6 +26,9 @@ namespace Imagem_Zoom
         private int MouseClickY;
         private int McpX;
         private int McpY;
+        private double zoom;
+        private double x;
+        private double y;   
 
         private List<UserControlMarca> userControlMarcas { get; set; }
 
@@ -234,10 +237,8 @@ namespace Imagem_Zoom
             user.Id = userControlMarcas.Count();
             user.lblPonto.Text = $"Pt_{userControlMarcas.Count()}";
 
-            //
-            double zoom = trbZoomDaImagem.Value / 100;
-            user.RelativeLocation = new Point((int)(McpX * zoom), (int)(McpY * zoom));
-            //
+            zoom = trbZoomDaImagem.Value / 100;
+            user.RelativeLocation = new Point((int)(McpX * zoom), (int)(McpY * zoom));      
 
             McpX += -user.Width / 2;
             McpY += -user.Height / 2;
@@ -249,17 +250,21 @@ namespace Imagem_Zoom
 
             userControlMarcas.Add(user);
         }
+        //Alinhamento do ponto de acordo com o zoom da imagem
         private void Conserta_ponto()
         {
             foreach (UserControlMarca user in userControlMarcas)
-            {
-                double x = (trbZoomDaImagem.Value / 100f) * user.RelativeLocation.X;
-                double y = (trbZoomDaImagem.Value / 100f) * user.RelativeLocation.Y;
-
+            {        
+                x = (trbZoomDaImagem.Value / 100f) * user.RelativeLocation.X;
+                y = (trbZoomDaImagem.Value / 100f) * user.RelativeLocation.Y;
                 x += -user.Width / 2;
                 y += -user.Height / 2;
 
                 user.Location = new Point((int)x, (int)y);
+
+                //x += -user.Width / 2;
+                //y += -user.Height / 2;
+                //user.Location = new Point((int)x, (int)y);
             }
 
         }
@@ -268,7 +273,7 @@ namespace Imagem_Zoom
         {
             //gera um valor para cada rodada no scroll do mouse 
             int delta = (e.Delta / 12 * SystemInformation.MouseWheelScrollDelta / 120);
-            //deltaM = deltaM + delta;
+            
             if ((trbZoomDaImagem.Value + delta >= trbZoomDaImagem.Minimum) && (trbZoomDaImagem.Value + delta <= trbZoomDaImagem.Maximum))
             {
                 trbZoomDaImagem.Value = trbZoomDaImagem.Value + delta;
