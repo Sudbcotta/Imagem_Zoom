@@ -251,7 +251,7 @@ namespace Imagem_Zoom
 
             user.Name = string.Format($"UserControlMarca{userControlMarcas.Count()}");
             user.Id = userControlMarcas.Count();
-            user.lblPonto.Text = $"Pt_{userControlMarcas.Count()}";
+            user.lblPonto.Text = $"{userControlMarcas.Count()}";
 
             zoom = trbZoomDaImagem.Value / 100f;
 

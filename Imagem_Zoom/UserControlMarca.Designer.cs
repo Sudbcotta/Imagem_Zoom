@@ -26,21 +26,26 @@
         /// Método necessário para suporte ao Designer - não modifique 
         /// o conteúdo deste método com o editor de código.
         /// </summary>
-        private void InitializeComponent()
+        public void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControlMarca));
-            lblPonto = new Label();
+            lblPonto = new LinkLabel();
             SuspendLayout();
             // 
             // lblPonto
             // 
+            lblPonto.ActiveLinkColor = Color.White;
             lblPonto.AutoSize = true;
-            lblPonto.ForeColor = Color.White;
-            lblPonto.Location = new Point(-2, 5);
+            lblPonto.Font = new Font("Constantia", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblPonto.ForeColor = SystemColors.ControlLightLight;
+            lblPonto.LinkColor = Color.White;
+            lblPonto.Location = new Point(3, 2);
             lblPonto.Name = "lblPonto";
-            lblPonto.Size = new Size(38, 15);
+            lblPonto.Size = new Size(24, 19);
             lblPonto.TabIndex = 0;
-            lblPonto.Text = "label1";
+            lblPonto.TabStop = true;
+            lblPonto.Text = "10";
+            lblPonto.LinkClicked += linkLabel1_LinkClicked;
             // 
             // UserControlMarca
             // 
@@ -48,20 +53,20 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            BackgroundImageLayout = ImageLayout.Center;
+            BackgroundImageLayout = ImageLayout.Zoom;
             Controls.Add(lblPonto);
             Cursor = Cursors.Hand;
             DoubleBuffered = true;
-            MaximumSize = new Size(50, 50);
+            MaximumSize = new Size(30, 30);
             MinimumSize = new Size(30, 20);
             Name = "UserControlMarca";
-            Size = new Size(30, 20);
+            Size = new Size(30, 30);
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        public Label lblPonto;
+        public LinkLabel lblPonto;
     }
 }

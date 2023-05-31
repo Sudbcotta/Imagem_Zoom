@@ -19,8 +19,8 @@ namespace WinFormsApp1
 
         private void Form2_Load(object sender, EventArgs e)
         {
-        // var user = (UserControlMarca)this.Owner; 
-          //  var iddd = user.Id;
+            // var user = (UserControlMarca)this.Owner; 
+            //  var iddd = user.Id;
         }
     }
 }
