@@ -34,6 +34,7 @@
             btnAbrirProjeto = new Button();
             imageList1 = new ImageList(components);
             pnlPlanoDeFundoDaImagem = new Panel();
+            listBox1 = new ListBox();
             lblImagemComTamanhoOriginal = new Label();
             pnlPlanoDeFundoParaDimensoesDaImagem = new Panel();
             lblCoordenada = new Label();
@@ -43,6 +44,7 @@
             pnlPlanoDeFundoParaControles = new Panel();
             lblZoom = new Label();
             ofdAbrirImagem = new OpenFileDialog();
+            lblCoordMouse = new Label();
             ((System.ComponentModel.ISupportInitialize)picImagemDaAnalise).BeginInit();
             pnlPlanoDeFundoDaImagem.SuspendLayout();
             pnlPlanoDeFundoParaDimensoesDaImagem.SuspendLayout();
@@ -60,6 +62,7 @@
             picImagemDaAnalise.TabIndex = 1;
             picImagemDaAnalise.TabStop = false;
             picImagemDaAnalise.MouseClick += picImagemDaAnalise_Click;
+            picImagemDaAnalise.MouseMove += picImagemDaAnalise_MouseMove;
             // 
             // btnAbrirProjeto
             // 
@@ -90,12 +93,22 @@
             pnlPlanoDeFundoDaImagem.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             pnlPlanoDeFundoDaImagem.BackColor = Color.Transparent;
             pnlPlanoDeFundoDaImagem.BorderStyle = BorderStyle.FixedSingle;
+            pnlPlanoDeFundoDaImagem.Controls.Add(listBox1);
             pnlPlanoDeFundoDaImagem.Controls.Add(picImagemDaAnalise);
             pnlPlanoDeFundoDaImagem.Location = new Point(119, 12);
             pnlPlanoDeFundoDaImagem.Name = "pnlPlanoDeFundoDaImagem";
             pnlPlanoDeFundoDaImagem.Size = new Size(919, 473);
             pnlPlanoDeFundoDaImagem.TabIndex = 5;
             pnlPlanoDeFundoDaImagem.MouseWheel += MouseWheel;
+            // 
+            // listBox1
+            // 
+            listBox1.FormattingEnabled = true;
+            listBox1.ItemHeight = 15;
+            listBox1.Location = new Point(14, 12);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(222, 244);
+            listBox1.TabIndex = 11;
             // 
             // lblImagemComTamanhoOriginal
             // 
@@ -110,6 +123,7 @@
             // pnlPlanoDeFundoParaDimensoesDaImagem
             // 
             pnlPlanoDeFundoParaDimensoesDaImagem.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pnlPlanoDeFundoParaDimensoesDaImagem.Controls.Add(lblCoordMouse);
             pnlPlanoDeFundoParaDimensoesDaImagem.Controls.Add(lblCoordenada);
             pnlPlanoDeFundoParaDimensoesDaImagem.Controls.Add(lblImagemComTamanhoEmTempoReal);
             pnlPlanoDeFundoParaDimensoesDaImagem.Controls.Add(lblImagemComTamanhoOriginal);
@@ -184,6 +198,15 @@
             lblZoom.TabIndex = 10;
             lblZoom.Text = "Zoom";
             // 
+            // lblCoordMouse
+            // 
+            lblCoordMouse.AutoSize = true;
+            lblCoordMouse.Location = new Point(823, 10);
+            lblCoordMouse.Name = "lblCoordMouse";
+            lblCoordMouse.Size = new Size(139, 15);
+            lblCoordMouse.TabIndex = 11;
+            lblCoordMouse.Text = "Coordenadas Mouse: X;Y\r\n";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -221,5 +244,7 @@
         private OpenFileDialog ofdAbrirImagem;
         private ImageList imageList1;
         private Label lblCoordenada;
+        private ListBox listBox1;
+        private Label lblCoordMouse;
     }
 }

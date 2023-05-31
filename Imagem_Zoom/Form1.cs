@@ -14,7 +14,6 @@ namespace Imagem_Zoom
     {
         Image imgOriginal;
 
-        //private List<UserControlMarca> user;
         private int larguraAposZoom;
         private int alturaAposZoom;
         private string imagemDaAnalise;
@@ -28,8 +27,9 @@ namespace Imagem_Zoom
         private int McpY;
         private double zoom;
         private double x;
-        private double y;   
-
+        private double y;
+        private int Relax;
+        private int Relay;
         private List<UserControlMarca> userControlMarcas { get; set; }
 
         public int LarguraAposZoom
@@ -52,8 +52,6 @@ namespace Imagem_Zoom
             get { return diretorioDoProjeto; }
             set { diretorioDoProjeto = value; }
         }
-
-
 
         public Form1()
         {
@@ -103,11 +101,14 @@ namespace Imagem_Zoom
             arquivoXml.WriteStartDocument();
             arquivoXml.Formatting = Formatting.Indented;
             arquivoXml.WriteStartElement("Dados");
-            arquivoXml.WriteComment("");
+            //arquivoXml.WriteComment("");
+
             arquivoXml.WriteElementString("NomeDaImagem", nomeDaImagemComExtensao);
             arquivoXml.WriteElementString("LarguraDaImagem", largura.ToString());
             arquivoXml.WriteElementString("AlturaDaImagem", altura.ToString());
+            arquivoXml.WriteEndElement();
 
+            arquivoXml.Flush();
             arquivoXml.Close();
             MessageBox.Show("Arquivo XML gerado com sucesso.", "Arquivo XML", MessageBoxButtons.OK, MessageBoxIcon.Information);
             ImagemDaAnalise = img;
@@ -153,20 +154,19 @@ namespace Imagem_Zoom
         // botão para atualizar os dados do XML
         private void btnAtualizaXml_Click(object sender, EventArgs e)
         {
-
             XElement escreveXml = new XElement("Atualização");
 
-            escreveXml.Add(new XElement("LarguraPosZoom", LarguraAposZoom.ToString()));
-            escreveXml.Add(new XElement("AlturaPosZoom", AlturaAposZoom.ToString()));
-            escreveXml.Add(new XElement("Coordenada-X-do-Clique", (MouseClickX).ToString()));
-            escreveXml.Add(new XElement("Coordenada-Y-do-Clique", (MouseClickY).ToString()));
+            escreveXml.Add(new XElement("LarguraAtual", LarguraAposZoom.ToString()));
+            escreveXml.Add(new XElement("AlturaAtual", AlturaAposZoom.ToString()));
+            escreveXml.Add(new XElement("Coordenada-X-do-Clique", (Relax).ToString()));
+            escreveXml.Add(new XElement("Coordenada-Y-do-Clique", (Relay).ToString()));
             XElement xml = XElement.Load($@"{DiretorioDoProjeto + "\\" + ImagemDaAnalise}.xml");
             xml.Add(escreveXml);
             xml.Save($@"{DiretorioDoProjeto + "\\" + ImagemDaAnalise}.xml");
             MessageBox.Show("Arquivo XML atualizado com sucesso.", "Arquivo XML", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        
+
 
         Image? Zoom(Image imagemDaAnaliseSemZoom, double zoomFactor)
         {
@@ -181,9 +181,18 @@ namespace Imagem_Zoom
                 lblImagemComTamanhoEmTempoReal.Text = $"Imagem com tamanho em tempo real: {bmp.Width};{bmp.Height} px";
                 Graphics g = Graphics.FromImage(bmp);
                 lblCoordenada.Text = $"Coordenadas do Click: {MouseClickX}; {MouseClickY} px";
-                LarguraAposZoom = bmp.Width;
-                AlturaAposZoom = bmp.Height;
 
+                if (LarguraAposZoom == 0)
+                {
+                    //Atribui um valor para mostrar o tamanho da imagem em tempo real no XML 
+                    LarguraAposZoom = imgOriginal.Width;
+                    AlturaAposZoom = imgOriginal.Height;
+                }
+                else
+                {
+                    LarguraAposZoom = bmp.Width;
+                    AlturaAposZoom = bmp.Height;
+                }
                 //gera a interpolação da imagem para que o zoom não tire qualidade da mesma
                 g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
                 g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
@@ -194,8 +203,6 @@ namespace Imagem_Zoom
             }
             else
                 return null;
-
-
         }
         //Centraliza a imagem no meio da tela
         private void ArrumaPdImagem()
@@ -221,24 +228,31 @@ namespace Imagem_Zoom
         {
             MouseClickX = (e.X);
             MouseClickY = (e.Y);
+
+            //Armazena o click do mouse em uma variável
             McpX = MouseClickX;
             McpY = MouseClickY;
+
             //pega as coordenadas do click do mouse (x,y)
             MouseP = picImagemDaAnalise.PointToClient(Cursor.Position);
+
             //atualiza a label onde exibe as coordenadas do click
             lblCoordenada.Text = $"Coordenadas do Click: {MouseClickX}; {MouseClickY} px";
-            //chama a atualização do xml após cada click do mouse na imagem
-            btnAtualizaXml_Click(sender, e);
 
             //Lista para user Control Marcar
 
             var user = new UserControlMarca();
+
             user.Name = string.Format($"UserControlMarca{userControlMarcas.Count()}");
             user.Id = userControlMarcas.Count();
             user.lblPonto.Text = $"Pt_{userControlMarcas.Count()}";
 
-            zoom = trbZoomDaImagem.Value / 100;
-            user.RelativeLocation = new Point((int)(McpX * zoom), (int)(McpY * zoom));      
+            zoom = trbZoomDaImagem.Value / 100f;
+            //this.Text = zoom.ToString();
+            user.RelativeLocation = new Point((int)(McpX / zoom), (int)(McpY / zoom));
+
+            Relax = user.RelativeLocation.X;
+            Relay = user.RelativeLocation.Y;
 
             McpX += -user.Width / 2;
             McpY += -user.Height / 2;
@@ -249,31 +263,32 @@ namespace Imagem_Zoom
             pic.Controls.Add(user);
 
             userControlMarcas.Add(user);
+
+            btnAtualizaXml_Click(sender, e);
         }
         //Alinhamento do ponto de acordo com o zoom da imagem
         private void Conserta_ponto()
         {
+            listBox1.Items.Clear();
+
             foreach (UserControlMarca user in userControlMarcas)
-            {        
+            {
                 x = (trbZoomDaImagem.Value / 100f) * user.RelativeLocation.X;
                 y = (trbZoomDaImagem.Value / 100f) * user.RelativeLocation.Y;
                 x += -user.Width / 2;
                 y += -user.Height / 2;
 
                 user.Location = new Point((int)x, (int)y);
-
-                //x += -user.Width / 2;
-                //y += -user.Height / 2;
-                //user.Location = new Point((int)x, (int)y);
+                listBox1.Items.Add(String.Format("{0} x:{1} y:{2}", user.lblPonto.Text, user.Left, user.Top));
             }
-
         }
-        //zoom aplicado ao mouse wheel
+        
+        //Zoom aplicado ao mouse wheel
         private void MouseWheel(object sender, MouseEventArgs e)
         {
-            //gera um valor para cada rodada no scroll do mouse 
+
             int delta = (e.Delta / 12 * SystemInformation.MouseWheelScrollDelta / 120);
-            
+
             if ((trbZoomDaImagem.Value + delta >= trbZoomDaImagem.Minimum) && (trbZoomDaImagem.Value + delta <= trbZoomDaImagem.Maximum))
             {
                 trbZoomDaImagem.Value = trbZoomDaImagem.Value + delta;
@@ -291,6 +306,10 @@ namespace Imagem_Zoom
             Conserta_ponto();
         }
 
+        private void picImagemDaAnalise_MouseMove(object sender, MouseEventArgs e)
+        {
+            lblCoordMouse.Text = String.Format("Coordenadas Mouse: {0};{1}",e.X,e.Y);
+        }
     }
 }
 
