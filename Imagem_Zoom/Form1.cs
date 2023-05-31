@@ -60,10 +60,14 @@ namespace Imagem_Zoom
             trbZoomDaImagem.Visible = false;
             lblZoom.Visible = false;
             btnAtualizaXml.Visible = false;
-            lblCoordenada.Visible = false;
+            lblCoordMouse.Visible = false;
             lblImagemComTamanhoEmTempoReal.Visible = false;
             lblImagemComTamanhoOriginal.Visible = false;
+            listBox1.Visible = false;
             userControlMarcas = new List<UserControlMarca>();
+            lblPt.Visible = false;
+            groupBox1.Visible = false;
+            groupBox2.Visible = false;
         }
 
         private void Form1_Resize(object sender, EventArgs e)
@@ -137,36 +141,42 @@ namespace Imagem_Zoom
                 trbZoomDaImagem.Visible = true;
                 lblZoom.Visible = true;
                 btnAtualizaXml.Visible = true;
-                lblCoordenada.Visible = true;
+                lblCoordMouse.Visible = true;
                 lblImagemComTamanhoEmTempoReal.Visible = true;
                 lblImagemComTamanhoOriginal.Visible = true;
+                listBox1.Visible = true;
+                lblPt.Visible = true;
+                groupBox1.Visible = true;
+                groupBox2.Visible = true;
 
                 Thread.Sleep(20);
 
                 lblImagemComTamanhoOriginal.Text = $"Tamanho Original: {imgOriginal.Width}; {imgOriginal.Height} px";
-                lblCoordenada.Text = $"Coordenadas do Click: {MouseClickX}; {MouseClickY} px";
                 CriacaoDaPastaEXml(picImagemDaAnalise.Width, picImagemDaAnalise.Height, nomeDaImagemComDiretorio);
 
-            }
+                LarguraAposZoom = imgOriginal.Width;
+                AlturaAposZoom = imgOriginal.Height;
 
+            }
 
         }
         // botão para atualizar os dados do XML
         private void btnAtualizaXml_Click(object sender, EventArgs e)
         {
+            //trbZoomDaImagem = 0;
+
             XElement escreveXml = new XElement("Atualização");
 
             escreveXml.Add(new XElement("LarguraAtual", LarguraAposZoom.ToString()));
             escreveXml.Add(new XElement("AlturaAtual", AlturaAposZoom.ToString()));
+            escreveXml.Add(new XComment("Ponto_"));
             escreveXml.Add(new XElement("Coordenada-X-do-Clique", (Relax).ToString()));
             escreveXml.Add(new XElement("Coordenada-Y-do-Clique", (Relay).ToString()));
             XElement xml = XElement.Load($@"{DiretorioDoProjeto + "\\" + ImagemDaAnalise}.xml");
             xml.Add(escreveXml);
             xml.Save($@"{DiretorioDoProjeto + "\\" + ImagemDaAnalise}.xml");
-            MessageBox.Show("Arquivo XML atualizado com sucesso.", "Arquivo XML", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //MessageBox.Show("Arquivo XML atualizado com sucesso.", "Arquivo XML", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
-
 
         Image? Zoom(Image imagemDaAnaliseSemZoom, double zoomFactor)
         {
@@ -180,7 +190,6 @@ namespace Imagem_Zoom
                 //exibe o tamanho da imagem em tempo real (a cada etapa de zoom)
                 lblImagemComTamanhoEmTempoReal.Text = $"Imagem com tamanho em tempo real: {bmp.Width};{bmp.Height} px";
                 Graphics g = Graphics.FromImage(bmp);
-                lblCoordenada.Text = $"Coordenadas do Click: {MouseClickX}; {MouseClickY} px";
 
                 if (LarguraAposZoom == 0)
                 {
@@ -236,9 +245,6 @@ namespace Imagem_Zoom
             //pega as coordenadas do click do mouse (x,y)
             MouseP = picImagemDaAnalise.PointToClient(Cursor.Position);
 
-            //atualiza a label onde exibe as coordenadas do click
-            lblCoordenada.Text = $"Coordenadas do Click: {MouseClickX}; {MouseClickY} px";
-
             //Lista para user Control Marcar
 
             var user = new UserControlMarca();
@@ -248,7 +254,7 @@ namespace Imagem_Zoom
             user.lblPonto.Text = $"Pt_{userControlMarcas.Count()}";
 
             zoom = trbZoomDaImagem.Value / 100f;
-            //this.Text = zoom.ToString();
+
             user.RelativeLocation = new Point((int)(McpX / zoom), (int)(McpY / zoom));
 
             Relax = user.RelativeLocation.X;
@@ -265,6 +271,7 @@ namespace Imagem_Zoom
             userControlMarcas.Add(user);
 
             btnAtualizaXml_Click(sender, e);
+            listBox1.Items.Add(String.Format("{0} x:{1} y:{2}", user.lblPonto.Text, user.Left, user.Top));
         }
         //Alinhamento do ponto de acordo com o zoom da imagem
         private void Conserta_ponto()
@@ -275,6 +282,7 @@ namespace Imagem_Zoom
             {
                 x = (trbZoomDaImagem.Value / 100f) * user.RelativeLocation.X;
                 y = (trbZoomDaImagem.Value / 100f) * user.RelativeLocation.Y;
+
                 x += -user.Width / 2;
                 y += -user.Height / 2;
 
@@ -282,12 +290,12 @@ namespace Imagem_Zoom
                 listBox1.Items.Add(String.Format("{0} x:{1} y:{2}", user.lblPonto.Text, user.Left, user.Top));
             }
         }
-        
+
         //Zoom aplicado ao mouse wheel
         private void MouseWheel(object sender, MouseEventArgs e)
         {
 
-            int delta = (e.Delta / 12 * SystemInformation.MouseWheelScrollDelta / 120);
+            int delta = (e.Delta / 10 * SystemInformation.MouseWheelScrollDelta / 120);
 
             if ((trbZoomDaImagem.Value + delta >= trbZoomDaImagem.Minimum) && (trbZoomDaImagem.Value + delta <= trbZoomDaImagem.Maximum))
             {
@@ -308,8 +316,10 @@ namespace Imagem_Zoom
 
         private void picImagemDaAnalise_MouseMove(object sender, MouseEventArgs e)
         {
-            lblCoordMouse.Text = String.Format("Coordenadas Mouse: {0};{1}",e.X,e.Y);
+            lblCoordMouse.Text = String.Format("Coordenadas Mouse: {0};{1}", e.X, e.Y);
         }
+
+
     }
 }
 

@@ -25,5 +25,6 @@ namespace WinFormsApp1
             //form2.Parent = this;
             form2.ShowDialog(this);
         }
+
     }
 }
