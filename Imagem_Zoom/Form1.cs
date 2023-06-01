@@ -70,6 +70,8 @@ namespace Imagem_Zoom
             PointCheck.Visible = false;
             groupBox3.Visible = false;
             groupBox4.Visible = false;
+            gbZoom.Visible = false;
+            lblFtZoom.Visible   = false;
 
         }
 
@@ -154,6 +156,8 @@ namespace Imagem_Zoom
                 PointCheck.Checked = true;
                 groupBox3.Visible = true;
                 groupBox4.Visible = true;
+                gbZoom.Visible = true;
+                lblFtZoom.Visible = true;
 
                 Thread.Sleep(20);
 
@@ -264,7 +268,7 @@ namespace Imagem_Zoom
                 user.Visible = PointCheck.Checked;
 
                 zoom = trbZoomDaImagem.Value / 100f;
-
+                
                 user.RelativeLocation = new Point((int)(McpX / zoom), (int)(McpY / zoom));
 
                 Relax = user.RelativeLocation.X;
@@ -318,6 +322,7 @@ namespace Imagem_Zoom
 
                 picImagemDaAnalise.Image = Zoom(imgOriginal, trbZoomDaImagem.Value / 100f);
             }
+            //lblFtZoom.Text = $"FT Zoom: {(double)zoom}";
             ArrumaPdImagem();
             Conserta_ponto();
         }
@@ -327,6 +332,7 @@ namespace Imagem_Zoom
             picImagemDaAnalise.Image = Zoom(imgOriginal, trbZoomDaImagem.Value / 100f);
             ArrumaPdImagem();
             Conserta_ponto();
+            //lblFtZoom.Text = $"FT Zoom: {(double)zoom}";
         }
 
         private void picImagemDaAnalise_MouseMove(object sender, MouseEventArgs e)

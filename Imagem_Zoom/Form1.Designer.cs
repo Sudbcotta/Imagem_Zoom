@@ -49,6 +49,8 @@
             groupBox4 = new GroupBox();
             groupBox3 = new GroupBox();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            gbZoom = new GroupBox();
+            lblFtZoom = new Label();
             ((System.ComponentModel.ISupportInitialize)picImagemDaAnalise).BeginInit();
             pnlPlanoDeFundoDaImagem.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -57,6 +59,7 @@
             pnlPlanoDeFundoParaControles.SuspendLayout();
             groupBox4.SuspendLayout();
             groupBox3.SuspendLayout();
+            gbZoom.SuspendLayout();
             SuspendLayout();
             // 
             // picImagemDaAnalise
@@ -89,7 +92,7 @@
             pnlPlanoDeFundoDaImagem.Controls.Add(picImagemDaAnalise);
             pnlPlanoDeFundoDaImagem.Location = new Point(146, 12);
             pnlPlanoDeFundoDaImagem.Name = "pnlPlanoDeFundoDaImagem";
-            pnlPlanoDeFundoDaImagem.Size = new Size(914, 517);
+            pnlPlanoDeFundoDaImagem.Size = new Size(914, 503);
             pnlPlanoDeFundoDaImagem.TabIndex = 5;
             pnlPlanoDeFundoDaImagem.MouseWheel += MouseWheel;
             // 
@@ -97,7 +100,7 @@
             // 
             lblImagemComTamanhoOriginal.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblImagemComTamanhoOriginal.AutoSize = true;
-            lblImagemComTamanhoOriginal.Location = new Point(9, 28);
+            lblImagemComTamanhoOriginal.Location = new Point(9, 24);
             lblImagemComTamanhoOriginal.Name = "lblImagemComTamanhoOriginal";
             lblImagemComTamanhoOriginal.Size = new Size(69, 15);
             lblImagemComTamanhoOriginal.TabIndex = 6;
@@ -116,7 +119,7 @@
             // 
             lblImagemComTamanhoEmTempoReal.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblImagemComTamanhoEmTempoReal.AutoSize = true;
-            lblImagemComTamanhoEmTempoReal.Location = new Point(9, 53);
+            lblImagemComTamanhoEmTempoReal.Location = new Point(9, 48);
             lblImagemComTamanhoEmTempoReal.Name = "lblImagemComTamanhoEmTempoReal";
             lblImagemComTamanhoEmTempoReal.Size = new Size(86, 15);
             lblImagemComTamanhoEmTempoReal.TabIndex = 9;
@@ -125,11 +128,9 @@
             // groupBox2
             // 
             groupBox2.Controls.Add(PointCheck);
-            groupBox2.Controls.Add(lblZoom);
-            groupBox2.Controls.Add(trbZoomDaImagem);
             groupBox2.Location = new Point(6, -3);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(114, 159);
+            groupBox2.Size = new Size(114, 100);
             groupBox2.TabIndex = 14;
             groupBox2.TabStop = false;
             groupBox2.Text = "Controles";
@@ -137,7 +138,7 @@
             // PointCheck
             // 
             PointCheck.AutoSize = true;
-            PointCheck.Location = new Point(6, 132);
+            PointCheck.Location = new Point(5, 78);
             PointCheck.Name = "PointCheck";
             PointCheck.Size = new Size(107, 19);
             PointCheck.TabIndex = 15;
@@ -148,7 +149,7 @@
             // lblZoom
             // 
             lblZoom.AutoSize = true;
-            lblZoom.Location = new Point(37, 106);
+            lblZoom.Location = new Point(37, 52);
             lblZoom.Name = "lblZoom";
             lblZoom.Size = new Size(39, 15);
             lblZoom.TabIndex = 10;
@@ -156,11 +157,11 @@
             // 
             // trbZoomDaImagem
             // 
-            trbZoomDaImagem.Location = new Point(5, 75);
+            trbZoomDaImagem.Location = new Point(7, 22);
             trbZoomDaImagem.Maximum = 400;
             trbZoomDaImagem.Minimum = 10;
             trbZoomDaImagem.Name = "trbZoomDaImagem";
-            trbZoomDaImagem.Size = new Size(100, 45);
+            trbZoomDaImagem.Size = new Size(101, 45);
             trbZoomDaImagem.TabIndex = 4;
             trbZoomDaImagem.Value = 100;
             trbZoomDaImagem.Visible = false;
@@ -169,7 +170,7 @@
             // groupBox1
             // 
             groupBox1.Controls.Add(listBox1);
-            groupBox1.Location = new Point(6, 158);
+            groupBox1.Location = new Point(6, 347);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(114, 96);
             groupBox1.TabIndex = 13;
@@ -217,6 +218,7 @@
             // 
             // pnlPlanoDeFundoParaControles
             // 
+            pnlPlanoDeFundoParaControles.Controls.Add(gbZoom);
             pnlPlanoDeFundoParaControles.Controls.Add(groupBox4);
             pnlPlanoDeFundoParaControles.Controls.Add(groupBox3);
             pnlPlanoDeFundoParaControles.Controls.Add(btnAbrirProjeto);
@@ -225,16 +227,16 @@
             pnlPlanoDeFundoParaControles.Controls.Add(groupBox2);
             pnlPlanoDeFundoParaControles.Location = new Point(12, 13);
             pnlPlanoDeFundoParaControles.Name = "pnlPlanoDeFundoParaControles";
-            pnlPlanoDeFundoParaControles.Size = new Size(128, 516);
+            pnlPlanoDeFundoParaControles.Size = new Size(128, 502);
             pnlPlanoDeFundoParaControles.TabIndex = 2;
             // 
             // groupBox4
             // 
             groupBox4.Controls.Add(lblImagemComTamanhoEmTempoReal);
             groupBox4.Controls.Add(lblImagemComTamanhoOriginal);
-            groupBox4.Location = new Point(6, 315);
+            groupBox4.Location = new Point(6, 268);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(113, 100);
+            groupBox4.Size = new Size(113, 77);
             groupBox4.TabIndex = 16;
             groupBox4.TabStop = false;
             groupBox4.Text = "Imagem";
@@ -242,12 +244,33 @@
             // groupBox3
             // 
             groupBox3.Controls.Add(lblCoordMouse);
-            groupBox3.Location = new Point(6, 260);
+            groupBox3.Location = new Point(6, 216);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(114, 49);
             groupBox3.TabIndex = 15;
             groupBox3.TabStop = false;
             groupBox3.Text = "Mouse";
+            // 
+            // gbZoom
+            // 
+            gbZoom.Controls.Add(lblFtZoom);
+            gbZoom.Controls.Add(lblZoom);
+            gbZoom.Controls.Add(trbZoomDaImagem);
+            gbZoom.Location = new Point(6, 103);
+            gbZoom.Name = "gbZoom";
+            gbZoom.Size = new Size(114, 110);
+            gbZoom.TabIndex = 17;
+            gbZoom.TabStop = false;
+            gbZoom.Text = "Zoom";
+            // 
+            // lblFtZoom
+            // 
+            lblFtZoom.AutoSize = true;
+            lblFtZoom.Location = new Point(23, 82);
+            lblFtZoom.Name = "lblFtZoom";
+            lblFtZoom.Size = new Size(63, 15);
+            lblFtZoom.TabIndex = 11;
+            lblFtZoom.Text = "FT Zoom: I";
             // 
             // Form1
             // 
@@ -273,6 +296,8 @@
             groupBox4.PerformLayout();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
+            gbZoom.ResumeLayout(false);
+            gbZoom.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -296,5 +321,7 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private GroupBox groupBox4;
         private GroupBox groupBox3;
+        private GroupBox gbZoom;
+        private Label lblFtZoom;
     }
 }
