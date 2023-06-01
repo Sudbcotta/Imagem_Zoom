@@ -35,13 +35,15 @@
             // lblPonto
             // 
             lblPonto.ActiveLinkColor = Color.White;
+            lblPonto.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblPonto.AutoSize = true;
-            lblPonto.Font = new Font("Corbel", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblPonto.Font = new Font("Arial", 8F, FontStyle.Bold, GraphicsUnit.Point);
             lblPonto.ForeColor = SystemColors.ControlLightLight;
             lblPonto.LinkColor = Color.White;
-            lblPonto.Location = new Point(-3, 34);
+            lblPonto.Location = new Point(1, 2);
+            lblPonto.Margin = new Padding(7, 7, 3, 0);
             lblPonto.Name = "lblPonto";
-            lblPonto.Size = new Size(25, 19);
+            lblPonto.Size = new Size(19, 14);
             lblPonto.TabIndex = 0;
             lblPonto.TabStop = true;
             lblPonto.Text = "10";
@@ -55,11 +57,10 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Zoom;
             Controls.Add(lblPonto);
-            Cursor = Cursors.Hand;
             DoubleBuffered = true;
-            MaximumSize = new Size(20, 60);
+            MaximumSize = new Size(20, 20);
             Name = "UserControlMarca";
-            Size = new Size(20, 60);
+            Size = new Size(20, 20);
             ResumeLayout(false);
             PerformLayout();
         }

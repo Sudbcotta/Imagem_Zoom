@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,6 +18,8 @@ namespace WinFormsApp1
         public UserControlMarca()
         {
             InitializeComponent();
+            lblPonto.Width += -this.Width / 2;
+            lblPonto.Height += -this.Height / 2;
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -24,6 +27,7 @@ namespace WinFormsApp1
             var form2 = new Form2();
             //form2.Parent = this;
             form2.ShowDialog(this);
+            
         }
 
 

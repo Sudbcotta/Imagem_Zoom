@@ -65,9 +65,12 @@ namespace Imagem_Zoom
             lblImagemComTamanhoOriginal.Visible = false;
             listBox1.Visible = false;
             userControlMarcas = new List<UserControlMarca>();
-            lblPt.Visible = false;
             groupBox1.Visible = false;
             groupBox2.Visible = false;
+            PointCheck.Visible = false;
+            groupBox3.Visible = false;
+            groupBox4.Visible = false;
+
         }
 
         private void Form1_Resize(object sender, EventArgs e)
@@ -145,13 +148,16 @@ namespace Imagem_Zoom
                 lblImagemComTamanhoEmTempoReal.Visible = true;
                 lblImagemComTamanhoOriginal.Visible = true;
                 listBox1.Visible = true;
-                lblPt.Visible = true;
                 groupBox1.Visible = true;
                 groupBox2.Visible = true;
+                PointCheck.Visible = true;
+                PointCheck.Checked = true;
+                groupBox3.Visible = true;
+                groupBox4.Visible = true;
 
                 Thread.Sleep(20);
 
-                lblImagemComTamanhoOriginal.Text = $"Tamanho Original: {imgOriginal.Width}; {imgOriginal.Height} px";
+                lblImagemComTamanhoOriginal.Text = $"Size: {imgOriginal.Width}; {imgOriginal.Height}";
                 CriacaoDaPastaEXml(picImagemDaAnalise.Width, picImagemDaAnalise.Height, nomeDaImagemComDiretorio);
 
                 LarguraAposZoom = imgOriginal.Width;
@@ -188,7 +194,7 @@ namespace Imagem_Zoom
                 Bitmap bmp = new Bitmap(imagemDaAnaliseSemZoom, width, height);
 
                 //exibe o tamanho da imagem em tempo real (a cada etapa de zoom)
-                lblImagemComTamanhoEmTempoReal.Text = $"Imagem com tamanho em tempo real: {bmp.Width};{bmp.Height} px";
+                lblImagemComTamanhoEmTempoReal.Text = $"RT-Size: {bmp.Width};{bmp.Height}";
                 Graphics g = Graphics.FromImage(bmp);
 
                 if (LarguraAposZoom == 0)
@@ -235,43 +241,52 @@ namespace Imagem_Zoom
 
         private void picImagemDaAnalise_Click(object sender, MouseEventArgs e)
         {
-            MouseClickX = (e.X);
-            MouseClickY = (e.Y);
+            if (PointCheck.Checked)
+            {
+                MouseClickX = (e.X);
+                MouseClickY = (e.Y);
 
-            //Armazena o click do mouse em uma variável
-            McpX = MouseClickX;
-            McpY = MouseClickY;
+                //Armazena o click do mouse em uma variável
+                McpX = MouseClickX;
+                McpY = MouseClickY;
 
-            //pega as coordenadas do click do mouse (x,y)
-            MouseP = picImagemDaAnalise.PointToClient(Cursor.Position);
+                //pega as coordenadas do click do mouse (x,y)
+                MouseP = picImagemDaAnalise.PointToClient(Cursor.Position);
 
-            //Lista para user Control Marcar
+                //Lista para user Control Marcar
 
-            var user = new UserControlMarca();
+                var user = new UserControlMarca();
 
-            user.Name = string.Format($"UserControlMarca{userControlMarcas.Count()}");
-            user.Id = userControlMarcas.Count();
-            user.lblPonto.Text = $"{userControlMarcas.Count()}";
+                user.Name = string.Format($"UserControlMarca{userControlMarcas.Count()}");
+                user.Id = userControlMarcas.Count();
+                user.lblPonto.Text = $"{userControlMarcas.Count()}";
 
-            zoom = trbZoomDaImagem.Value / 100f;
+                user.Visible = PointCheck.Checked;
 
-            user.RelativeLocation = new Point((int)(McpX / zoom), (int)(McpY / zoom));
+                zoom = trbZoomDaImagem.Value / 100f;
 
-            Relax = user.RelativeLocation.X;
-            Relay = user.RelativeLocation.Y;
+                user.RelativeLocation = new Point((int)(McpX / zoom), (int)(McpY / zoom));
 
-            McpX += -user.Width / 2;
-            McpY += -user.Height / 2;
+                Relax = user.RelativeLocation.X;
+                Relay = user.RelativeLocation.Y;
 
-            user.Location = new Point(McpX, McpY);
+                McpX += -user.Width / 2;
+                McpY += -user.Height / 2;
 
-            var pic = (PictureBox)sender;
-            pic.Controls.Add(user);
+                user.Location = new Point(McpX, McpY);
 
-            userControlMarcas.Add(user);
+                var pic = (PictureBox)sender;
+                pic.Controls.Add(user);
 
-            btnAtualizaXml_Click(sender, e);
-            listBox1.Items.Add(String.Format("{0} x:{1} y:{2}", user.lblPonto.Text, user.Left, user.Top));
+                userControlMarcas.Add(user);
+
+                btnAtualizaXml_Click(sender, e);
+                listBox1.Items.Add(String.Format("{0} x:{1} y:{2}", user.lblPonto.Text, user.Left, user.Top));
+            }
+            else
+            {
+                MessageBox.Show("Marque a caixa para poder marcar pontos na imagem!", "Pontos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
         //Alinhamento do ponto de acordo com o zoom da imagem
         private void Conserta_ponto()
@@ -316,7 +331,25 @@ namespace Imagem_Zoom
 
         private void picImagemDaAnalise_MouseMove(object sender, MouseEventArgs e)
         {
-            lblCoordMouse.Text = String.Format("Coordenadas Mouse: {0};{1}", e.X, e.Y);
+            lblCoordMouse.Text = String.Format("Coord.: {0};{1}", e.X, e.Y);
+        }
+
+        private void PointCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!PointCheck.Checked)
+            {
+                foreach (UserControlMarca user in userControlMarcas)
+                {
+                    user.Visible = false;
+                }
+            }
+            else
+            {
+                foreach (UserControlMarca user in userControlMarcas)
+                {
+                    user.Visible = true;
+                }
+            }
         }
 
 
