@@ -22,5 +22,10 @@ namespace WinFormsApp1
             // var user = (UserControlMarca)this.Owner; 
             //  var iddd = user.Id;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
