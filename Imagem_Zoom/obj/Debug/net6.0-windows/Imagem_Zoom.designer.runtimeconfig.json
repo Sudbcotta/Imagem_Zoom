@@ -12,9 +12,8 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\matba\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\matba\\.nuget\\packages",
-      "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      "C:\\Users\\CottaLISCOMP\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\CottaLISCOMP\\.nuget\\packages"
     ],
     "configProperties": {
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true

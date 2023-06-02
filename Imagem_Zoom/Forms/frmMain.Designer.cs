@@ -34,7 +34,6 @@
             lblCoordMouse = new Label();
             lblImagemComTamanhoEmTempoReal = new Label();
             ofdAbrirImagem = new OpenFileDialog();
-            PointCheck = new CheckBox();
             lblZoom = new Label();
             trbZoomDaImagem = new TrackBar();
             pnlPlanoDeFundoParaControles = new Panel();
@@ -88,7 +87,7 @@
             // 
             lblImagemComTamanhoOriginal.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblImagemComTamanhoOriginal.AutoSize = true;
-            lblImagemComTamanhoOriginal.Location = new Point(21, 24);
+            lblImagemComTamanhoOriginal.Location = new Point(13, 27);
             lblImagemComTamanhoOriginal.Name = "lblImagemComTamanhoOriginal";
             lblImagemComTamanhoOriginal.Size = new Size(95, 15);
             lblImagemComTamanhoOriginal.TabIndex = 6;
@@ -96,7 +95,7 @@
             // 
             // lblCoordMouse
             // 
-            lblCoordMouse.Anchor = AnchorStyles.None;
+            lblCoordMouse.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             lblCoordMouse.AutoSize = true;
             lblCoordMouse.Location = new Point(45, 23);
             lblCoordMouse.Name = "lblCoordMouse";
@@ -109,7 +108,7 @@
             // 
             lblImagemComTamanhoEmTempoReal.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblImagemComTamanhoEmTempoReal.AutoSize = true;
-            lblImagemComTamanhoEmTempoReal.Location = new Point(13, 50);
+            lblImagemComTamanhoEmTempoReal.Location = new Point(11, 50);
             lblImagemComTamanhoEmTempoReal.Name = "lblImagemComTamanhoEmTempoReal";
             lblImagemComTamanhoEmTempoReal.Size = new Size(111, 15);
             lblImagemComTamanhoEmTempoReal.TabIndex = 9;
@@ -120,21 +119,10 @@
             ofdAbrirImagem.Filter = "\"Arquivos de Imagem|*.jpg;*.jpeg;*.png;*.gif;*.bmp\"";
             ofdAbrirImagem.RestoreDirectory = true;
             // 
-            // PointCheck
-            // 
-            PointCheck.AutoSize = true;
-            PointCheck.Location = new Point(27, 36);
-            PointCheck.Name = "PointCheck";
-            PointCheck.Size = new Size(107, 19);
-            PointCheck.TabIndex = 15;
-            PointCheck.Text = "Mostrar Pontos";
-            PointCheck.UseVisualStyleBackColor = true;
-            PointCheck.CheckedChanged += PointCheck_CheckedChanged;
-            // 
             // lblZoom
             // 
             lblZoom.AutoSize = true;
-            lblZoom.Location = new Point(59, 62);
+            lblZoom.Location = new Point(57, 58);
             lblZoom.Name = "lblZoom";
             lblZoom.Size = new Size(39, 15);
             lblZoom.TabIndex = 10;
@@ -142,7 +130,8 @@
             // 
             // trbZoomDaImagem
             // 
-            trbZoomDaImagem.Location = new Point(29, 32);
+            trbZoomDaImagem.Enabled = false;
+            trbZoomDaImagem.Location = new Point(29, 26);
             trbZoomDaImagem.Maximum = 400;
             trbZoomDaImagem.Minimum = 10;
             trbZoomDaImagem.Name = "trbZoomDaImagem";
@@ -153,7 +142,7 @@
             // 
             // pnlPlanoDeFundoParaControles
             // 
-            pnlPlanoDeFundoParaControles.Controls.Add(PointCheck);
+            pnlPlanoDeFundoParaControles.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pnlPlanoDeFundoParaControles.Controls.Add(gbZoom);
             pnlPlanoDeFundoParaControles.Controls.Add(grpTamanhoDaImagem);
             pnlPlanoDeFundoParaControles.Controls.Add(grpCoordenadaDoMouse);
@@ -164,20 +153,22 @@
             // 
             // gbZoom
             // 
+            gbZoom.Anchor = AnchorStyles.Left;
             gbZoom.Controls.Add(lblZoom);
             gbZoom.Controls.Add(trbZoomDaImagem);
-            gbZoom.Location = new Point(6, 61);
+            gbZoom.Location = new Point(3, 135);
             gbZoom.Name = "gbZoom";
-            gbZoom.Size = new Size(156, 94);
+            gbZoom.Size = new Size(156, 86);
             gbZoom.TabIndex = 17;
             gbZoom.TabStop = false;
             gbZoom.Text = "Zoom";
             // 
             // grpTamanhoDaImagem
             // 
+            grpTamanhoDaImagem.Anchor = AnchorStyles.Left;
             grpTamanhoDaImagem.Controls.Add(lblImagemComTamanhoEmTempoReal);
             grpTamanhoDaImagem.Controls.Add(lblImagemComTamanhoOriginal);
-            grpTamanhoDaImagem.Location = new Point(6, 248);
+            grpTamanhoDaImagem.Location = new Point(4, 301);
             grpTamanhoDaImagem.Name = "grpTamanhoDaImagem";
             grpTamanhoDaImagem.Size = new Size(156, 77);
             grpTamanhoDaImagem.TabIndex = 16;
@@ -186,8 +177,9 @@
             // 
             // grpCoordenadaDoMouse
             // 
+            grpCoordenadaDoMouse.Anchor = AnchorStyles.Left;
             grpCoordenadaDoMouse.Controls.Add(lblCoordMouse);
-            grpCoordenadaDoMouse.Location = new Point(6, 178);
+            grpCoordenadaDoMouse.Location = new Point(3, 236);
             grpCoordenadaDoMouse.Name = "grpCoordenadaDoMouse";
             grpCoordenadaDoMouse.Size = new Size(156, 49);
             grpCoordenadaDoMouse.TabIndex = 15;
@@ -237,16 +229,21 @@
             // 
             // mostrarListaDePontosToolStripMenuItem
             // 
+            mostrarListaDePontosToolStripMenuItem.Enabled = false;
             mostrarListaDePontosToolStripMenuItem.Name = "mostrarListaDePontosToolStripMenuItem";
-            mostrarListaDePontosToolStripMenuItem.Size = new Size(198, 22);
+            mostrarListaDePontosToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.L;
+            mostrarListaDePontosToolStripMenuItem.Size = new Size(238, 22);
             mostrarListaDePontosToolStripMenuItem.Text = "Mostrar Lista de Pontos";
             mostrarListaDePontosToolStripMenuItem.Click += mostrarListaDePontosToolStripMenuItem_Click;
             // 
             // mostrarPontosToolStripMenuItem
             // 
+            mostrarPontosToolStripMenuItem.Enabled = false;
             mostrarPontosToolStripMenuItem.Name = "mostrarPontosToolStripMenuItem";
-            mostrarPontosToolStripMenuItem.Size = new Size(198, 22);
+            mostrarPontosToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.P;
+            mostrarPontosToolStripMenuItem.Size = new Size(238, 22);
             mostrarPontosToolStripMenuItem.Text = "Mostrar Pontos";
+            mostrarPontosToolStripMenuItem.Click += mostrarPontosToolStripMenuItem_Click;
             // 
             // frmMain
             // 
@@ -267,7 +264,6 @@
             pnlPlanoDeFundoDaImagem.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)trbZoomDaImagem).EndInit();
             pnlPlanoDeFundoParaControles.ResumeLayout(false);
-            pnlPlanoDeFundoParaControles.PerformLayout();
             gbZoom.ResumeLayout(false);
             gbZoom.PerformLayout();
             grpTamanhoDaImagem.ResumeLayout(false);
@@ -287,7 +283,6 @@
         private Label lblImagemComTamanhoEmTempoReal;
         private OpenFileDialog ofdAbrirImagem;
         private Label lblCoordMouse;
-        private CheckBox PointCheck;
         private Label lblZoom;
         private TrackBar trbZoomDaImagem;
         private Panel pnlPlanoDeFundoParaControles;

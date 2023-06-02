@@ -167,7 +167,7 @@ namespace Imagem_Zoom
 
         private void picImagemDaAnalise_Click(object sender, MouseEventArgs e)
         {
-            if (PointCheck.Checked)
+            if (mostrarPontosToolStripMenuItem.Checked)
             {
                 capturaDoClickDoX = (e.X);
                 capturaDoClickDoY = (e.Y);
@@ -179,7 +179,7 @@ namespace Imagem_Zoom
                 pontoDaAnalise.Id = userControlMarcas.Count();
                 pontoDaAnalise.lblPonto.Text = $"{userControlMarcas.Count()}";
 
-                pontoDaAnalise.Visible = PointCheck.Checked;
+                pontoDaAnalise.Visible = mostrarPontosToolStripMenuItem.Checked;
 
                 zoom = trbZoomDaImagem.Value / 100f;
 
@@ -227,12 +227,6 @@ namespace Imagem_Zoom
                 lblCoordMouse.Text = String.Format("X:{0} | Y:{1}", e.X, e.Y);
         }
 
-        private void PointCheck_CheckedChanged(object sender, EventArgs e)
-        {
-            foreach (UserControlMarca user in userControlMarcas)
-                user.Visible = PointCheck.Checked ? true : false;
-        }
-
         private void abrirProjetoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string nomeDaImagemComDiretorio = string.Empty;
@@ -245,9 +239,6 @@ namespace Imagem_Zoom
                 picImagemDaAnalise.Image = Image.FromFile(ofdAbrirImagem.FileName);
                 imgOriginal = picImagemDaAnalise.Image;
 
-                PointCheck.Visible = true;
-                PointCheck.Checked = true;
-
                 Thread.Sleep(20);
 
                 lblImagemComTamanhoOriginal.Text = String.Format("Original: {0} | {1} px", imgOriginal.Width, imgOriginal.Height);
@@ -256,6 +247,10 @@ namespace Imagem_Zoom
                 larguraAposZoom = imgOriginal.Width;
                 alturaAposZoom = imgOriginal.Height;
                 atualizarXMLToolStripMenuItem.Enabled = true;
+                trbZoomDaImagem.Enabled = true;
+                mostrarPontosToolStripMenuItem.Checked = true;
+                mostrarPontosToolStripMenuItem.Enabled = true;
+                mostrarListaDePontosToolStripMenuItem.Enabled = true;
 
             }
         }
@@ -274,9 +269,6 @@ namespace Imagem_Zoom
 
             arquivoXml.Add(escreveXml);
             arquivoXml.Save($@"{diretorioDoProjeto + "\\" + imagemDaAnalise}.xml");
-
-            MessageBox.Show("Arquivo XML atualizado com sucesso.", "Arquivo XML", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
         }
 
         private void mostrarListaDePontosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -290,6 +282,15 @@ namespace Imagem_Zoom
 
 
         }
+
+        private void mostrarPontosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mostrarPontosToolStripMenuItem.Checked = !mostrarPontosToolStripMenuItem.Checked;
+            foreach (UserControlMarca user in userControlMarcas)
+                user.Visible = mostrarPontosToolStripMenuItem.Checked ? true : false;
+
+        }
+
     }
 }
 

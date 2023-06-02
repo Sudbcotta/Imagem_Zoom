@@ -8,24 +8,19 @@
     "net6.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\matba\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\CottaLISCOMP\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\matba\\Downloads\\Imagem_Zoom-VersaoRefatora\\Imagem_Zoom\\Imagem_Zoom.csproj",
+      "projectUniqueName": "C:\\Users\\CottaLISCOMP\\Source\\Repos\\Sudbcotta\\Imagem_Zoom\\Imagem_Zoom\\Imagem_Zoom.csproj",
       "projectName": "Imagem_Zoom",
-      "projectPath": "C:\\Users\\matba\\Downloads\\Imagem_Zoom-VersaoRefatora\\Imagem_Zoom\\Imagem_Zoom.csproj",
-      "packagesPath": "C:\\Users\\matba\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\matba\\Downloads\\Imagem_Zoom-VersaoRefatora\\Imagem_Zoom\\obj\\",
+      "projectPath": "C:\\Users\\CottaLISCOMP\\Source\\Repos\\Sudbcotta\\Imagem_Zoom\\Imagem_Zoom\\Imagem_Zoom.csproj",
+      "packagesPath": "C:\\Users\\CottaLISCOMP\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\CottaLISCOMP\\Source\\Repos\\Sudbcotta\\Imagem_Zoom\\Imagem_Zoom\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\matba\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\CottaLISCOMP\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -33,7 +28,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
