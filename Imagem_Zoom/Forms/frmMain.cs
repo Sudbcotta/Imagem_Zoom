@@ -1,0 +1,296 @@
+using Imagem_Zoom.Forms;
+using System;
+using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Linq;
+using WinFormsApp1;
+
+namespace Imagem_Zoom
+{
+    public partial class frmMain : Form
+    {
+        #region propriedades
+        private List<UserControlMarca> userControlMarcas { get; set; }
+        Image imgOriginal;
+
+        private int posicaoRelativaDoX;
+        private int posicaoRelativaDoY;
+        private int capturaDoClickDoX;
+        private int capturaDoClickDoY;
+        private int larguraAposZoom;
+        private int alturaAposZoom;
+
+        private string diretorioDoProjeto;
+        private string imagemDaAnalise;
+
+        private double zoom;
+
+        #endregion propriedades
+
+
+        #region Construtor
+
+        public frmMain()
+        {
+            InitializeComponent();
+            pnlPlanoDeFundoDaImagem.AutoScroll = true;
+            userControlMarcas = new List<UserControlMarca>();
+
+        }
+
+        #endregion Construtor
+
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            centralizaImagemDaAnalise();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (picImagemDaAnalise.Image != null)
+                picImagemDaAnalise.Dispose();
+        }
+
+        private void CriacaoDaPastaEXml(int largura, int altura, string imagemComSeuDiretorio)
+        {
+
+            string img = Path.GetFileNameWithoutExtension(imagemComSeuDiretorio);
+            string caminhoDoProjeto = $@"C:\{img}";
+            string nomeDaImagemComExtensao = Path.GetFileName(imagemComSeuDiretorio);
+
+            centralizaImagemDaAnalise();
+
+            if (!Directory.Exists(caminhoDoProjeto))
+                Directory.CreateDirectory(caminhoDoProjeto);
+
+            File.Copy(imagemComSeuDiretorio, caminhoDoProjeto + "\\" + nomeDaImagemComExtensao, true);
+
+            XmlTextWriter arquivoXml =
+                new XmlTextWriter($@"{caminhoDoProjeto + "\\" + img}.xml", System.Text.Encoding.UTF8);
+
+            arquivoXml.WriteStartDocument();
+            arquivoXml.Formatting = Formatting.Indented;
+
+            arquivoXml.WriteStartElement("Dados");
+            arquivoXml.WriteElementString("NomeDaImagem", nomeDaImagemComExtensao);
+            arquivoXml.WriteElementString("LarguraDaImagem", largura.ToString());
+            arquivoXml.WriteElementString("AlturaDaImagem", altura.ToString());
+
+            arquivoXml.WriteEndElement();
+
+            arquivoXml.Flush();
+            arquivoXml.Close();
+            MessageBox.Show("Arquivo XML gerado com sucesso.", "Arquivo XML", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            imagemDaAnalise = img;
+            diretorioDoProjeto = caminhoDoProjeto;
+
+
+
+        }
+
+        #region Manipulação da Imagem
+
+        Image? zoomDaImagem(Image imagemDaAnaliseSemZoom, double zoomFactor)
+        {
+            if (imagemDaAnaliseSemZoom != null)
+            {
+                int width = (int)(imagemDaAnaliseSemZoom.Width * zoomFactor);
+                int height = (int)(imagemDaAnaliseSemZoom.Height * zoomFactor);
+
+                Bitmap bmp = new Bitmap(imagemDaAnaliseSemZoom, width, height);
+
+                lblImagemComTamanhoEmTempoReal.Text = string.Format("Tempo Real: {0} | {1} px", bmp.Width, bmp.Height);
+
+                Graphics gerarInterpolacaoDaImagem = Graphics.FromImage(bmp);
+
+                if (larguraAposZoom == 0)
+                {
+                    larguraAposZoom = imgOriginal.Width;
+                    alturaAposZoom = imgOriginal.Height;
+                }
+                else
+                {
+                    larguraAposZoom = bmp.Width;
+                    alturaAposZoom = bmp.Height;
+                }
+
+                gerarInterpolacaoDaImagem.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                gerarInterpolacaoDaImagem.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+                gerarInterpolacaoDaImagem.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighSpeed;
+                gerarInterpolacaoDaImagem.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
+
+                return bmp;
+            }
+            else
+                return null;
+        }
+
+        private void centralizaImagemDaAnalise()
+        {
+
+            int RsWidth = (pnlPlanoDeFundoDaImagem.Width - picImagemDaAnalise.Width) / 2;
+            int RsHeight = (pnlPlanoDeFundoDaImagem.Height - picImagemDaAnalise.Height) / 2;
+
+            if (RsWidth < 0)
+                RsWidth = 0;
+
+            if (RsHeight < 0)
+                RsHeight = 0;
+
+            pnlPlanoDeFundoDaImagem.Padding = new Padding(RsWidth, RsHeight, RsWidth, RsHeight);
+        }
+
+        private void MouseWheel(object sender, MouseEventArgs e)
+        {
+
+            int delta = (e.Delta / 10 * SystemInformation.MouseWheelScrollDelta / 120);
+
+            if ((trbZoomDaImagem.Value + delta >= trbZoomDaImagem.Minimum) && (trbZoomDaImagem.Value + delta <= trbZoomDaImagem.Maximum))
+            {
+                trbZoomDaImagem.Value = trbZoomDaImagem.Value + delta;
+                picImagemDaAnalise.Image = zoomDaImagem(imgOriginal, trbZoomDaImagem.Value / 100f);
+            }
+
+            centralizaImagemDaAnalise();
+            atualizaCoordenadaDoPonto();
+        }
+
+        private void trbZoomDaImagem_Scroll(object sender, EventArgs e)
+        {
+            picImagemDaAnalise.Image = zoomDaImagem(imgOriginal, trbZoomDaImagem.Value / 100f);
+            centralizaImagemDaAnalise();
+            atualizaCoordenadaDoPonto();
+        }
+
+        #endregion Manipulação da Imagem
+
+        private void picImagemDaAnalise_Click(object sender, MouseEventArgs e)
+        {
+            if (PointCheck.Checked)
+            {
+                capturaDoClickDoX = (e.X);
+                capturaDoClickDoY = (e.Y);
+
+
+                UserControlMarca pontoDaAnalise = new UserControlMarca();
+
+                pontoDaAnalise.Name = string.Format($"UserControlMarca{userControlMarcas.Count()}");
+                pontoDaAnalise.Id = userControlMarcas.Count();
+                pontoDaAnalise.lblPonto.Text = $"{userControlMarcas.Count()}";
+
+                pontoDaAnalise.Visible = PointCheck.Checked;
+
+                zoom = trbZoomDaImagem.Value / 100f;
+
+                pontoDaAnalise.RelativeLocation = new Point((int)(capturaDoClickDoX / zoom), (int)(capturaDoClickDoY / zoom));
+
+                posicaoRelativaDoX = pontoDaAnalise.RelativeLocation.X;
+                posicaoRelativaDoY = pontoDaAnalise.RelativeLocation.Y;
+
+                capturaDoClickDoX += -pontoDaAnalise.Width / 2;
+                capturaDoClickDoY += -pontoDaAnalise.Height / 2;
+
+                pontoDaAnalise.Location = new Point(capturaDoClickDoX, capturaDoClickDoY);
+
+                PictureBox? pic = (PictureBox)sender;
+                pic.Controls.Add(pontoDaAnalise);
+
+                userControlMarcas.Add(pontoDaAnalise);
+
+                atualizarXMLToolStripMenuItem_Click(sender, e);
+            }
+            else
+                MessageBox.Show("Marque a caixa para poder marcar pontos na imagem!", "Pontos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
+
+        private void atualizaCoordenadaDoPonto()
+        {
+
+            foreach (UserControlMarca user in userControlMarcas)
+            {
+                double x = (trbZoomDaImagem.Value / 100f) * user.RelativeLocation.X;
+                double y = (trbZoomDaImagem.Value / 100f) * user.RelativeLocation.Y;
+
+                x += -user.Width / 2;
+                y += -user.Height / 2;
+
+                user.Location = new Point((int)x, (int)y);
+            }
+        }
+
+        private void picImagemDaAnalise_MouseMove(object sender, MouseEventArgs e)
+        {
+
+            if (picImagemDaAnalise.Image != null)
+                lblCoordMouse.Text = String.Format("X:{0} | Y:{1}", e.X, e.Y);
+        }
+
+        private void PointCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            foreach (UserControlMarca user in userControlMarcas)
+                user.Visible = PointCheck.Checked ? true : false;
+        }
+
+        private void abrirProjetoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string nomeDaImagemComDiretorio = string.Empty;
+
+            ofdAbrirImagem.Filter = "Arquivos de Imagem|*.jpg;*.jpeg;*.png;*.gif";
+
+            if (ofdAbrirImagem.ShowDialog() == DialogResult.OK)
+            {
+                nomeDaImagemComDiretorio = ofdAbrirImagem.FileName;
+                picImagemDaAnalise.Image = Image.FromFile(ofdAbrirImagem.FileName);
+                imgOriginal = picImagemDaAnalise.Image;
+
+                PointCheck.Visible = true;
+                PointCheck.Checked = true;
+
+                Thread.Sleep(20);
+
+                lblImagemComTamanhoOriginal.Text = String.Format("Original: {0} | {1} px", imgOriginal.Width, imgOriginal.Height);
+                CriacaoDaPastaEXml(picImagemDaAnalise.Width, picImagemDaAnalise.Height, nomeDaImagemComDiretorio);
+
+                larguraAposZoom = imgOriginal.Width;
+                alturaAposZoom = imgOriginal.Height;
+                atualizarXMLToolStripMenuItem.Enabled = true;
+
+            }
+        }
+
+        private void atualizarXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            XElement escreveXml = new XElement("Atualização");
+
+            escreveXml.Add(new XElement("LarguraAtual", larguraAposZoom.ToString()));
+            escreveXml.Add(new XElement("AlturaAtual", alturaAposZoom.ToString()));
+            escreveXml.Add(new XComment("Ponto_"));
+            escreveXml.Add(new XElement("Coordenada-X-do-Clique", (posicaoRelativaDoX).ToString()));
+            escreveXml.Add(new XElement("Coordenada-Y-do-Clique", (posicaoRelativaDoY).ToString()));
+
+            XElement arquivoXml = XElement.Load($@"{diretorioDoProjeto + "\\" + imagemDaAnalise}.xml");
+
+            arquivoXml.Add(escreveXml);
+            arquivoXml.Save($@"{diretorioDoProjeto + "\\" + imagemDaAnalise}.xml");
+
+            MessageBox.Show("Arquivo XML atualizado com sucesso.", "Arquivo XML", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
+
+        private void mostrarListaDePontosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (picImagemDaAnalise.Image != null && userControlMarcas.Count != 0)
+            {
+                frmCoordenadaDosPontos frmCoordenadaDosPontos = new frmCoordenadaDosPontos(userControlMarcas);
+                frmCoordenadaDosPontos.ShowDialog();
+            }
+
+
+
+        }
+    }
+}
+
+

@@ -57,14 +57,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vAAADrwBlbxySQAAAKZJREFUOE+1k9sJwzAMRf3YoHOUThiyTMhH6Tgl87RHWNA8rkwD7YWDnOhKsR07
-        /UWllFvOeYTZGXh39XSsWusF84PhS0Hubh7GR3liAVm8YpFNel/eYzMhfmRrJkhzxGZP6DgSpDGCmoHY
-        xMNMkMYIaiZi0y8a2HSkMcJrmnxDpDHicLDoaL9Gmve4d6sTB+nZPY29mVguLF7L1mebBJPz3WU6r5Te
-        druL30knOgEAAAAASUVORK5CYII=
-</value>
-  </data>
+  <metadata name="ofdAbrirImagem.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>150, 17</value>
+  </metadata>
+  <metadata name="msMenuDoForms.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>18, 15</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>63</value>
+  </metadata>
 </root>

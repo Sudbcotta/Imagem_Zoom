@@ -20,14 +20,15 @@ namespace WinFormsApp1
             InitializeComponent();
             lblPonto.Width += -this.Width / 2;
             lblPonto.Height += -this.Height / 2;
+            lblPonto.LinkBehavior = LinkBehavior.NeverUnderline;
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            var form2 = new Form2();
+            var form2 = new frmDescricaoDoPonto();
             //form2.Parent = this;
             form2.ShowDialog(this);
-            
+
         }
 
 
