@@ -1,4 +1,5 @@
 using Imagem_Zoom.Forms;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Windows.Forms;
 using System.Xml;
@@ -11,6 +12,8 @@ namespace Imagem_Zoom
     {
         #region propriedades
         private List<UserControlMarca> userControlMarcas { get; set; }
+        public object pontoDaAnalise { get; private set; }
+
         Image imgOriginal;
 
         private int posicaoRelativaDoX;
@@ -19,7 +22,6 @@ namespace Imagem_Zoom
         private int capturaDoClickDoY;
         private int larguraAposZoom;
         private int alturaAposZoom;
-
         private string diretorioDoProjeto;
         private string imagemDaAnalise;
 
@@ -35,23 +37,35 @@ namespace Imagem_Zoom
             InitializeComponent();
             pnlPlanoDeFundoDaImagem.AutoScroll = true;
             userControlMarcas = new List<UserControlMarca>();
-
         }
 
         #endregion Construtor
 
-
+        /// <summary>
+        /// Mudança do tamanho da tela
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form1_Resize(object sender, EventArgs e)
         {
             centralizaImagemDaAnalise();
         }
-
+        /// <summary>
+        /// Fechamento do Formulário
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (picImagemDaAnalise.Image != null)
                 picImagemDaAnalise.Dispose();
         }
-
+        /// <summary>
+        /// Criação da Pasta e do Arquivo XML
+        /// </summary>
+        /// <param name="largura"></param>
+        /// <param name="altura"></param>
+        /// <param name="imagemComSeuDiretorio"></param>
         private void CriacaoDaPastaEXml(int largura, int altura, string imagemComSeuDiretorio)
         {
 
@@ -90,7 +104,12 @@ namespace Imagem_Zoom
         }
 
         #region Manipulação da Imagem
-
+        /// <summary>
+        /// Faz os Cálculos do Zoom da Imagem
+        /// </summary>
+        /// <param name="imagemDaAnaliseSemZoom"></param>
+        /// <param name="zoomFactor"></param>
+        /// <returns></returns>
         Image? zoomDaImagem(Image imagemDaAnaliseSemZoom, double zoomFactor)
         {
             if (imagemDaAnaliseSemZoom != null)
@@ -125,7 +144,9 @@ namespace Imagem_Zoom
             else
                 return null;
         }
-
+        /// <summary>
+        /// Centraliza a imagem na meio do picture box
+        /// </summary>
         private void centralizaImagemDaAnalise()
         {
 
@@ -140,7 +161,11 @@ namespace Imagem_Zoom
 
             pnlPlanoDeFundoDaImagem.Padding = new Padding(RsWidth, RsHeight, RsWidth, RsHeight);
         }
-
+        /// <summary>
+        /// Recebe os dados do scroll do mouse e transforma em dados para o funcionamento do Zoom
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MouseWheel(object sender, MouseEventArgs e)
         {
 
@@ -155,7 +180,11 @@ namespace Imagem_Zoom
             centralizaImagemDaAnalise();
             atualizaCoordenadaDoPonto();
         }
-
+        /// <summary>
+        /// Recebe dados da track bar e converte para realizar o zoom
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void trbZoomDaImagem_Scroll(object sender, EventArgs e)
         {
             picImagemDaAnalise.Image = zoomDaImagem(imgOriginal, trbZoomDaImagem.Value / 100f);
@@ -164,16 +193,22 @@ namespace Imagem_Zoom
         }
 
         #endregion Manipulação da Imagem
-
+        /// <summary>
+        /// Marcação do Ponto na imagem
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void picImagemDaAnalise_Click(object sender, MouseEventArgs e)
         {
             if (mostrarPontosToolStripMenuItem.Checked)
             {
+                
                 capturaDoClickDoX = (e.X);
                 capturaDoClickDoY = (e.Y);
 
-
                 UserControlMarca pontoDaAnalise = new UserControlMarca();
+
+                pontoDaAnalise.Draggable(true);
 
                 pontoDaAnalise.Name = string.Format($"UserControlMarca{userControlMarcas.Count()}");
                 pontoDaAnalise.Id = userControlMarcas.Count();
@@ -199,12 +234,15 @@ namespace Imagem_Zoom
                 userControlMarcas.Add(pontoDaAnalise);
 
                 atualizarXMLToolStripMenuItem_Click(sender, e);
+                
             }
             else
-                MessageBox.Show("Marque a caixa para poder marcar pontos na imagem!", "Pontos", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Marque a caixa para poder marcar pontos na imagem ou abra uma imagem!", "Pontos", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
-
+        /// <summary>
+        /// Atualiza as coordenadas do ponto de acordo com o zoom
+        /// </summary>
         private void atualizaCoordenadaDoPonto()
         {
 
@@ -219,14 +257,22 @@ namespace Imagem_Zoom
                 user.Location = new Point((int)x, (int)y);
             }
         }
-
+        /// <summary>
+        /// Captura a coordenada do mouse em tempo real
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void picImagemDaAnalise_MouseMove(object sender, MouseEventArgs e)
         {
 
             if (picImagemDaAnalise.Image != null)
                 lblCoordMouse.Text = String.Format("X:{0} | Y:{1}", e.X, e.Y);
         }
-
+        /// <summary>
+        /// Abre o projeto
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void abrirProjetoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string nomeDaImagemComDiretorio = string.Empty;
@@ -254,7 +300,11 @@ namespace Imagem_Zoom
 
             }
         }
-
+        /// <summary>
+        /// Atualiza o XML
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void atualizarXMLToolStripMenuItem_Click(object sender, EventArgs e)
         {
             XElement escreveXml = new XElement("Atualização");
@@ -270,7 +320,11 @@ namespace Imagem_Zoom
             arquivoXml.Add(escreveXml);
             arquivoXml.Save($@"{diretorioDoProjeto + "\\" + imagemDaAnalise}.xml");
         }
-
+        /// <summary>
+        /// Exibe uma lista com todos os pontos marcados
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void mostrarListaDePontosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (picImagemDaAnalise.Image != null && userControlMarcas.Count != 0)
@@ -282,7 +336,11 @@ namespace Imagem_Zoom
 
 
         }
-
+        /// <summary>
+        /// Marcação para exibir ou não os pontos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void mostrarPontosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mostrarPontosToolStripMenuItem.Checked = !mostrarPontosToolStripMenuItem.Checked;

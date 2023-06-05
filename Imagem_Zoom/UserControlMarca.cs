@@ -20,17 +20,18 @@ namespace WinFormsApp1
             InitializeComponent();
             lblPonto.Width += -this.Width / 2;
             lblPonto.Height += -this.Height / 2;
-            lblPonto.LinkBehavior = LinkBehavior.NeverUnderline;
-        }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        }
+        /// <summary>
+        /// Exibe um formulário ao clicar com o botão esquerdo do mouse em um ponto e selecionar propriedades
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tsmPropriedades_Click(object sender, EventArgs e)
         {
             var form2 = new frmDescricaoDoPonto();
-            //form2.Parent = this;
             form2.ShowDialog(this);
 
         }
-
-
     }
 }

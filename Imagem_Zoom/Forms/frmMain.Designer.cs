@@ -79,7 +79,7 @@
             pnlPlanoDeFundoDaImagem.Controls.Add(picImagemDaAnalise);
             pnlPlanoDeFundoDaImagem.Location = new Point(183, 39);
             pnlPlanoDeFundoDaImagem.Name = "pnlPlanoDeFundoDaImagem";
-            pnlPlanoDeFundoDaImagem.Size = new Size(1197, 596);
+            pnlPlanoDeFundoDaImagem.Size = new Size(1199, 596);
             pnlPlanoDeFundoDaImagem.TabIndex = 5;
             pnlPlanoDeFundoDaImagem.MouseWheel += MouseWheel;
             // 
@@ -142,13 +142,13 @@
             // 
             // pnlPlanoDeFundoParaControles
             // 
-            pnlPlanoDeFundoParaControles.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pnlPlanoDeFundoParaControles.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             pnlPlanoDeFundoParaControles.Controls.Add(gbZoom);
             pnlPlanoDeFundoParaControles.Controls.Add(grpTamanhoDaImagem);
             pnlPlanoDeFundoParaControles.Controls.Add(grpCoordenadaDoMouse);
             pnlPlanoDeFundoParaControles.Location = new Point(12, 40);
             pnlPlanoDeFundoParaControles.Name = "pnlPlanoDeFundoParaControles";
-            pnlPlanoDeFundoParaControles.Size = new Size(165, 595);
+            pnlPlanoDeFundoParaControles.Size = new Size(167, 595);
             pnlPlanoDeFundoParaControles.TabIndex = 2;
             // 
             // gbZoom
@@ -191,7 +191,7 @@
             msMenuDoForms.Items.AddRange(new ToolStripItem[] { projetoToolStripMenuItem, ferramentasToolStripMenuItem });
             msMenuDoForms.Location = new Point(0, 0);
             msMenuDoForms.Name = "msMenuDoForms";
-            msMenuDoForms.Size = new Size(1404, 24);
+            msMenuDoForms.Size = new Size(1406, 24);
             msMenuDoForms.TabIndex = 6;
             msMenuDoForms.Text = "menuStrip1";
             // 
@@ -249,12 +249,12 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1404, 661);
+            ClientSize = new Size(1406, 661);
             Controls.Add(pnlPlanoDeFundoDaImagem);
             Controls.Add(pnlPlanoDeFundoParaControles);
             Controls.Add(msMenuDoForms);
             MainMenuStrip = msMenuDoForms;
-            MinimumSize = new Size(1000, 500);
+            MinimumSize = new Size(1200, 500);
             Name = "frmMain";
             Text = "Imagem Zoom";
             FormClosing += Form1_FormClosing;

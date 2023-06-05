@@ -29,21 +29,21 @@
         private void InitializeComponent()
         {
             lblPt = new Label();
-            button2 = new Button();
-            button1 = new Button();
-            radioButton1 = new RadioButton();
-            radioButton2 = new RadioButton();
-            radioButton3 = new RadioButton();
-            groupBox1 = new GroupBox();
-            panel1 = new Panel();
-            groupBox2 = new GroupBox();
-            textBox1 = new TextBox();
-            groupBox3 = new GroupBox();
-            textBox2 = new TextBox();
-            groupBox1.SuspendLayout();
-            panel1.SuspendLayout();
-            groupBox2.SuspendLayout();
-            groupBox3.SuspendLayout();
+            btnOk = new Button();
+            btnCancelar = new Button();
+            rbMir = new RadioButton();
+            rbXRF = new RadioButton();
+            rbVM = new RadioButton();
+            gpCentral = new GroupBox();
+            pnlGroupboxes = new Panel();
+            gpDescricao = new GroupBox();
+            txbDescricao = new TextBox();
+            gpResultados = new GroupBox();
+            txbResultados = new TextBox();
+            gpCentral.SuspendLayout();
+            pnlGroupboxes.SuspendLayout();
+            gpDescricao.SuspendLayout();
+            gpResultados.SuspendLayout();
             SuspendLayout();
             // 
             // lblPt
@@ -55,142 +55,142 @@
             lblPt.TabIndex = 0;
             lblPt.Text = "ID Ponto";
             // 
-            // button2
+            // btnOk
             // 
-            button2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button2.Location = new Point(328, 464);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 2;
-            button2.Text = "OK";
-            button2.UseVisualStyleBackColor = true;
+            btnOk.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnOk.Location = new Point(328, 464);
+            btnOk.Name = "btnOk";
+            btnOk.Size = new Size(75, 23);
+            btnOk.TabIndex = 2;
+            btnOk.Text = "OK";
+            btnOk.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnCancelar
             // 
-            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button1.Location = new Point(409, 464);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 1;
-            button1.Text = "Cancelar";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnCancelar.Location = new Point(409, 464);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(75, 23);
+            btnCancelar.TabIndex = 1;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += button1_Click;
             // 
-            // radioButton1
+            // rbMir
             // 
-            radioButton1.AutoSize = true;
-            radioButton1.Location = new Point(17, 28);
-            radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(46, 19);
-            radioButton1.TabIndex = 3;
-            radioButton1.TabStop = true;
-            radioButton1.Text = "MIR";
-            radioButton1.UseVisualStyleBackColor = true;
+            rbMir.AutoSize = true;
+            rbMir.Location = new Point(17, 28);
+            rbMir.Name = "rbMir";
+            rbMir.Size = new Size(46, 19);
+            rbMir.TabIndex = 3;
+            rbMir.TabStop = true;
+            rbMir.Text = "MIR";
+            rbMir.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // rbXRF
             // 
-            radioButton2.AutoSize = true;
-            radioButton2.Location = new Point(80, 28);
-            radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(45, 19);
-            radioButton2.TabIndex = 4;
-            radioButton2.TabStop = true;
-            radioButton2.Text = "XRF";
-            radioButton2.UseVisualStyleBackColor = true;
+            rbXRF.AutoSize = true;
+            rbXRF.Location = new Point(80, 28);
+            rbXRF.Name = "rbXRF";
+            rbXRF.Size = new Size(45, 19);
+            rbXRF.TabIndex = 4;
+            rbXRF.TabStop = true;
+            rbXRF.Text = "XRF";
+            rbXRF.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // rbVM
             // 
-            radioButton3.AutoSize = true;
-            radioButton3.Location = new Point(142, 28);
-            radioButton3.Name = "radioButton3";
-            radioButton3.Size = new Size(43, 19);
-            radioButton3.TabIndex = 5;
-            radioButton3.TabStop = true;
-            radioButton3.Text = "VM";
-            radioButton3.UseVisualStyleBackColor = true;
+            rbVM.AutoSize = true;
+            rbVM.Location = new Point(142, 28);
+            rbVM.Name = "rbVM";
+            rbVM.Size = new Size(43, 19);
+            rbVM.TabIndex = 5;
+            rbVM.TabStop = true;
+            rbVM.Text = "VM";
+            rbVM.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
+            // gpCentral
             // 
-            groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            groupBox1.Controls.Add(panel1);
-            groupBox1.Controls.Add(radioButton3);
-            groupBox1.Controls.Add(radioButton2);
-            groupBox1.Controls.Add(radioButton1);
-            groupBox1.Location = new Point(10, 12);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(483, 439);
-            groupBox1.TabIndex = 1;
-            groupBox1.TabStop = false;
+            gpCentral.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            gpCentral.Controls.Add(pnlGroupboxes);
+            gpCentral.Controls.Add(rbVM);
+            gpCentral.Controls.Add(rbXRF);
+            gpCentral.Controls.Add(rbMir);
+            gpCentral.Location = new Point(10, 12);
+            gpCentral.Name = "gpCentral";
+            gpCentral.Size = new Size(483, 439);
+            gpCentral.TabIndex = 1;
+            gpCentral.TabStop = false;
             // 
-            // panel1
+            // pnlGroupboxes
             // 
-            panel1.Controls.Add(groupBox2);
-            panel1.Controls.Add(groupBox3);
-            panel1.Location = new Point(9, 58);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(468, 372);
-            panel1.TabIndex = 10;
+            pnlGroupboxes.Controls.Add(gpDescricao);
+            pnlGroupboxes.Controls.Add(gpResultados);
+            pnlGroupboxes.Location = new Point(9, 58);
+            pnlGroupboxes.Name = "pnlGroupboxes";
+            pnlGroupboxes.Size = new Size(468, 372);
+            pnlGroupboxes.TabIndex = 10;
             // 
-            // groupBox2
+            // gpDescricao
             // 
-            groupBox2.Controls.Add(textBox1);
-            groupBox2.Location = new Point(0, 0);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(468, 181);
-            groupBox2.TabIndex = 9;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Descrição:";
+            gpDescricao.Controls.Add(txbDescricao);
+            gpDescricao.Location = new Point(0, 0);
+            gpDescricao.Name = "gpDescricao";
+            gpDescricao.Size = new Size(468, 181);
+            gpDescricao.TabIndex = 9;
+            gpDescricao.TabStop = false;
+            gpDescricao.Text = "Descrição:";
             // 
-            // textBox1
+            // txbDescricao
             // 
-            textBox1.Dock = DockStyle.Fill;
-            textBox1.Location = new Point(3, 19);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(462, 159);
-            textBox1.TabIndex = 0;
+            txbDescricao.Dock = DockStyle.Fill;
+            txbDescricao.Location = new Point(3, 19);
+            txbDescricao.Multiline = true;
+            txbDescricao.Name = "txbDescricao";
+            txbDescricao.Size = new Size(462, 159);
+            txbDescricao.TabIndex = 0;
             // 
-            // groupBox3
+            // gpResultados
             // 
-            groupBox3.Controls.Add(textBox2);
-            groupBox3.Location = new Point(0, 189);
-            groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(468, 174);
-            groupBox3.TabIndex = 10;
-            groupBox3.TabStop = false;
-            groupBox3.Text = "Resultados:";
+            gpResultados.Controls.Add(txbResultados);
+            gpResultados.Location = new Point(0, 189);
+            gpResultados.Name = "gpResultados";
+            gpResultados.Size = new Size(468, 174);
+            gpResultados.TabIndex = 10;
+            gpResultados.TabStop = false;
+            gpResultados.Text = "Resultados:";
             // 
-            // textBox2
+            // txbResultados
             // 
-            textBox2.Dock = DockStyle.Fill;
-            textBox2.Location = new Point(3, 19);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(462, 152);
-            textBox2.TabIndex = 8;
+            txbResultados.Dock = DockStyle.Fill;
+            txbResultados.Location = new Point(3, 19);
+            txbResultados.Multiline = true;
+            txbResultados.Name = "txbResultados";
+            txbResultados.Size = new Size(462, 152);
+            txbResultados.TabIndex = 8;
             // 
-            // Form2
+            // frmDescricaoDoPonto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(505, 499);
             Controls.Add(lblPt);
-            Controls.Add(groupBox1);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(gpCentral);
+            Controls.Add(btnOk);
+            Controls.Add(btnCancelar);
             MaximizeBox = false;
             MaximumSize = new Size(521, 538);
             MinimumSize = new Size(521, 538);
-            Name = "Form2";
+            Name = "frmDescricaoDoPonto";
             Text = "Técnicas do Ponto";
             Load += Form2_Load;
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            panel1.ResumeLayout(false);
-            groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
-            groupBox3.ResumeLayout(false);
-            groupBox3.PerformLayout();
+            gpCentral.ResumeLayout(false);
+            gpCentral.PerformLayout();
+            pnlGroupboxes.ResumeLayout(false);
+            gpDescricao.ResumeLayout(false);
+            gpDescricao.PerformLayout();
+            gpResultados.ResumeLayout(false);
+            gpResultados.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -198,16 +198,16 @@
         #endregion
 
         private Label lblPt;
-        private GroupBox groupBox1;
-        private Button button2;
-        private Button button1;
-        private RadioButton radioButton3;
-        private RadioButton radioButton2;
-        private RadioButton radioButton1;
-        private Panel panel1;
-        private TextBox textBox2;
-        private GroupBox groupBox2;
-        private TextBox textBox1;
-        private GroupBox groupBox3;
+        private GroupBox gpCentral;
+        private Button btnOk;
+        private Button btnCancelar;
+        private RadioButton rbVM;
+        private RadioButton rbXRF;
+        private RadioButton rbMir;
+        private Panel pnlGroupboxes;
+        private TextBox txbResultados;
+        private GroupBox gpDescricao;
+        private TextBox txbDescricao;
+        private GroupBox gpResultados;
     }
 }
