@@ -43,6 +43,7 @@ namespace Imagem_Zoom
 
         #endregion Construtor
 
+        #region Form
         /// <summary>
         /// Mudança do tamanho da tela
         /// </summary>
@@ -62,6 +63,8 @@ namespace Imagem_Zoom
             if (picImagemDaAnalise.Image != null)
                 picImagemDaAnalise.Dispose();
         }
+        #endregion Form
+
         /// <summary>
         /// Criação da Pasta e do Arquivo XML
         /// </summary>
@@ -195,8 +198,9 @@ namespace Imagem_Zoom
             centralizaImagemDaAnalise();
             atualizaCoordenadaDoPonto();
         }
-
         #endregion Manipulação da Imagem
+
+        #region Pontos
         /// <summary>
         /// Marcação do Ponto na imagem
         /// </summary>
@@ -283,6 +287,57 @@ namespace Imagem_Zoom
                 lblCoordMouse.Text = String.Format("X:{0} | Y:{1}", e.X, e.Y);
         }
         /// <summary>
+        /// Exibe uma lista com todos os pontos marcados
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mostrarListaDePontosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (picImagemDaAnalise.Image != null && userControlMarcas.Count != 0)
+            {
+                frmCoordenadaDosPontos frmCoordenadaDosPontos = new frmCoordenadaDosPontos(userControlMarcas);
+                frmCoordenadaDosPontos.ShowDialog();
+            }
+
+
+
+        }
+        /// <summary>
+        /// Marcação para exibir ou não os pontos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void mostrarPontosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mostrarPontosToolStripMenuItem.Checked = !mostrarPontosToolStripMenuItem.Checked;
+            foreach (UserControlMarca user in userControlMarcas)
+                user.Visible = mostrarPontosToolStripMenuItem.Checked ? true : false;
+
+        }
+        #endregion Pontos
+
+        #region Projeto
+        /// <summary>
+        /// Atualiza o XML
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void atualizarXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            XElement escreveXml = new XElement("Atualização");
+
+            escreveXml.Add(new XElement("LarguraAtual", larguraAposZoom.ToString()));
+            escreveXml.Add(new XElement("AlturaAtual", alturaAposZoom.ToString()));
+            escreveXml.Add(new XComment("Ponto_"));
+            escreveXml.Add(new XElement("Coordenada-X-do-Clique", (posicaoRelativaDoX).ToString()));
+            escreveXml.Add(new XElement("Coordenada-Y-do-Clique", (posicaoRelativaDoY).ToString()));
+
+            XElement arquivoXml = XElement.Load($@"{diretorioDoProjeto + "\\" + imagemDaAnalise}.xml");
+
+            arquivoXml.Add(escreveXml);
+            arquivoXml.Save($@"{diretorioDoProjeto + "\\" + imagemDaAnalise}.xml");
+        }
+        /// <summary>
         /// Abre o projeto
         /// </summary>
         /// <param name="sender"></param>
@@ -314,54 +369,7 @@ namespace Imagem_Zoom
 
             }
         }
-        /// <summary>
-        /// Atualiza o XML
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void atualizarXMLToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            XElement escreveXml = new XElement("Atualização");
-
-            escreveXml.Add(new XElement("LarguraAtual", larguraAposZoom.ToString()));
-            escreveXml.Add(new XElement("AlturaAtual", alturaAposZoom.ToString()));
-            escreveXml.Add(new XComment("Ponto_"));
-            escreveXml.Add(new XElement("Coordenada-X-do-Clique", (posicaoRelativaDoX).ToString()));
-            escreveXml.Add(new XElement("Coordenada-Y-do-Clique", (posicaoRelativaDoY).ToString()));
-
-            XElement arquivoXml = XElement.Load($@"{diretorioDoProjeto + "\\" + imagemDaAnalise}.xml");
-
-            arquivoXml.Add(escreveXml);
-            arquivoXml.Save($@"{diretorioDoProjeto + "\\" + imagemDaAnalise}.xml");
-        }
-        /// <summary>
-        /// Exibe uma lista com todos os pontos marcados
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void mostrarListaDePontosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (picImagemDaAnalise.Image != null && userControlMarcas.Count != 0)
-            {
-                frmCoordenadaDosPontos frmCoordenadaDosPontos = new frmCoordenadaDosPontos(userControlMarcas);
-                frmCoordenadaDosPontos.ShowDialog();
-            }
-
-
-
-        }
-        /// <summary>
-        /// Marcação para exibir ou não os pontos
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void mostrarPontosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            mostrarPontosToolStripMenuItem.Checked = !mostrarPontosToolStripMenuItem.Checked;
-            foreach (UserControlMarca user in userControlMarcas)
-                user.Visible = mostrarPontosToolStripMenuItem.Checked ? true : false;
-
-        }
+        #endregion Projeto
     }
 }
 
