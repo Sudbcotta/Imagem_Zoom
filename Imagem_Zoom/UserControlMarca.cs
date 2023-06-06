@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
+﻿using Imagem_Zoom;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,10 +34,23 @@ namespace WinFormsApp1
             form2.ShowDialog(this);
 
         }
-        //private void tsmApagar_Click(object sender, EventArgs e)
-        //{
-        //    apagarPonto(i);
 
-        //}
+
+        private void UserControlMarca_MouseUp(object sender, MouseEventArgs e)
+        {
+            frmMain? f = Application.OpenForms["frmMain"] as frmMain;
+            if (f != null)
+            {
+                int x = e.X + this.Location.X;
+                int y = e.Y + this.Location.Y;
+                this.RelativeLocation = f.arrastaPonto(x, y);
+            }
+        }
+        private void tsmApagar_Click(object sender, EventArgs e)
+        {   
+            frmMain? f = Application.OpenForms["frmMain"] as frmMain;
+            
+
+        }
     }
 }

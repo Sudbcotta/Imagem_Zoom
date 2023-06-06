@@ -82,6 +82,7 @@
             Margin = new Padding(0);
             Name = "UserControlMarca";
             Size = new Size(50, 18);
+            MouseUp += UserControlMarca_MouseUp;
             cmtOptions.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();

@@ -68,6 +68,7 @@
             picImagemDaAnalise.TabStop = false;
             picImagemDaAnalise.MouseClick += picImagemDaAnalise_Click;
             picImagemDaAnalise.MouseMove += picImagemDaAnalise_MouseMove;
+
             // 
             // pnlPlanoDeFundoDaImagem
             // 

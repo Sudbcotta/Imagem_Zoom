@@ -23,6 +23,7 @@ namespace Imagem_Zoom
         private int capturaDoClickDoY;
         private int larguraAposZoom;
         private int alturaAposZoom;
+
         private string diretorioDoProjeto;
         private string imagemDaAnalise;
 
@@ -170,7 +171,7 @@ namespace Imagem_Zoom
         private void MouseWheel(object sender, MouseEventArgs e)
         {
 
-            int delta = (e.Delta / 10 * SystemInformation.MouseWheelScrollDelta / 120);
+            int delta = (e.Delta / 12 * SystemInformation.MouseWheelScrollDelta / 120);
 
             if ((trbZoomDaImagem.Value + delta >= trbZoomDaImagem.Minimum) && (trbZoomDaImagem.Value + delta <= trbZoomDaImagem.Maximum))
             {
@@ -207,15 +208,17 @@ namespace Imagem_Zoom
                 capturaDoClickDoY = (e.Y);
 
                 UserControlMarca pontoDaAnalise = new UserControlMarca();
-                pontoDaAnalise.Draggable(true);
+
                 pontoDaAnalise.Name = string.Format($"UserControlMarca{userControlMarcas.Count()}");
                 pontoDaAnalise.Id = userControlMarcas.Count();
                 pontoDaAnalise.lblPonto.Text = $"{userControlMarcas.Count() + 1}";
-                
+
                 pontoDaAnalise.Visible = mostrarPontosToolStripMenuItem.Checked;
 
+                pontoDaAnalise.Draggable(true);
+
                 zoom = trbZoomDaImagem.Value / 100f;
-                
+
                 pontoDaAnalise.RelativeLocation = new Point((int)(capturaDoClickDoX / zoom), (int)(capturaDoClickDoY / zoom));
 
                 posicaoRelativaDoX = pontoDaAnalise.RelativeLocation.X;
@@ -232,13 +235,16 @@ namespace Imagem_Zoom
                 userControlMarcas.Add(pontoDaAnalise);
 
                 atualizarXMLToolStripMenuItem_Click(sender, e);
-                
             }
             else
                 MessageBox.Show("Marque a caixa para poder marcar pontos na imagem ou abra uma imagem!", "Pontos", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
-        
+        public Point arrastaPonto(int x,int y)
+        {
+            zoom = trbZoomDaImagem.Value / 100f;
+            return new Point((int)(x / zoom), (int)(y / zoom));
+        }
         /// <summary>
         /// Atualiza as coordenadas do ponto de acordo com o zoom
         /// </summary>
@@ -247,20 +253,16 @@ namespace Imagem_Zoom
 
             foreach (UserControlMarca pontoDaAnalise in userControlMarcas)
             {
-                
+
                 double x = (trbZoomDaImagem.Value / 100f) * pontoDaAnalise.RelativeLocation.X;
                 double y = (trbZoomDaImagem.Value / 100f) * pontoDaAnalise.RelativeLocation.Y;
-                
+
                 x += -pontoDaAnalise.Width / 2;
                 y += -pontoDaAnalise.Height / 2;
 
                 pontoDaAnalise.Location = new Point((int)x, (int)y);
             }
         }
-        //private void apagarPonto(int i)
-        //{
-        //    userControlMarcas.RemoveAt(i);
-        //}
         /// <summary>
         /// Captura a coordenada do mouse em tempo real
         /// </summary>
@@ -352,7 +354,6 @@ namespace Imagem_Zoom
                 user.Visible = mostrarPontosToolStripMenuItem.Checked ? true : false;
 
         }
-
     }
 }
 
