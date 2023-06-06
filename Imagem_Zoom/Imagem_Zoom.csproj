@@ -6,7 +6,12 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>vrau.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="vrau.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Control.Draggable" Version="1.0.5049.269" />

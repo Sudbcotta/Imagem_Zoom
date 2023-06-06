@@ -170,17 +170,19 @@ namespace Imagem_Zoom
         /// <param name="e"></param>
         private void MouseWheel(object sender, MouseEventArgs e)
         {
-
-            int delta = (e.Delta / 12 * SystemInformation.MouseWheelScrollDelta / 120);
-
-            if ((trbZoomDaImagem.Value + delta >= trbZoomDaImagem.Minimum) && (trbZoomDaImagem.Value + delta <= trbZoomDaImagem.Maximum))
+            if (picImagemDaAnalise.Image != null)
             {
-                trbZoomDaImagem.Value = trbZoomDaImagem.Value + delta;
-                picImagemDaAnalise.Image = zoomDaImagem(imgOriginal, trbZoomDaImagem.Value / 100f);
-            }
+                int delta = (e.Delta / 12 * SystemInformation.MouseWheelScrollDelta / 120);
 
-            centralizaImagemDaAnalise();
-            atualizaCoordenadaDoPonto();
+                if ((trbZoomDaImagem.Value + delta >= trbZoomDaImagem.Minimum) && (trbZoomDaImagem.Value + delta <= trbZoomDaImagem.Maximum))
+                {
+                    trbZoomDaImagem.Value = trbZoomDaImagem.Value + delta;
+                    picImagemDaAnalise.Image = zoomDaImagem(imgOriginal, trbZoomDaImagem.Value / 100f);
+                }
+
+                centralizaImagemDaAnalise();
+                atualizaCoordenadaDoPonto();
+            }      
         }
         /// <summary>
         /// Recebe dados da track bar e converte para realizar o zoom
@@ -233,14 +235,20 @@ namespace Imagem_Zoom
                 pic.Controls.Add(pontoDaAnalise);
 
                 userControlMarcas.Add(pontoDaAnalise);
-
+                //userControlMarcas.RemoveAt(pontoDaAnalise.Id);
                 atualizarXMLToolStripMenuItem_Click(sender, e);
             }
             else
                 MessageBox.Show("Marque a caixa para poder marcar pontos na imagem ou abra uma imagem!", "Pontos", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
-        public Point arrastaPonto(int x,int y)
+        /// <summary>
+        /// Configura a nova coordenada ao arrastar o ponto
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public Point arrastaPonto(int x, int y)
         {
             zoom = trbZoomDaImagem.Value / 100f;
             return new Point((int)(x / zoom), (int)(y / zoom));

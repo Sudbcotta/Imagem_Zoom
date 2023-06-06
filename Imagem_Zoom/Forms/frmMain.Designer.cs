@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             picImagemDaAnalise = new PictureBox();
             pnlPlanoDeFundoDaImagem = new Panel();
             lblImagemComTamanhoOriginal = new Label();
@@ -37,6 +38,7 @@
             lblZoom = new Label();
             trbZoomDaImagem = new TrackBar();
             pnlPlanoDeFundoParaControles = new Panel();
+            pbLiscomp = new PictureBox();
             gbZoom = new GroupBox();
             grpTamanhoDaImagem = new GroupBox();
             grpCoordenadaDoMouse = new GroupBox();
@@ -51,6 +53,7 @@
             pnlPlanoDeFundoDaImagem.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)trbZoomDaImagem).BeginInit();
             pnlPlanoDeFundoParaControles.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pbLiscomp).BeginInit();
             gbZoom.SuspendLayout();
             grpTamanhoDaImagem.SuspendLayout();
             grpCoordenadaDoMouse.SuspendLayout();
@@ -68,7 +71,6 @@
             picImagemDaAnalise.TabStop = false;
             picImagemDaAnalise.MouseClick += picImagemDaAnalise_Click;
             picImagemDaAnalise.MouseMove += picImagemDaAnalise_MouseMove;
-
             // 
             // pnlPlanoDeFundoDaImagem
             // 
@@ -144,6 +146,7 @@
             // pnlPlanoDeFundoParaControles
             // 
             pnlPlanoDeFundoParaControles.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            pnlPlanoDeFundoParaControles.Controls.Add(pbLiscomp);
             pnlPlanoDeFundoParaControles.Controls.Add(gbZoom);
             pnlPlanoDeFundoParaControles.Controls.Add(grpTamanhoDaImagem);
             pnlPlanoDeFundoParaControles.Controls.Add(grpCoordenadaDoMouse);
@@ -152,12 +155,25 @@
             pnlPlanoDeFundoParaControles.Size = new Size(167, 595);
             pnlPlanoDeFundoParaControles.TabIndex = 2;
             // 
+            // pbLiscomp
+            // 
+            pbLiscomp.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            pbLiscomp.BackgroundImage = (Image)resources.GetObject("pbLiscomp.BackgroundImage");
+            pbLiscomp.BackgroundImageLayout = ImageLayout.Zoom;
+            pbLiscomp.Image = (Image)resources.GetObject("pbLiscomp.Image");
+            pbLiscomp.Location = new Point(3, 534);
+            pbLiscomp.Name = "pbLiscomp";
+            pbLiscomp.Size = new Size(162, 59);
+            pbLiscomp.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbLiscomp.TabIndex = 19;
+            pbLiscomp.TabStop = false;
+            // 
             // gbZoom
             // 
             gbZoom.Anchor = AnchorStyles.Left;
             gbZoom.Controls.Add(lblZoom);
             gbZoom.Controls.Add(trbZoomDaImagem);
-            gbZoom.Location = new Point(3, 135);
+            gbZoom.Location = new Point(4, 135);
             gbZoom.Name = "gbZoom";
             gbZoom.Size = new Size(156, 86);
             gbZoom.TabIndex = 17;
@@ -169,7 +185,7 @@
             grpTamanhoDaImagem.Anchor = AnchorStyles.Left;
             grpTamanhoDaImagem.Controls.Add(lblImagemComTamanhoEmTempoReal);
             grpTamanhoDaImagem.Controls.Add(lblImagemComTamanhoOriginal);
-            grpTamanhoDaImagem.Location = new Point(4, 301);
+            grpTamanhoDaImagem.Location = new Point(5, 301);
             grpTamanhoDaImagem.Name = "grpTamanhoDaImagem";
             grpTamanhoDaImagem.Size = new Size(156, 77);
             grpTamanhoDaImagem.TabIndex = 16;
@@ -180,7 +196,7 @@
             // 
             grpCoordenadaDoMouse.Anchor = AnchorStyles.Left;
             grpCoordenadaDoMouse.Controls.Add(lblCoordMouse);
-            grpCoordenadaDoMouse.Location = new Point(3, 236);
+            grpCoordenadaDoMouse.Location = new Point(4, 236);
             grpCoordenadaDoMouse.Name = "grpCoordenadaDoMouse";
             grpCoordenadaDoMouse.Size = new Size(156, 49);
             grpCoordenadaDoMouse.TabIndex = 15;
@@ -254,8 +270,9 @@
             Controls.Add(pnlPlanoDeFundoDaImagem);
             Controls.Add(pnlPlanoDeFundoParaControles);
             Controls.Add(msMenuDoForms);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = msMenuDoForms;
-            MinimumSize = new Size(1200, 500);
+            MinimumSize = new Size(1200, 700);
             Name = "frmMain";
             Text = "Imagem Zoom";
             FormClosing += Form1_FormClosing;
@@ -265,6 +282,7 @@
             pnlPlanoDeFundoDaImagem.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)trbZoomDaImagem).EndInit();
             pnlPlanoDeFundoParaControles.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pbLiscomp).EndInit();
             gbZoom.ResumeLayout(false);
             gbZoom.PerformLayout();
             grpTamanhoDaImagem.ResumeLayout(false);
@@ -297,5 +315,6 @@
         private ToolStripMenuItem ferramentasToolStripMenuItem;
         private ToolStripMenuItem mostrarListaDePontosToolStripMenuItem;
         private ToolStripMenuItem mostrarPontosToolStripMenuItem;
+        private PictureBox pbLiscomp;
     }
 }

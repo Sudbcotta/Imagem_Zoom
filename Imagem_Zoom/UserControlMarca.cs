@@ -34,8 +34,11 @@ namespace WinFormsApp1
             form2.ShowDialog(this);
 
         }
-
-
+        /// <summary>
+        /// Identifica e altera o valor da coordenada do ponto ao largar o botão do mouse
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UserControlMarca_MouseUp(object sender, MouseEventArgs e)
         {
             frmMain? f = Application.OpenForms["frmMain"] as frmMain;
@@ -44,8 +47,10 @@ namespace WinFormsApp1
                 int x = e.X + this.Location.X;
                 int y = e.Y + this.Location.Y;
                 this.RelativeLocation = f.arrastaPonto(x, y);
+                
             }
         }
+        
         private void tsmApagar_Click(object sender, EventArgs e)
         {   
             frmMain? f = Application.OpenForms["frmMain"] as frmMain;
