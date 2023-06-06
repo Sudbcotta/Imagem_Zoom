@@ -1,6 +1,7 @@
 using Imagem_Zoom.Forms;
 using Microsoft.VisualBasic.ApplicationServices;
 using System;
+using System.Drawing.Text;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
@@ -202,22 +203,19 @@ namespace Imagem_Zoom
         {
             if (mostrarPontosToolStripMenuItem.Checked)
             {
-                
                 capturaDoClickDoX = (e.X);
                 capturaDoClickDoY = (e.Y);
 
                 UserControlMarca pontoDaAnalise = new UserControlMarca();
-
                 pontoDaAnalise.Draggable(true);
-
                 pontoDaAnalise.Name = string.Format($"UserControlMarca{userControlMarcas.Count()}");
                 pontoDaAnalise.Id = userControlMarcas.Count();
-                pontoDaAnalise.lblPonto.Text = $"{userControlMarcas.Count()}";
-
+                pontoDaAnalise.lblPonto.Text = $"{userControlMarcas.Count() + 1}";
+                
                 pontoDaAnalise.Visible = mostrarPontosToolStripMenuItem.Checked;
 
                 zoom = trbZoomDaImagem.Value / 100f;
-
+                
                 pontoDaAnalise.RelativeLocation = new Point((int)(capturaDoClickDoX / zoom), (int)(capturaDoClickDoY / zoom));
 
                 posicaoRelativaDoX = pontoDaAnalise.RelativeLocation.X;
@@ -240,23 +238,29 @@ namespace Imagem_Zoom
                 MessageBox.Show("Marque a caixa para poder marcar pontos na imagem ou abra uma imagem!", "Pontos", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
+        
         /// <summary>
         /// Atualiza as coordenadas do ponto de acordo com o zoom
         /// </summary>
         private void atualizaCoordenadaDoPonto()
         {
 
-            foreach (UserControlMarca user in userControlMarcas)
+            foreach (UserControlMarca pontoDaAnalise in userControlMarcas)
             {
-                double x = (trbZoomDaImagem.Value / 100f) * user.RelativeLocation.X;
-                double y = (trbZoomDaImagem.Value / 100f) * user.RelativeLocation.Y;
+                
+                double x = (trbZoomDaImagem.Value / 100f) * pontoDaAnalise.RelativeLocation.X;
+                double y = (trbZoomDaImagem.Value / 100f) * pontoDaAnalise.RelativeLocation.Y;
+                
+                x += -pontoDaAnalise.Width / 2;
+                y += -pontoDaAnalise.Height / 2;
 
-                x += -user.Width / 2;
-                y += -user.Height / 2;
-
-                user.Location = new Point((int)x, (int)y);
+                pontoDaAnalise.Location = new Point((int)x, (int)y);
             }
         }
+        //private void apagarPonto(int i)
+        //{
+        //    userControlMarcas.RemoveAt(i);
+        //}
         /// <summary>
         /// Captura a coordenada do mouse em tempo real
         /// </summary>

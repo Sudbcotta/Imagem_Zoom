@@ -33,5 +33,10 @@ namespace WinFormsApp1
             form2.ShowDialog(this);
 
         }
+        //private void tsmApagar_Click(object sender, EventArgs e)
+        //{
+        //    apagarPonto(i);
+
+        //}
     }
 }
