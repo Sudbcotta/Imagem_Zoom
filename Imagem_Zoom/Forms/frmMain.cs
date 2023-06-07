@@ -26,7 +26,7 @@ namespace Imagem_Zoom
 
         private string diretorioDoProjeto;
         private string imagemDaAnalise;
-
+        public uint Contador;
         private double zoom;
 
         #endregion propriedades
@@ -39,6 +39,7 @@ namespace Imagem_Zoom
             InitializeComponent();
             pnlPlanoDeFundoDaImagem.AutoScroll = true;
             userControlMarcas = new List<UserControlMarca>();
+            Contador = 0;
         }
 
         #endregion Construtor
@@ -199,14 +200,14 @@ namespace Imagem_Zoom
             atualizaCoordenadaDoPonto();
         }
         #endregion Manipulação da Imagem
-
+        
         #region Pontos
         /// <summary>
         /// Marcação do Ponto na imagem
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void picImagemDaAnalise_Click(object sender, MouseEventArgs e)
+        public void picImagemDaAnalise_Click(object sender, MouseEventArgs e)
         {
             if (mostrarPontosToolStripMenuItem.Checked)
             {
@@ -214,10 +215,10 @@ namespace Imagem_Zoom
                 capturaDoClickDoY = (e.Y);
 
                 UserControlMarca pontoDaAnalise = new UserControlMarca();
-
+                Contador += 1;
                 pontoDaAnalise.Name = string.Format($"UserControlMarca{userControlMarcas.Count()}");
-                pontoDaAnalise.Id = userControlMarcas.Count();
-                pontoDaAnalise.lblPonto.Text = $"{userControlMarcas.Count() + 1}";
+                pontoDaAnalise.Id = (int)Contador;
+                pontoDaAnalise.lblPonto.Text = $"{(int)Contador}";
 
                 pontoDaAnalise.Visible = mostrarPontosToolStripMenuItem.Checked;
 
@@ -256,6 +257,15 @@ namespace Imagem_Zoom
         {
             zoom = trbZoomDaImagem.Value / 100f;
             return new Point((int)(x / zoom), (int)(y / zoom));
+        }
+        /// <summary>
+        /// Apaga um objeto da lista
+        /// </summary>
+        /// <param name="x"></param>
+        public void apagarPonto(UserControlMarca x)
+        {  
+            picImagemDaAnalise.Controls.Remove(x);
+            userControlMarcas.Remove(x);
         }
         /// <summary>
         /// Atualiza as coordenadas do ponto de acordo com o zoom

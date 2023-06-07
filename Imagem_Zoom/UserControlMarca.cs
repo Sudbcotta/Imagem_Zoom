@@ -47,14 +47,23 @@ namespace WinFormsApp1
                 int x = e.X + this.Location.X;
                 int y = e.Y + this.Location.Y;
                 this.RelativeLocation = f.arrastaPonto(x, y);
-                
             }
         }
-        
+        /// <summary>
+        /// Apaga um objeto da lista
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tsmApagar_Click(object sender, EventArgs e)
-        {   
+        {
             frmMain? f = Application.OpenForms["frmMain"] as frmMain;
-            
+            if (f != null)
+            {
+                f.apagarPonto(this);
+
+
+            }
+
 
         }
     }

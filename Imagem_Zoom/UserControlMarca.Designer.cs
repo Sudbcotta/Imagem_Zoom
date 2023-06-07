@@ -55,6 +55,7 @@
             tsmApagar.Name = "tsmApagar";
             tsmApagar.Size = new Size(143, 22);
             tsmApagar.Text = "Apagar";
+            tsmApagar.Click += tsmApagar_Click;
             // 
             // lblPonto
             // 
@@ -79,9 +80,10 @@
             ContextMenuStrip = cmtOptions;
             Controls.Add(lblPonto);
             DoubleBuffered = true;
+            ForeColor = SystemColors.ButtonFace;
             Margin = new Padding(0);
             Name = "UserControlMarca";
-            Size = new Size(50, 18);
+            Size = new Size(43, 19);
             MouseUp += UserControlMarca_MouseUp;
             cmtOptions.ResumeLayout(false);
             ResumeLayout(false);
