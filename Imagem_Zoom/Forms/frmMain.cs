@@ -186,7 +186,7 @@ namespace Imagem_Zoom
 
                 centralizaImagemDaAnalise();
                 atualizaCoordenadaDoPonto();
-            }      
+            }
         }
         /// <summary>
         /// Recebe dados da track bar e converte para realizar o zoom
@@ -200,7 +200,7 @@ namespace Imagem_Zoom
             atualizaCoordenadaDoPonto();
         }
         #endregion Manipulação da Imagem
-        
+
         #region Pontos
         /// <summary>
         /// Marcação do Ponto na imagem
@@ -263,7 +263,7 @@ namespace Imagem_Zoom
         /// </summary>
         /// <param name="x"></param>
         public void apagarPonto(UserControlMarca x)
-        {  
+        {
             picImagemDaAnalise.Controls.Remove(x);
             userControlMarcas.Remove(x);
         }

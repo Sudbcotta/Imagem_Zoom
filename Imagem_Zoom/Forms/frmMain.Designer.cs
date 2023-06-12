@@ -167,6 +167,7 @@
             pbLiscomp.SizeMode = PictureBoxSizeMode.StretchImage;
             pbLiscomp.TabIndex = 19;
             pbLiscomp.TabStop = false;
+            pbLiscomp.Visible = false;
             // 
             // gbZoom
             // 
