@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "P+xII05xkIuS6h28uNhJgJ8HlUFmYeq5prmWpM/MDThIF5JXB3HyMVbZ+eGGyUgqVJUa3A5lMDcX+CkAFl6c3Q==",
+  "dgSpecHash": "sGz7L2SyI1Nm0Rw8xvkV1ym+8tJbDq1W0PIT2WzTiqkWFJBVdvIyFH09J0LrJbKB0KnkhyO3IdegWP2ZN77dEA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\CottaLISCOMP\\Source\\Repos\\Sudbcotta\\Imagem_Zoom\\Imagem_Zoom\\Imagem_Zoom.csproj",
+  "projectFilePath": "C:\\Users\\CottaLISCOMP\\source\\repos\\Sudbcotta\\Imagem_Zoom\\Imagem_Zoom\\Imagem_Zoom.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\CottaLISCOMP\\.nuget\\packages\\control.draggable\\1.0.5049.269\\control.draggable.1.0.5049.269.nupkg.sha512"
   ],
