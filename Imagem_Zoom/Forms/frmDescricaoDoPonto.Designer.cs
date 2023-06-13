@@ -31,10 +31,10 @@
             lblPt = new Label();
             btnOk = new Button();
             btnCancelar = new Button();
-            rbMir = new RadioButton();
-            rbXRF = new RadioButton();
-            rbVM = new RadioButton();
             gpCentral = new GroupBox();
+            chkVm = new CheckBox();
+            chkXrf = new CheckBox();
+            chkMir = new CheckBox();
             pnlGroupboxes = new Panel();
             gpDescricao = new GroupBox();
             txbDescricao = new TextBox();
@@ -76,51 +76,50 @@
             btnCancelar.UseVisualStyleBackColor = true;
             btnCancelar.Click += button1_Click;
             // 
-            // rbMir
-            // 
-            rbMir.AutoSize = true;
-            rbMir.Location = new Point(17, 28);
-            rbMir.Name = "rbMir";
-            rbMir.Size = new Size(46, 19);
-            rbMir.TabIndex = 3;
-            rbMir.TabStop = true;
-            rbMir.Text = "MIR";
-            rbMir.UseVisualStyleBackColor = true;
-            // 
-            // rbXRF
-            // 
-            rbXRF.AutoSize = true;
-            rbXRF.Location = new Point(80, 28);
-            rbXRF.Name = "rbXRF";
-            rbXRF.Size = new Size(45, 19);
-            rbXRF.TabIndex = 4;
-            rbXRF.TabStop = true;
-            rbXRF.Text = "XRF";
-            rbXRF.UseVisualStyleBackColor = true;
-            // 
-            // rbVM
-            // 
-            rbVM.AutoSize = true;
-            rbVM.Location = new Point(142, 28);
-            rbVM.Name = "rbVM";
-            rbVM.Size = new Size(43, 19);
-            rbVM.TabIndex = 5;
-            rbVM.TabStop = true;
-            rbVM.Text = "VM";
-            rbVM.UseVisualStyleBackColor = true;
-            // 
             // gpCentral
             // 
             gpCentral.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            gpCentral.Controls.Add(chkVm);
+            gpCentral.Controls.Add(chkXrf);
+            gpCentral.Controls.Add(chkMir);
             gpCentral.Controls.Add(pnlGroupboxes);
-            gpCentral.Controls.Add(rbVM);
-            gpCentral.Controls.Add(rbXRF);
-            gpCentral.Controls.Add(rbMir);
             gpCentral.Location = new Point(10, 12);
             gpCentral.Name = "gpCentral";
             gpCentral.Size = new Size(483, 439);
             gpCentral.TabIndex = 1;
             gpCentral.TabStop = false;
+            // 
+            // chkVm
+            // 
+            chkVm.AutoSize = true;
+            chkVm.Location = new Point(128, 29);
+            chkVm.Name = "chkVm";
+            chkVm.Size = new Size(44, 19);
+            chkVm.TabIndex = 13;
+            chkVm.Text = "VM";
+            chkVm.UseVisualStyleBackColor = true;
+            // 
+            // chkXrf
+            // 
+            chkXrf.AutoSize = true;
+            chkXrf.Location = new Point(71, 29);
+            chkXrf.Name = "chkXrf";
+            chkXrf.Size = new Size(46, 19);
+            chkXrf.TabIndex = 12;
+            chkXrf.Text = "XRF";
+            chkXrf.UseVisualStyleBackColor = true;
+            // 
+            // chkMir
+            // 
+            chkMir.AutoSize = true;
+            chkMir.Checked = true;
+            chkMir.CheckState = CheckState.Checked;
+            chkMir.Location = new Point(12, 29);
+            chkMir.Name = "chkMir";
+            chkMir.Size = new Size(47, 19);
+            chkMir.TabIndex = 11;
+            chkMir.Text = "MIR";
+            chkMir.UseVisualStyleBackColor = true;
             // 
             // pnlGroupboxes
             // 
@@ -201,13 +200,13 @@
         private GroupBox gpCentral;
         private Button btnOk;
         private Button btnCancelar;
-        private RadioButton rbVM;
-        private RadioButton rbXRF;
-        private RadioButton rbMir;
         private Panel pnlGroupboxes;
         private TextBox txbResultados;
         private GroupBox gpDescricao;
         private TextBox txbDescricao;
         private GroupBox gpResultados;
+        private CheckBox chkVm;
+        private CheckBox chkXrf;
+        private CheckBox chkMir;
     }
 }

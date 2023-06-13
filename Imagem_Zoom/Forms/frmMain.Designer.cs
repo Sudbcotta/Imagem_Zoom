@@ -282,6 +282,7 @@
             // mudarCorDoPontoTextoToolStripMenuItem
             // 
             mudarCorDoPontoTextoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { pretoToolStripMenuItem, brancoToolStripMenuItem, vermelhoToolStripMenuItem, azulToolStripMenuItem, verdeToolStripMenuItem, amareloToolStripMenuItem, rosaToolStripMenuItem, lilásToolStripMenuItem });
+            mudarCorDoPontoTextoToolStripMenuItem.Enabled = false;
             mudarCorDoPontoTextoToolStripMenuItem.Name = "mudarCorDoPontoTextoToolStripMenuItem";
             mudarCorDoPontoTextoToolStripMenuItem.Size = new Size(216, 22);
             mudarCorDoPontoTextoToolStripMenuItem.Text = "Mudar Cor do Ponto/Texto";
@@ -290,7 +291,7 @@
             // 
             pretoToolStripMenuItem.Image = (Image)resources.GetObject("pretoToolStripMenuItem.Image");
             pretoToolStripMenuItem.Name = "pretoToolStripMenuItem";
-            pretoToolStripMenuItem.Size = new Size(124, 22);
+            pretoToolStripMenuItem.Size = new Size(180, 22);
             pretoToolStripMenuItem.Text = "Preto";
             pretoToolStripMenuItem.Click += pretoToolStripMenuItem_Click;
             // 
@@ -298,7 +299,7 @@
             // 
             brancoToolStripMenuItem.Image = (Image)resources.GetObject("brancoToolStripMenuItem.Image");
             brancoToolStripMenuItem.Name = "brancoToolStripMenuItem";
-            brancoToolStripMenuItem.Size = new Size(124, 22);
+            brancoToolStripMenuItem.Size = new Size(180, 22);
             brancoToolStripMenuItem.Text = "Branco";
             brancoToolStripMenuItem.Click += brancoToolStripMenuItem_Click;
             // 
@@ -306,7 +307,7 @@
             // 
             vermelhoToolStripMenuItem.Image = (Image)resources.GetObject("vermelhoToolStripMenuItem.Image");
             vermelhoToolStripMenuItem.Name = "vermelhoToolStripMenuItem";
-            vermelhoToolStripMenuItem.Size = new Size(124, 22);
+            vermelhoToolStripMenuItem.Size = new Size(180, 22);
             vermelhoToolStripMenuItem.Text = "Vermelho";
             vermelhoToolStripMenuItem.Click += vermelhoToolStripMenuItem_Click;
             // 
@@ -314,7 +315,7 @@
             // 
             azulToolStripMenuItem.Image = Properties.Resources.ptAzul;
             azulToolStripMenuItem.Name = "azulToolStripMenuItem";
-            azulToolStripMenuItem.Size = new Size(124, 22);
+            azulToolStripMenuItem.Size = new Size(180, 22);
             azulToolStripMenuItem.Text = "Azul";
             azulToolStripMenuItem.Click += azulToolStripMenuItem_Click;
             // 
@@ -322,7 +323,7 @@
             // 
             verdeToolStripMenuItem.Image = Properties.Resources.ptVerde;
             verdeToolStripMenuItem.Name = "verdeToolStripMenuItem";
-            verdeToolStripMenuItem.Size = new Size(124, 22);
+            verdeToolStripMenuItem.Size = new Size(180, 22);
             verdeToolStripMenuItem.Text = "Verde";
             verdeToolStripMenuItem.Click += verdeToolStripMenuItem_Click;
             // 
@@ -330,7 +331,7 @@
             // 
             amareloToolStripMenuItem.Image = Properties.Resources.ptAmarelo;
             amareloToolStripMenuItem.Name = "amareloToolStripMenuItem";
-            amareloToolStripMenuItem.Size = new Size(124, 22);
+            amareloToolStripMenuItem.Size = new Size(180, 22);
             amareloToolStripMenuItem.Text = "Amarelo";
             amareloToolStripMenuItem.Click += amareloToolStripMenuItem_Click;
             // 
@@ -338,7 +339,7 @@
             // 
             rosaToolStripMenuItem.Image = Properties.Resources.ptRosa;
             rosaToolStripMenuItem.Name = "rosaToolStripMenuItem";
-            rosaToolStripMenuItem.Size = new Size(124, 22);
+            rosaToolStripMenuItem.Size = new Size(180, 22);
             rosaToolStripMenuItem.Text = "Rosa";
             rosaToolStripMenuItem.Click += rosaToolStripMenuItem_Click;
             // 
@@ -346,7 +347,7 @@
             // 
             lilásToolStripMenuItem.Image = Properties.Resources.ptLilas;
             lilásToolStripMenuItem.Name = "lilásToolStripMenuItem";
-            lilásToolStripMenuItem.Size = new Size(124, 22);
+            lilásToolStripMenuItem.Size = new Size(180, 22);
             lilásToolStripMenuItem.Text = "Lilás";
             lilásToolStripMenuItem.Click += lilásToolStripMenuItem_Click;
             // 

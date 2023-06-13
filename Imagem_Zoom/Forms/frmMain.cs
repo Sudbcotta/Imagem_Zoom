@@ -413,6 +413,7 @@ namespace Imagem_Zoom
                 mostrarPontosToolStripMenuItem.Checked = true;
                 mostrarPontosToolStripMenuItem.Enabled = true;
                 mostrarListaDePontosToolStripMenuItem.Enabled = true;
+                mudarCorDoPontoTextoToolStripMenuItem.Enabled = true;
 
             }
         }
