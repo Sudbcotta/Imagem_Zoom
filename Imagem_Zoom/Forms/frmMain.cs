@@ -240,7 +240,6 @@ namespace Imagem_Zoom
                 pic.Controls.Add(pontoDaAnalise);
 
                 userControlMarcas.Add(pontoDaAnalise);
-                //userControlMarcas.RemoveAt(pontoDaAnalise.Id);
                 atualizarXMLToolStripMenuItem_Click(sender, e);
             }
             else
