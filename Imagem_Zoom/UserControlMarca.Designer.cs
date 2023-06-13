@@ -33,40 +33,100 @@
             cmtOptions = new ContextMenuStrip(components);
             tsmPropriedades = new ToolStripMenuItem();
             tsmApagar = new ToolStripMenuItem();
-            lblPonto = new Label();
+            corDoPontoTextoToolStripMenuItem = new ToolStripMenuItem();
+            azulToolStripMenuItem = new ToolStripMenuItem();
+            verdeToolStripMenuItem = new ToolStripMenuItem();
+            vermelhoToolStripMenuItem = new ToolStripMenuItem();
+            pretoToolStripMenuItem = new ToolStripMenuItem();
+            brancoToolStripMenuItem = new ToolStripMenuItem();
+            amareloToolStripMenuItem = new ToolStripMenuItem();
+            rosaToolStripMenuItem = new ToolStripMenuItem();
+            lilásToolStripMenuItem = new ToolStripMenuItem();
             cmtOptions.SuspendLayout();
             SuspendLayout();
             // 
             // cmtOptions
             // 
-            cmtOptions.Items.AddRange(new ToolStripItem[] { tsmPropriedades, tsmApagar });
+            cmtOptions.Items.AddRange(new ToolStripItem[] { tsmPropriedades, tsmApagar, corDoPontoTextoToolStripMenuItem });
             cmtOptions.Name = "cmtOptions";
-            cmtOptions.Size = new Size(144, 48);
+            cmtOptions.Size = new Size(179, 70);
             // 
             // tsmPropriedades
             // 
             tsmPropriedades.Name = "tsmPropriedades";
-            tsmPropriedades.Size = new Size(143, 22);
+            tsmPropriedades.Size = new Size(178, 22);
             tsmPropriedades.Text = "Propriedades";
             tsmPropriedades.Click += tsmPropriedades_Click;
             // 
             // tsmApagar
             // 
             tsmApagar.Name = "tsmApagar";
-            tsmApagar.Size = new Size(143, 22);
+            tsmApagar.Size = new Size(178, 22);
             tsmApagar.Text = "Apagar";
             tsmApagar.Click += tsmApagar_Click;
             // 
-            // lblPonto
+            // corDoPontoTextoToolStripMenuItem
             // 
-            lblPonto.AutoSize = true;
-            lblPonto.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            lblPonto.ForeColor = Color.Red;
-            lblPonto.Location = new Point(-3, 2);
-            lblPonto.Name = "lblPonto";
-            lblPonto.Size = new Size(21, 15);
-            lblPonto.TabIndex = 1;
-            lblPonto.Text = "10";
+            corDoPontoTextoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { azulToolStripMenuItem, verdeToolStripMenuItem, vermelhoToolStripMenuItem, pretoToolStripMenuItem, brancoToolStripMenuItem, amareloToolStripMenuItem, rosaToolStripMenuItem, lilásToolStripMenuItem });
+            corDoPontoTextoToolStripMenuItem.Name = "corDoPontoTextoToolStripMenuItem";
+            corDoPontoTextoToolStripMenuItem.Size = new Size(178, 22);
+            corDoPontoTextoToolStripMenuItem.Text = "Cor do Ponto/Texto";
+            // 
+            // azulToolStripMenuItem
+            // 
+            azulToolStripMenuItem.Name = "azulToolStripMenuItem";
+            azulToolStripMenuItem.Size = new Size(124, 22);
+            azulToolStripMenuItem.Text = "Azul";
+            azulToolStripMenuItem.Click += azulToolStripMenuItem_Click;
+            // 
+            // verdeToolStripMenuItem
+            // 
+            verdeToolStripMenuItem.Name = "verdeToolStripMenuItem";
+            verdeToolStripMenuItem.Size = new Size(124, 22);
+            verdeToolStripMenuItem.Text = "Verde";
+            verdeToolStripMenuItem.Click += verdeToolStripMenuItem_Click;
+            // 
+            // vermelhoToolStripMenuItem
+            // 
+            vermelhoToolStripMenuItem.Name = "vermelhoToolStripMenuItem";
+            vermelhoToolStripMenuItem.Size = new Size(124, 22);
+            vermelhoToolStripMenuItem.Text = "Vermelho";
+            vermelhoToolStripMenuItem.Click += vermelhoToolStripMenuItem_Click;
+            // 
+            // pretoToolStripMenuItem
+            // 
+            pretoToolStripMenuItem.Name = "pretoToolStripMenuItem";
+            pretoToolStripMenuItem.Size = new Size(124, 22);
+            pretoToolStripMenuItem.Text = "Preto";
+            pretoToolStripMenuItem.Click += pretoToolStripMenuItem_Click;
+            // 
+            // brancoToolStripMenuItem
+            // 
+            brancoToolStripMenuItem.Name = "brancoToolStripMenuItem";
+            brancoToolStripMenuItem.Size = new Size(124, 22);
+            brancoToolStripMenuItem.Text = "Branco";
+            brancoToolStripMenuItem.Click += brancoToolStripMenuItem_Click;
+            // 
+            // amareloToolStripMenuItem
+            // 
+            amareloToolStripMenuItem.Name = "amareloToolStripMenuItem";
+            amareloToolStripMenuItem.Size = new Size(124, 22);
+            amareloToolStripMenuItem.Text = "Amarelo";
+            amareloToolStripMenuItem.Click += amareloToolStripMenuItem_Click;
+            // 
+            // rosaToolStripMenuItem
+            // 
+            rosaToolStripMenuItem.Name = "rosaToolStripMenuItem";
+            rosaToolStripMenuItem.Size = new Size(124, 22);
+            rosaToolStripMenuItem.Text = "Rosa";
+            rosaToolStripMenuItem.Click += rosaToolStripMenuItem_Click;
+            // 
+            // lilásToolStripMenuItem
+            // 
+            lilásToolStripMenuItem.Name = "lilásToolStripMenuItem";
+            lilásToolStripMenuItem.Size = new Size(124, 22);
+            lilásToolStripMenuItem.Text = "Lilás";
+            lilásToolStripMenuItem.Click += lilásToolStripMenuItem_Click;
             // 
             // UserControlMarca
             // 
@@ -78,22 +138,28 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Zoom;
             ContextMenuStrip = cmtOptions;
-            Controls.Add(lblPonto);
             DoubleBuffered = true;
             ForeColor = SystemColors.ButtonFace;
             Margin = new Padding(0);
             Name = "UserControlMarca";
-            Size = new Size(43, 19);
+            Size = new Size(18, 18);
             MouseUp += UserControlMarca_MouseUp;
             cmtOptions.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
         private ContextMenuStrip cmtOptions;
         private ToolStripMenuItem tsmPropriedades;
         private ToolStripMenuItem tsmApagar;
-        public Label lblPonto;
+        private ToolStripMenuItem corDoPontoTextoToolStripMenuItem;
+        private ToolStripMenuItem azulToolStripMenuItem;
+        private ToolStripMenuItem verdeToolStripMenuItem;
+        private ToolStripMenuItem vermelhoToolStripMenuItem;
+        private ToolStripMenuItem pretoToolStripMenuItem;
+        private ToolStripMenuItem brancoToolStripMenuItem;
+        private ToolStripMenuItem amareloToolStripMenuItem;
+        private ToolStripMenuItem rosaToolStripMenuItem;
+        private ToolStripMenuItem lilásToolStripMenuItem;
     }
 }

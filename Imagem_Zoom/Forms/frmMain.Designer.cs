@@ -49,6 +49,16 @@
             ferramentasToolStripMenuItem = new ToolStripMenuItem();
             mostrarListaDePontosToolStripMenuItem = new ToolStripMenuItem();
             mostrarPontosToolStripMenuItem = new ToolStripMenuItem();
+            editarToolStripMenuItem = new ToolStripMenuItem();
+            mudarCorDoPontoTextoToolStripMenuItem = new ToolStripMenuItem();
+            pretoToolStripMenuItem = new ToolStripMenuItem();
+            brancoToolStripMenuItem = new ToolStripMenuItem();
+            vermelhoToolStripMenuItem = new ToolStripMenuItem();
+            azulToolStripMenuItem = new ToolStripMenuItem();
+            verdeToolStripMenuItem = new ToolStripMenuItem();
+            amareloToolStripMenuItem = new ToolStripMenuItem();
+            rosaToolStripMenuItem = new ToolStripMenuItem();
+            lilásToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)picImagemDaAnalise).BeginInit();
             pnlPlanoDeFundoDaImagem.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)trbZoomDaImagem).BeginInit();
@@ -206,7 +216,7 @@
             // 
             // msMenuDoForms
             // 
-            msMenuDoForms.Items.AddRange(new ToolStripItem[] { projetoToolStripMenuItem, ferramentasToolStripMenuItem });
+            msMenuDoForms.Items.AddRange(new ToolStripItem[] { projetoToolStripMenuItem, ferramentasToolStripMenuItem, editarToolStripMenuItem });
             msMenuDoForms.Location = new Point(0, 0);
             msMenuDoForms.Name = "msMenuDoForms";
             msMenuDoForms.Size = new Size(1406, 24);
@@ -263,6 +273,79 @@
             mostrarPontosToolStripMenuItem.Text = "Mostrar Pontos";
             mostrarPontosToolStripMenuItem.Click += mostrarPontosToolStripMenuItem_Click;
             // 
+            // editarToolStripMenuItem
+            // 
+            editarToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { mudarCorDoPontoTextoToolStripMenuItem });
+            editarToolStripMenuItem.Name = "editarToolStripMenuItem";
+            editarToolStripMenuItem.Size = new Size(49, 20);
+            editarToolStripMenuItem.Text = "Editar";
+            // 
+            // mudarCorDoPontoTextoToolStripMenuItem
+            // 
+            mudarCorDoPontoTextoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { pretoToolStripMenuItem, brancoToolStripMenuItem, vermelhoToolStripMenuItem, azulToolStripMenuItem, verdeToolStripMenuItem, amareloToolStripMenuItem, rosaToolStripMenuItem, lilásToolStripMenuItem });
+            mudarCorDoPontoTextoToolStripMenuItem.Name = "mudarCorDoPontoTextoToolStripMenuItem";
+            mudarCorDoPontoTextoToolStripMenuItem.Size = new Size(216, 22);
+            mudarCorDoPontoTextoToolStripMenuItem.Text = "Mudar Cor do Ponto/Texto";
+            // 
+            // pretoToolStripMenuItem
+            // 
+            pretoToolStripMenuItem.Image = (Image)resources.GetObject("pretoToolStripMenuItem.Image");
+            pretoToolStripMenuItem.Name = "pretoToolStripMenuItem";
+            pretoToolStripMenuItem.Size = new Size(180, 22);
+            pretoToolStripMenuItem.Text = "Preto";
+            pretoToolStripMenuItem.Click += pretoToolStripMenuItem_Click;
+            // 
+            // brancoToolStripMenuItem
+            // 
+            brancoToolStripMenuItem.Image = (Image)resources.GetObject("brancoToolStripMenuItem.Image");
+            brancoToolStripMenuItem.Name = "brancoToolStripMenuItem";
+            brancoToolStripMenuItem.Size = new Size(180, 22);
+            brancoToolStripMenuItem.Text = "Branco";
+            brancoToolStripMenuItem.Click += brancoToolStripMenuItem_Click;
+            // 
+            // vermelhoToolStripMenuItem
+            // 
+            vermelhoToolStripMenuItem.Image = (Image)resources.GetObject("vermelhoToolStripMenuItem.Image");
+            vermelhoToolStripMenuItem.Name = "vermelhoToolStripMenuItem";
+            vermelhoToolStripMenuItem.Size = new Size(180, 22);
+            vermelhoToolStripMenuItem.Text = "Vermelho";
+            vermelhoToolStripMenuItem.Click += vermelhoToolStripMenuItem_Click;
+            // 
+            // azulToolStripMenuItem
+            // 
+            azulToolStripMenuItem.Name = "azulToolStripMenuItem";
+            azulToolStripMenuItem.Size = new Size(180, 22);
+            azulToolStripMenuItem.Text = "Azul";
+            azulToolStripMenuItem.Click += azulToolStripMenuItem_Click;
+            // 
+            // verdeToolStripMenuItem
+            // 
+            verdeToolStripMenuItem.Name = "verdeToolStripMenuItem";
+            verdeToolStripMenuItem.Size = new Size(180, 22);
+            verdeToolStripMenuItem.Text = "Verde";
+            verdeToolStripMenuItem.Click += verdeToolStripMenuItem_Click;
+            // 
+            // amareloToolStripMenuItem
+            // 
+            amareloToolStripMenuItem.Name = "amareloToolStripMenuItem";
+            amareloToolStripMenuItem.Size = new Size(180, 22);
+            amareloToolStripMenuItem.Text = "Amarelo";
+            amareloToolStripMenuItem.Click += amareloToolStripMenuItem_Click;
+            // 
+            // rosaToolStripMenuItem
+            // 
+            rosaToolStripMenuItem.Name = "rosaToolStripMenuItem";
+            rosaToolStripMenuItem.Size = new Size(180, 22);
+            rosaToolStripMenuItem.Text = "Rosa";
+            rosaToolStripMenuItem.Click += rosaToolStripMenuItem_Click;
+            // 
+            // lilásToolStripMenuItem
+            // 
+            lilásToolStripMenuItem.Name = "lilásToolStripMenuItem";
+            lilásToolStripMenuItem.Size = new Size(180, 22);
+            lilásToolStripMenuItem.Text = "Lilás";
+            lilásToolStripMenuItem.Click += lilásToolStripMenuItem_Click;
+            // 
             // frmMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -317,5 +400,15 @@
         private ToolStripMenuItem mostrarListaDePontosToolStripMenuItem;
         private ToolStripMenuItem mostrarPontosToolStripMenuItem;
         private PictureBox pbLiscomp;
+        private ToolStripMenuItem editarToolStripMenuItem;
+        private ToolStripMenuItem mudarCorDoPontoTextoToolStripMenuItem;
+        private ToolStripMenuItem pretoToolStripMenuItem;
+        private ToolStripMenuItem brancoToolStripMenuItem;
+        private ToolStripMenuItem vermelhoToolStripMenuItem;
+        private ToolStripMenuItem azulToolStripMenuItem;
+        private ToolStripMenuItem verdeToolStripMenuItem;
+        private ToolStripMenuItem amareloToolStripMenuItem;
+        private ToolStripMenuItem rosaToolStripMenuItem;
+        private ToolStripMenuItem lilásToolStripMenuItem;
     }
 }

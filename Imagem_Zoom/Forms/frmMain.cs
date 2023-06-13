@@ -2,6 +2,8 @@ using Imagem_Zoom.Forms;
 using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Drawing.Text;
+using System.Reflection;
+using System.Runtime.ConstrainedExecution;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
@@ -13,21 +15,23 @@ namespace Imagem_Zoom
     {
         #region propriedades
         private List<UserControlMarca> userControlMarcas { get; set; }
-        public object pontoDaAnalise { get; private set; }
+        //public object pontoDaAnalise { get; private set; }
 
         Image imgOriginal;
-
+        Label lblTituloDoPonto;
         private int posicaoRelativaDoX;
         private int posicaoRelativaDoY;
         private int capturaDoClickDoX;
         private int capturaDoClickDoY;
         private int larguraAposZoom;
         private int alturaAposZoom;
-
+        public int num;
         private string diretorioDoProjeto;
         private string imagemDaAnalise;
         public uint Contador;
         private double zoom;
+        private Image ponto;
+        private Color txtPt;
 
         #endregion propriedades
 
@@ -40,6 +44,8 @@ namespace Imagem_Zoom
             pnlPlanoDeFundoDaImagem.AutoScroll = true;
             userControlMarcas = new List<UserControlMarca>();
             Contador = 0;
+            ponto = Properties.Resources.ptPreto;
+            txtPt = Color.Black;
         }
 
         #endregion Construtor
@@ -213,12 +219,14 @@ namespace Imagem_Zoom
             {
                 capturaDoClickDoX = (e.X);
                 capturaDoClickDoY = (e.Y);
-
                 UserControlMarca pontoDaAnalise = new UserControlMarca();
+
                 Contador += 1;
+
                 pontoDaAnalise.Name = string.Format($"UserControlMarca{userControlMarcas.Count()}");
                 pontoDaAnalise.Id = (int)Contador;
-                pontoDaAnalise.lblPonto.Text = $"{(int)Contador}";
+
+                num = num + 1;
 
                 pontoDaAnalise.Visible = mostrarPontosToolStripMenuItem.Checked;
 
@@ -235,6 +243,9 @@ namespace Imagem_Zoom
                 capturaDoClickDoY += -pontoDaAnalise.Height / 2;
 
                 pontoDaAnalise.Location = new Point(capturaDoClickDoX, capturaDoClickDoY);
+                lblTituloDoPonto = criaLblPonto(pontoDaAnalise);
+                picImagemDaAnalise.Controls.Add(lblTituloDoPonto);
+                pontoDaAnalise.BackgroundImage = ponto;
 
                 PictureBox? pic = (PictureBox)sender;
                 pic.Controls.Add(pontoDaAnalise);
@@ -245,6 +256,28 @@ namespace Imagem_Zoom
             else
                 MessageBox.Show("Marque a caixa para poder marcar pontos na imagem ou abra uma imagem!", "Pontos", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+        }
+
+        public Label criaLblPonto(UserControlMarca ponto)
+        {
+            var lblPonto = new Label();
+            Size offset = new Size(5,19);
+            lblPonto.Location = ponto.Location + offset;
+            lblPonto.Visible = true;
+            lblPonto.Text = ($"Pt_{num}");
+            lblPonto.Font = new Font("Calibri", 10);
+            lblPonto.ForeColor = txtPt;
+            lblPonto.BackColor = System.Drawing.Color.Transparent;
+            lblPonto.Margin = new Padding(0);
+            lblPonto.Padding = new Padding(0);
+            lblPonto.Size = new Size(45, 17);
+            lblPonto.Draggable(true);
+            return lblPonto;
+
+        }
+        public void mudaCorDaLbl()
+        {
+            
         }
         /// <summary>
         /// Configura a nova coordenada ao arrastar o ponto
@@ -307,8 +340,6 @@ namespace Imagem_Zoom
                 frmCoordenadaDosPontos frmCoordenadaDosPontos = new frmCoordenadaDosPontos(userControlMarcas);
                 frmCoordenadaDosPontos.ShowDialog();
             }
-
-
 
         }
         /// <summary>
@@ -379,6 +410,120 @@ namespace Imagem_Zoom
             }
         }
         #endregion Projeto
+
+
+        private void pretoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (UserControlMarca user in userControlMarcas)
+            {
+                //Stream? myStream = myAssembly.GetManifestResourceStream("Imagem_Zoom.Pontos.ptPreto.png");
+                if (user != null)
+                {
+                    user.BackgroundImage = Properties.Resources.ptPreto;
+                    ponto = Properties.Resources.ptPreto;
+                    
+                }
+
+            }
+        }
+
+        private void brancoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (UserControlMarca user in userControlMarcas)
+            {
+                //Stream? myStream = myAssembly.GetManifestResourceStream("Imagem_Zoom.Pontos.ptPreto.png");
+                if (user != null)
+                {
+                    user.BackgroundImage = Properties.Resources.ptBranco;
+                    ponto = Properties.Resources.ptBranco;
+                }
+
+            }
+        }
+
+        private void vermelhoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (UserControlMarca user in userControlMarcas)
+            {
+                //Stream? myStream = myAssembly.GetManifestResourceStream("Imagem_Zoom.Pontos.ptPreto.png");
+                if (user != null)
+                {
+                    user.BackgroundImage = Properties.Resources.ptVermelho;
+                    ponto = Properties.Resources.ptVermelho;
+                }
+
+            }
+        }
+
+        private void azulToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (UserControlMarca user in userControlMarcas)
+            {
+                //Stream? myStream = myAssembly.GetManifestResourceStream("Imagem_Zoom.Pontos.ptPreto.png");
+                if (user != null)
+                {
+                    user.BackgroundImage = Properties.Resources.ptAzul;
+                    ponto = Properties.Resources.ptAzul;
+                }
+
+            }
+        }
+
+        private void verdeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (UserControlMarca user in userControlMarcas)
+            {
+                //Stream? myStream = myAssembly.GetManifestResourceStream("Imagem_Zoom.Pontos.ptPreto.png");
+                if (user != null)
+                {
+                    user.BackgroundImage = Properties.Resources.ptVerde;
+                    ponto = Properties.Resources.ptVerde;
+                }
+
+            }
+        }
+
+        private void amareloToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (UserControlMarca user in userControlMarcas)
+            {
+                //Stream? myStream = myAssembly.GetManifestResourceStream("Imagem_Zoom.Pontos.ptPreto.png");
+                if (user != null)
+                {
+                    user.BackgroundImage = Properties.Resources.ptAmarelo;
+                    ponto = Properties.Resources.ptAmarelo;
+                }
+
+            }
+        }
+
+        private void rosaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (UserControlMarca user in userControlMarcas)
+            {
+                //Stream? myStream = myAssembly.GetManifestResourceStream("Imagem_Zoom.Pontos.ptPreto.png");
+                if (user != null)
+                {
+                    user.BackgroundImage = Properties.Resources.ptRosa;
+                    ponto = Properties.Resources.ptRosa;
+                }
+
+            }
+        }
+
+        private void lilásToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (UserControlMarca user in userControlMarcas)
+            {
+                //Stream? myStream = myAssembly.GetManifestResourceStream("Imagem_Zoom.Pontos.ptPreto.png");
+                if (user != null)
+                {
+                    user.BackgroundImage = Properties.Resources.ptLilas;
+                    ponto = Properties.Resources.ptLilas;
+                }
+
+            }
+        }
     }
 }
 
