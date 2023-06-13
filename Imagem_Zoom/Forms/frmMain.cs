@@ -16,7 +16,7 @@ namespace Imagem_Zoom
         #region propriedades
         private List<UserControlMarca> userControlMarcas { get; set; }
         //public object pontoDaAnalise { get; private set; }
-
+        private List<Label> txtPts;
         Image imgOriginal;
         Label lblTituloDoPonto;
         private int posicaoRelativaDoX;
@@ -46,6 +46,7 @@ namespace Imagem_Zoom
             Contador = 0;
             ponto = Properties.Resources.ptPreto;
             txtPt = Color.Black;
+            txtPts = new List<Label>();
         }
 
         #endregion Construtor
@@ -260,25 +261,31 @@ namespace Imagem_Zoom
 
         public Label criaLblPonto(UserControlMarca ponto)
         {
-            var lblPonto = new Label();
-            Size offset = new Size(5,19);
+
+            Label lblPonto = new Label();
+            Size offset = new Size(5, 19);
             lblPonto.Location = ponto.Location + offset;
             lblPonto.Visible = true;
             lblPonto.Text = ($"Pt_{num}");
             lblPonto.Font = new Font("Calibri", 10);
-            lblPonto.ForeColor = txtPt;
+            lblPonto.ForeColor = Color.Black;
             lblPonto.BackColor = System.Drawing.Color.Transparent;
             lblPonto.Margin = new Padding(0);
             lblPonto.Padding = new Padding(0);
             lblPonto.Size = new Size(45, 17);
             lblPonto.Draggable(true);
+            txtPts.Add(lblPonto);
             return lblPonto;
 
         }
-        public void mudaCorDaLbl()
-        {
-            
-        }
+        //public void mudaCorDaLbl()
+        //{
+        //    foreach (Label txt in txtPts)
+        //    {
+        //        txt.ForeColor = Color.White;
+        //        txtPt = Color.White;
+        //    }
+        //}
         /// <summary>
         /// Configura a nova coordenada ao arrastar o ponto
         /// </summary>
@@ -421,7 +428,7 @@ namespace Imagem_Zoom
                 {
                     user.BackgroundImage = Properties.Resources.ptPreto;
                     ponto = Properties.Resources.ptPreto;
-                    
+                    //mudaCorDaLbl();
                 }
 
             }

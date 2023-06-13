@@ -177,7 +177,6 @@
             pbLiscomp.SizeMode = PictureBoxSizeMode.StretchImage;
             pbLiscomp.TabIndex = 19;
             pbLiscomp.TabStop = false;
-            pbLiscomp.Visible = false;
             // 
             // gbZoom
             // 
@@ -291,7 +290,7 @@
             // 
             pretoToolStripMenuItem.Image = (Image)resources.GetObject("pretoToolStripMenuItem.Image");
             pretoToolStripMenuItem.Name = "pretoToolStripMenuItem";
-            pretoToolStripMenuItem.Size = new Size(180, 22);
+            pretoToolStripMenuItem.Size = new Size(124, 22);
             pretoToolStripMenuItem.Text = "Preto";
             pretoToolStripMenuItem.Click += pretoToolStripMenuItem_Click;
             // 
@@ -299,7 +298,7 @@
             // 
             brancoToolStripMenuItem.Image = (Image)resources.GetObject("brancoToolStripMenuItem.Image");
             brancoToolStripMenuItem.Name = "brancoToolStripMenuItem";
-            brancoToolStripMenuItem.Size = new Size(180, 22);
+            brancoToolStripMenuItem.Size = new Size(124, 22);
             brancoToolStripMenuItem.Text = "Branco";
             brancoToolStripMenuItem.Click += brancoToolStripMenuItem_Click;
             // 
@@ -307,42 +306,47 @@
             // 
             vermelhoToolStripMenuItem.Image = (Image)resources.GetObject("vermelhoToolStripMenuItem.Image");
             vermelhoToolStripMenuItem.Name = "vermelhoToolStripMenuItem";
-            vermelhoToolStripMenuItem.Size = new Size(180, 22);
+            vermelhoToolStripMenuItem.Size = new Size(124, 22);
             vermelhoToolStripMenuItem.Text = "Vermelho";
             vermelhoToolStripMenuItem.Click += vermelhoToolStripMenuItem_Click;
             // 
             // azulToolStripMenuItem
             // 
+            azulToolStripMenuItem.Image = Properties.Resources.ptAzul;
             azulToolStripMenuItem.Name = "azulToolStripMenuItem";
-            azulToolStripMenuItem.Size = new Size(180, 22);
+            azulToolStripMenuItem.Size = new Size(124, 22);
             azulToolStripMenuItem.Text = "Azul";
             azulToolStripMenuItem.Click += azulToolStripMenuItem_Click;
             // 
             // verdeToolStripMenuItem
             // 
+            verdeToolStripMenuItem.Image = Properties.Resources.ptVerde;
             verdeToolStripMenuItem.Name = "verdeToolStripMenuItem";
-            verdeToolStripMenuItem.Size = new Size(180, 22);
+            verdeToolStripMenuItem.Size = new Size(124, 22);
             verdeToolStripMenuItem.Text = "Verde";
             verdeToolStripMenuItem.Click += verdeToolStripMenuItem_Click;
             // 
             // amareloToolStripMenuItem
             // 
+            amareloToolStripMenuItem.Image = Properties.Resources.ptAmarelo;
             amareloToolStripMenuItem.Name = "amareloToolStripMenuItem";
-            amareloToolStripMenuItem.Size = new Size(180, 22);
+            amareloToolStripMenuItem.Size = new Size(124, 22);
             amareloToolStripMenuItem.Text = "Amarelo";
             amareloToolStripMenuItem.Click += amareloToolStripMenuItem_Click;
             // 
             // rosaToolStripMenuItem
             // 
+            rosaToolStripMenuItem.Image = Properties.Resources.ptRosa;
             rosaToolStripMenuItem.Name = "rosaToolStripMenuItem";
-            rosaToolStripMenuItem.Size = new Size(180, 22);
+            rosaToolStripMenuItem.Size = new Size(124, 22);
             rosaToolStripMenuItem.Text = "Rosa";
             rosaToolStripMenuItem.Click += rosaToolStripMenuItem_Click;
             // 
             // lilásToolStripMenuItem
             // 
+            lilásToolStripMenuItem.Image = Properties.Resources.ptLilas;
             lilásToolStripMenuItem.Name = "lilásToolStripMenuItem";
-            lilásToolStripMenuItem.Size = new Size(180, 22);
+            lilásToolStripMenuItem.Size = new Size(124, 22);
             lilásToolStripMenuItem.Text = "Lilás";
             lilásToolStripMenuItem.Click += lilásToolStripMenuItem_Click;
             // 
