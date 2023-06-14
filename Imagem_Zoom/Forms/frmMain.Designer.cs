@@ -59,6 +59,7 @@
             tssAmarelo = new ToolStripMenuItem();
             tssRosa = new ToolStripMenuItem();
             tssLilas = new ToolStripMenuItem();
+            tssApagarTodosPontos = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)picImagemDaAnalise).BeginInit();
             pnlPlanoDeFundoDaImagem.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)trbZoomDaImagem).BeginInit();
@@ -251,8 +252,8 @@
             // 
             tssFerramentas.DropDownItems.AddRange(new ToolStripItem[] { tssMostrarListaPontos, tssMostrarPontos });
             tssFerramentas.Name = "tssFerramentas";
-            tssFerramentas.Size = new Size(84, 20);
-            tssFerramentas.Text = "Ferramentas";
+            tssFerramentas.Size = new Size(48, 20);
+            tssFerramentas.Text = "Exibir";
             // 
             // tssMostrarListaPontos
             // 
@@ -274,7 +275,7 @@
             // 
             // tssEditar
             // 
-            tssEditar.DropDownItems.AddRange(new ToolStripItem[] { tssCorDoPonto });
+            tssEditar.DropDownItems.AddRange(new ToolStripItem[] { tssCorDoPonto, tssApagarTodosPontos });
             tssEditar.Name = "tssEditar";
             tssEditar.Size = new Size(49, 20);
             tssEditar.Text = "Editar";
@@ -284,14 +285,15 @@
             tssCorDoPonto.DropDownItems.AddRange(new ToolStripItem[] { tssPreto, tssBranco, tssVermelho, tssAzul, tssVerde, tssAmarelo, tssRosa, tssLilas });
             tssCorDoPonto.Enabled = false;
             tssCorDoPonto.Name = "tssCorDoPonto";
-            tssCorDoPonto.Size = new Size(180, 22);
+            tssCorDoPonto.Size = new Size(201, 22);
             tssCorDoPonto.Text = "Cor do Ponto/Texto";
             // 
             // tssPreto
             // 
             tssPreto.Image = (Image)resources.GetObject("tssPreto.Image");
             tssPreto.Name = "tssPreto";
-            tssPreto.Size = new Size(180, 22);
+            tssPreto.ShortcutKeys = Keys.Control | Keys.D0;
+            tssPreto.Size = new Size(164, 22);
             tssPreto.Text = "Preto";
             tssPreto.Click += tssPreto_Click;
             // 
@@ -299,7 +301,8 @@
             // 
             tssBranco.Image = (Image)resources.GetObject("tssBranco.Image");
             tssBranco.Name = "tssBranco";
-            tssBranco.Size = new Size(180, 22);
+            tssBranco.ShortcutKeys = Keys.Control | Keys.D1;
+            tssBranco.Size = new Size(164, 22);
             tssBranco.Text = "Branco";
             tssBranco.Click += tssBranco_Click;
             // 
@@ -307,7 +310,8 @@
             // 
             tssVermelho.Image = (Image)resources.GetObject("tssVermelho.Image");
             tssVermelho.Name = "tssVermelho";
-            tssVermelho.Size = new Size(180, 22);
+            tssVermelho.ShortcutKeys = Keys.Control | Keys.D2;
+            tssVermelho.Size = new Size(164, 22);
             tssVermelho.Text = "Vermelho";
             tssVermelho.Click += tssVermelho_Click;
             // 
@@ -315,7 +319,8 @@
             // 
             tssAzul.Image = Properties.Resources.ptAzul;
             tssAzul.Name = "tssAzul";
-            tssAzul.Size = new Size(180, 22);
+            tssAzul.ShortcutKeys = Keys.Control | Keys.D3;
+            tssAzul.Size = new Size(164, 22);
             tssAzul.Text = "Azul";
             tssAzul.Click += tssAzul_Click;
             // 
@@ -323,7 +328,8 @@
             // 
             tssVerde.Image = Properties.Resources.ptVerde;
             tssVerde.Name = "tssVerde";
-            tssVerde.Size = new Size(180, 22);
+            tssVerde.ShortcutKeys = Keys.Control | Keys.D4;
+            tssVerde.Size = new Size(164, 22);
             tssVerde.Text = "Verde";
             tssVerde.Click += tssVerde_Click;
             // 
@@ -331,7 +337,8 @@
             // 
             tssAmarelo.Image = Properties.Resources.ptAmarelo;
             tssAmarelo.Name = "tssAmarelo";
-            tssAmarelo.Size = new Size(180, 22);
+            tssAmarelo.ShortcutKeys = Keys.Control | Keys.D5;
+            tssAmarelo.Size = new Size(164, 22);
             tssAmarelo.Text = "Amarelo";
             tssAmarelo.Click += tssAmarelo_Click;
             // 
@@ -339,7 +346,8 @@
             // 
             tssRosa.Image = Properties.Resources.ptRosa;
             tssRosa.Name = "tssRosa";
-            tssRosa.Size = new Size(180, 22);
+            tssRosa.ShortcutKeys = Keys.Control | Keys.D6;
+            tssRosa.Size = new Size(164, 22);
             tssRosa.Text = "Rosa";
             tssRosa.Click += tssRosa_Click;
             // 
@@ -347,9 +355,18 @@
             // 
             tssLilas.Image = Properties.Resources.ptLilas;
             tssLilas.Name = "tssLilas";
-            tssLilas.Size = new Size(180, 22);
+            tssLilas.ShortcutKeys = Keys.Control | Keys.D7;
+            tssLilas.Size = new Size(164, 22);
             tssLilas.Text = "Lilás";
             tssLilas.Click += tssLilas_Click;
+            // 
+            // tssApagarTodosPontos
+            // 
+            tssApagarTodosPontos.Enabled = false;
+            tssApagarTodosPontos.Name = "tssApagarTodosPontos";
+            tssApagarTodosPontos.Size = new Size(201, 22);
+            tssApagarTodosPontos.Text = "Apagar Todos os Pontos";
+            tssApagarTodosPontos.Click += tssApagarPontos_Click;
             // 
             // frmMain
             // 
@@ -415,5 +432,6 @@
         private ToolStripMenuItem tssAmarelo;
         private ToolStripMenuItem tssRosa;
         private ToolStripMenuItem tssLilas;
+        private ToolStripMenuItem tssApagarTodosPontos;
     }
 }

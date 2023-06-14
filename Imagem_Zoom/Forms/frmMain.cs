@@ -255,7 +255,11 @@ namespace Imagem_Zoom
                 MessageBox.Show("Marque a caixa para poder marcar pontos na imagem ou abra uma imagem!", "Pontos", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
-
+        /// <summary>
+        /// Cria a label do ponto
+        /// </summary>
+        /// <param name="ponto"></param>
+        /// <returns></returns>
         public Label criaLblPonto(UserControlMarca ponto)
         {
             Label lblPonto = new Label();
@@ -408,11 +412,11 @@ namespace Imagem_Zoom
                 tssMostrarPontos.Enabled = true;
                 tssMostrarListaPontos.Enabled = true;
                 tssCorDoPonto.Enabled = true;
+                tssApagarTodosPontos.Enabled = true;
 
             }
         }
         #endregion Projeto
-
 
         private void tssPreto_Click(object sender, EventArgs e)
         {
@@ -540,6 +544,17 @@ namespace Imagem_Zoom
                 }
 
             }
+        }
+
+        private void tssApagarPontos_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Você deseja apagar todos os ponto?", "Pontos", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result== DialogResult.Yes)
+            {
+                picImagemDaAnalise.Controls.Clear();
+                txtPts.Clear();
+                userControlMarcas.Clear();
+            }    
         }
     }
 }
