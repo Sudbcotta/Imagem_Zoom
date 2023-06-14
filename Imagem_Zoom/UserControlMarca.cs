@@ -18,6 +18,7 @@ namespace WinFormsApp1
         public int Id { get; set; }
         public Point RelativeLocation { get; set; }
         public byte valorCor;
+        public Label LabelPonto { get; set; }
         public UserControlMarca()
         {
             InitializeComponent();
@@ -63,86 +64,5 @@ namespace WinFormsApp1
             }
         }
 
-        //private void azulToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    Assembly myAssembly = Assembly.GetExecutingAssembly();
-
-        //    Stream? myStream = myAssembly.GetManifestResourceStream("Imagem_Zoom.Pontos.ptAzul.png");
-        //    if (myStream != null)
-        //    {
-
-        //        this.BackgroundImage = new Bitmap(myStream);
-        //    }
-        //}
-
-        //private void verdeToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    Assembly myAssembly = Assembly.GetExecutingAssembly();
-        //    Stream? myStream = myAssembly.GetManifestResourceStream("Imagem_Zoom.Pontos.ptVerde.png");
-        //    if (myStream != null)
-        //    {
-        //        this.BackgroundImage = new Bitmap(myStream);
-        //    }
-        //}
-
-        //private void vermelhoToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    Assembly myAssembly = Assembly.GetExecutingAssembly();
-        //    Stream? myStream = myAssembly.GetManifestResourceStream("Imagem_Zoom.Pontos.ptVermelho.png");
-        //    if (myStream != null)
-        //    {
-        //        this.BackgroundImage = new Bitmap(myStream);
-        //    }
-        //}
-
-        //private void pretoToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    Assembly myAssembly = Assembly.GetExecutingAssembly();
-        //    Stream? myStream = myAssembly.GetManifestResourceStream("Imagem_Zoom.Pontos.ptPreto.png");
-        //    if (myStream != null)
-        //    {
-        //        this.BackgroundImage = new Bitmap(myStream);
-        //    }
-        //}
-
-        //private void brancoToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    Assembly myAssembly = Assembly.GetExecutingAssembly();
-        //    Stream? myStream = myAssembly.GetManifestResourceStream("Imagem_Zoom.Pontos.ptBranco.png");
-        //    if (myStream != null)
-        //    {
-        //        this.BackgroundImage = new Bitmap(myStream);
-        //    }
-        //}
-
-        //private void amareloToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    Assembly myAssembly = Assembly.GetExecutingAssembly();
-        //    Stream? myStream = myAssembly.GetManifestResourceStream("Imagem_Zoom.Pontos.ptAmarelo.png");
-        //    if (myStream != null)
-        //    {
-        //        this.BackgroundImage = new Bitmap(myStream);
-        //    }
-        //}
-
-        //private void rosaToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    Assembly myAssembly = Assembly.GetExecutingAssembly();
-        //    Stream? myStream = myAssembly.GetManifestResourceStream("Imagem_Zoom.Pontos.ptRosa.png");
-        //    if (myStream != null)
-        //    {
-        //        this.BackgroundImage = new Bitmap(myStream);
-        //    }
-        //}
-
-        //private void lilásToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-        //    Assembly myAssembly = Assembly.GetExecutingAssembly();
-        //    Stream? myStream = myAssembly.GetManifestResourceStream("Imagem_Zoom.Pontos.ptLilas.png");
-        //    if (myStream != null)
-        //    {
-        //        this.BackgroundImage = new Bitmap(myStream);
-        //    }
-        //}
     }
 }

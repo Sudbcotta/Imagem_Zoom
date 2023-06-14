@@ -15,10 +15,9 @@ namespace Imagem_Zoom
     {
         #region propriedades
         private List<UserControlMarca> userControlMarcas { get; set; }
-        //public object pontoDaAnalise { get; private set; }
         private List<Label> txtPts;
         Image imgOriginal;
-        Label lblTituloDoPonto;
+        //Label lblTituloDoPonto;
         private int posicaoRelativaDoX;
         private int posicaoRelativaDoY;
         private int capturaDoClickDoX;
@@ -32,7 +31,7 @@ namespace Imagem_Zoom
         private double zoom;
         private Image ponto;
         private Color txtPt;
-
+        
         #endregion propriedades
 
 
@@ -193,6 +192,7 @@ namespace Imagem_Zoom
 
                 centralizaImagemDaAnalise();
                 atualizaCoordenadaDoPonto();
+               
             }
         }
         /// <summary>
@@ -205,6 +205,7 @@ namespace Imagem_Zoom
             picImagemDaAnalise.Image = zoomDaImagem(imgOriginal, trbZoomDaImagem.Value / 100f);
             centralizaImagemDaAnalise();
             atualizaCoordenadaDoPonto();
+           
         }
         #endregion Manipulação da Imagem
 
@@ -244,8 +245,8 @@ namespace Imagem_Zoom
                 capturaDoClickDoY += -pontoDaAnalise.Height / 2;
 
                 pontoDaAnalise.Location = new Point(capturaDoClickDoX, capturaDoClickDoY);
-                lblTituloDoPonto = criaLblPonto(pontoDaAnalise);
-                picImagemDaAnalise.Controls.Add(lblTituloDoPonto);
+                pontoDaAnalise.LabelPonto = criaLblPonto(pontoDaAnalise);
+                picImagemDaAnalise.Controls.Add(pontoDaAnalise.LabelPonto);
                 pontoDaAnalise.BackgroundImage = ponto;
 
                 PictureBox? pic = (PictureBox)sender;
@@ -258,17 +259,18 @@ namespace Imagem_Zoom
                 MessageBox.Show("Marque a caixa para poder marcar pontos na imagem ou abra uma imagem!", "Pontos", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
-
+        
         public Label criaLblPonto(UserControlMarca ponto)
         {
-
+            
             Label lblPonto = new Label();
             Size offset = new Size(5, 19);
-            lblPonto.Location = ponto.Location + offset;
+            
+            lblPonto.Location = (ponto.Location + offset);
             lblPonto.Visible = true;
             lblPonto.Text = ($"Pt_{num}");
             lblPonto.Font = new Font("Calibri", 10);
-            lblPonto.ForeColor = Color.Black;
+            lblPonto.ForeColor = txtPt;
             lblPonto.BackColor = System.Drawing.Color.Transparent;
             lblPonto.Margin = new Padding(0);
             lblPonto.Padding = new Padding(0);
@@ -278,14 +280,7 @@ namespace Imagem_Zoom
             return lblPonto;
 
         }
-        //public void mudaCorDaLbl()
-        //{
-        //    foreach (Label txt in txtPts)
-        //    {
-        //        txt.ForeColor = Color.White;
-        //        txtPt = Color.White;
-        //    }
-        //}
+       
         /// <summary>
         /// Configura a nova coordenada ao arrastar o ponto
         /// </summary>
@@ -322,7 +317,10 @@ namespace Imagem_Zoom
                 y += -pontoDaAnalise.Height / 2;
 
                 pontoDaAnalise.Location = new Point((int)x, (int)y);
+                Size offset = new Size(3, 19);
+                pontoDaAnalise.LabelPonto.Location = pontoDaAnalise.Location+offset;
             }
+
         }
         /// <summary>
         /// Captura a coordenada do mouse em tempo real
@@ -334,6 +332,7 @@ namespace Imagem_Zoom
 
             if (picImagemDaAnalise.Image != null)
                 lblCoordMouse.Text = String.Format("X:{0} | Y:{1}", e.X, e.Y);
+
         }
         /// <summary>
         /// Exibe uma lista com todos os pontos marcados
@@ -424,12 +423,13 @@ namespace Imagem_Zoom
         {
             foreach (UserControlMarca user in userControlMarcas)
             {
-                //Stream? myStream = myAssembly.GetManifestResourceStream("Imagem_Zoom.Pontos.ptPreto.png");
+                
                 if (user != null)
                 {
                     user.BackgroundImage = Properties.Resources.ptPreto;
                     ponto = Properties.Resources.ptPreto;
-                    //mudaCorDaLbl();
+                    user.LabelPonto.ForeColor = (Color.Black);
+                    txtPt = (Color.Black);
                 }
 
             }
@@ -439,11 +439,13 @@ namespace Imagem_Zoom
         {
             foreach (UserControlMarca user in userControlMarcas)
             {
-                //Stream? myStream = myAssembly.GetManifestResourceStream("Imagem_Zoom.Pontos.ptPreto.png");
+                
                 if (user != null)
                 {
                     user.BackgroundImage = Properties.Resources.ptBranco;
                     ponto = Properties.Resources.ptBranco;
+                    user.LabelPonto.ForeColor = (Color.White);
+                    txtPt = (Color.White);
                 }
 
             }
@@ -453,11 +455,13 @@ namespace Imagem_Zoom
         {
             foreach (UserControlMarca user in userControlMarcas)
             {
-                //Stream? myStream = myAssembly.GetManifestResourceStream("Imagem_Zoom.Pontos.ptPreto.png");
+                
                 if (user != null)
                 {
                     user.BackgroundImage = Properties.Resources.ptVermelho;
                     ponto = Properties.Resources.ptVermelho;
+                    user.LabelPonto.ForeColor = (Color.Red);
+                    txtPt = (Color.Red);
                 }
 
             }
@@ -467,11 +471,13 @@ namespace Imagem_Zoom
         {
             foreach (UserControlMarca user in userControlMarcas)
             {
-                //Stream? myStream = myAssembly.GetManifestResourceStream("Imagem_Zoom.Pontos.ptPreto.png");
+                
                 if (user != null)
                 {
                     user.BackgroundImage = Properties.Resources.ptAzul;
                     ponto = Properties.Resources.ptAzul;
+                    user.LabelPonto.ForeColor = (Color.Blue);
+                    txtPt = (Color.Blue);
                 }
 
             }
@@ -481,11 +487,13 @@ namespace Imagem_Zoom
         {
             foreach (UserControlMarca user in userControlMarcas)
             {
-                //Stream? myStream = myAssembly.GetManifestResourceStream("Imagem_Zoom.Pontos.ptPreto.png");
+                
                 if (user != null)
                 {
                     user.BackgroundImage = Properties.Resources.ptVerde;
                     ponto = Properties.Resources.ptVerde;
+                    user.LabelPonto.ForeColor = (Color.LimeGreen);
+                    txtPt = (Color.LimeGreen);
                 }
 
             }
@@ -495,11 +503,13 @@ namespace Imagem_Zoom
         {
             foreach (UserControlMarca user in userControlMarcas)
             {
-                //Stream? myStream = myAssembly.GetManifestResourceStream("Imagem_Zoom.Pontos.ptPreto.png");
+                
                 if (user != null)
                 {
                     user.BackgroundImage = Properties.Resources.ptAmarelo;
                     ponto = Properties.Resources.ptAmarelo;
+                    user.LabelPonto.ForeColor = (Color.Yellow);
+                    txtPt = (Color.Yellow);
                 }
 
             }
@@ -509,11 +519,13 @@ namespace Imagem_Zoom
         {
             foreach (UserControlMarca user in userControlMarcas)
             {
-                //Stream? myStream = myAssembly.GetManifestResourceStream("Imagem_Zoom.Pontos.ptPreto.png");
+                
                 if (user != null)
                 {
                     user.BackgroundImage = Properties.Resources.ptRosa;
                     ponto = Properties.Resources.ptRosa;
+                    user.LabelPonto.ForeColor = (Color.HotPink);
+                    txtPt = (Color.HotPink);
                 }
 
             }
@@ -523,11 +535,13 @@ namespace Imagem_Zoom
         {
             foreach (UserControlMarca user in userControlMarcas)
             {
-                //Stream? myStream = myAssembly.GetManifestResourceStream("Imagem_Zoom.Pontos.ptPreto.png");
+                
                 if (user != null)
                 {
                     user.BackgroundImage = Properties.Resources.ptLilas;
                     ponto = Properties.Resources.ptLilas;
+                    user.LabelPonto.ForeColor = (Color.RebeccaPurple);
+                    txtPt = (Color.RebeccaPurple);
                 }
 
             }
