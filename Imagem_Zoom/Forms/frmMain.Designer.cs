@@ -284,8 +284,8 @@
             mudarCorDoPontoTextoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { pretoToolStripMenuItem, brancoToolStripMenuItem, vermelhoToolStripMenuItem, azulToolStripMenuItem, verdeToolStripMenuItem, amareloToolStripMenuItem, rosaToolStripMenuItem, lilásToolStripMenuItem });
             mudarCorDoPontoTextoToolStripMenuItem.Enabled = false;
             mudarCorDoPontoTextoToolStripMenuItem.Name = "mudarCorDoPontoTextoToolStripMenuItem";
-            mudarCorDoPontoTextoToolStripMenuItem.Size = new Size(216, 22);
-            mudarCorDoPontoTextoToolStripMenuItem.Text = "Mudar Cor do Ponto/Texto";
+            mudarCorDoPontoTextoToolStripMenuItem.Size = new Size(178, 22);
+            mudarCorDoPontoTextoToolStripMenuItem.Text = "Cor do Ponto/Texto";
             // 
             // pretoToolStripMenuItem
             // 

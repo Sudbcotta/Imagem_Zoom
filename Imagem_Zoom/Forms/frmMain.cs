@@ -31,7 +31,7 @@ namespace Imagem_Zoom
         private double zoom;
         private Image ponto;
         private Color txtPt;
-        
+
         #endregion propriedades
 
 
@@ -192,7 +192,7 @@ namespace Imagem_Zoom
 
                 centralizaImagemDaAnalise();
                 atualizaCoordenadaDoPonto();
-               
+
             }
         }
         /// <summary>
@@ -205,7 +205,7 @@ namespace Imagem_Zoom
             picImagemDaAnalise.Image = zoomDaImagem(imgOriginal, trbZoomDaImagem.Value / 100f);
             centralizaImagemDaAnalise();
             atualizaCoordenadaDoPonto();
-           
+
         }
         #endregion Manipulação da Imagem
 
@@ -259,13 +259,13 @@ namespace Imagem_Zoom
                 MessageBox.Show("Marque a caixa para poder marcar pontos na imagem ou abra uma imagem!", "Pontos", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
-        
+
         public Label criaLblPonto(UserControlMarca ponto)
         {
-            
+
             Label lblPonto = new Label();
             Size offset = new Size(5, 19);
-            
+
             lblPonto.Location = (ponto.Location + offset);
             lblPonto.Visible = true;
             lblPonto.Text = ($"Pt_{num}");
@@ -280,7 +280,7 @@ namespace Imagem_Zoom
             return lblPonto;
 
         }
-       
+
         /// <summary>
         /// Configura a nova coordenada ao arrastar o ponto
         /// </summary>
@@ -318,7 +318,7 @@ namespace Imagem_Zoom
 
                 pontoDaAnalise.Location = new Point((int)x, (int)y);
                 Size offset = new Size(3, 19);
-                pontoDaAnalise.LabelPonto.Location = pontoDaAnalise.Location+offset;
+                pontoDaAnalise.LabelPonto.Location = pontoDaAnalise.Location + offset;
             }
 
         }
@@ -423,7 +423,7 @@ namespace Imagem_Zoom
         {
             foreach (UserControlMarca user in userControlMarcas)
             {
-                
+
                 if (user != null)
                 {
                     user.BackgroundImage = Properties.Resources.ptPreto;
@@ -439,7 +439,7 @@ namespace Imagem_Zoom
         {
             foreach (UserControlMarca user in userControlMarcas)
             {
-                
+
                 if (user != null)
                 {
                     user.BackgroundImage = Properties.Resources.ptBranco;
@@ -455,7 +455,7 @@ namespace Imagem_Zoom
         {
             foreach (UserControlMarca user in userControlMarcas)
             {
-                
+
                 if (user != null)
                 {
                     user.BackgroundImage = Properties.Resources.ptVermelho;
@@ -471,7 +471,7 @@ namespace Imagem_Zoom
         {
             foreach (UserControlMarca user in userControlMarcas)
             {
-                
+
                 if (user != null)
                 {
                     user.BackgroundImage = Properties.Resources.ptAzul;
@@ -487,7 +487,7 @@ namespace Imagem_Zoom
         {
             foreach (UserControlMarca user in userControlMarcas)
             {
-                
+
                 if (user != null)
                 {
                     user.BackgroundImage = Properties.Resources.ptVerde;
@@ -503,7 +503,7 @@ namespace Imagem_Zoom
         {
             foreach (UserControlMarca user in userControlMarcas)
             {
-                
+
                 if (user != null)
                 {
                     user.BackgroundImage = Properties.Resources.ptAmarelo;
@@ -519,7 +519,7 @@ namespace Imagem_Zoom
         {
             foreach (UserControlMarca user in userControlMarcas)
             {
-                
+
                 if (user != null)
                 {
                     user.BackgroundImage = Properties.Resources.ptRosa;
@@ -535,7 +535,7 @@ namespace Imagem_Zoom
         {
             foreach (UserControlMarca user in userControlMarcas)
             {
-                
+
                 if (user != null)
                 {
                     user.BackgroundImage = Properties.Resources.ptLilas;
