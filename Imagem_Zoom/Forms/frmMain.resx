@@ -559,7 +559,7 @@
   <metadata name="msMenuDoForms.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>18, 15</value>
   </metadata>
-  <data name="pretoToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="tssPreto.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAAAO5JREFUOE9jQAbq6hwKwsLMvRwcjHeZmRl+AIX+gzCIDRS7IyjI3KOkxC4HVowM
@@ -569,7 +569,7 @@
         M74AiYH8jJqdGRgA3/veQYradUYAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="brancoToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="tssBranco.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAAAPhJREFUOE+lk8sOwUAUhmfhTSxsLTyghY0XwAYvILFw24uknZlSom5R0ymvIehP
@@ -579,7 +579,7 @@
         KAc9QWM9Nd1gxACTSrZugJrfz1mIG65kW8uXP1QQAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="vermelhoToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="tssVermelho.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
         vAAADrwBlbxySQAAAPpJREFUOE+lkz0KwkAQhbewULOLAdlEsLSwtfCAFjbewM4LCBYi9iKI/ymiQZBo

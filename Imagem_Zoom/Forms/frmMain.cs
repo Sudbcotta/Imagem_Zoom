@@ -17,7 +17,6 @@ namespace Imagem_Zoom
         private List<UserControlMarca> userControlMarcas { get; set; }
         private List<Label> txtPts;
         Image imgOriginal;
-        //Label lblTituloDoPonto;
         private int posicaoRelativaDoX;
         private int posicaoRelativaDoY;
         private int capturaDoClickDoX;
@@ -110,9 +109,6 @@ namespace Imagem_Zoom
             MessageBox.Show("Arquivo XML gerado com sucesso.", "Arquivo XML", MessageBoxButtons.OK, MessageBoxIcon.Information);
             imagemDaAnalise = img;
             diretorioDoProjeto = caminhoDoProjeto;
-
-
-
         }
 
         #region Manipulação da Imagem
@@ -217,7 +213,7 @@ namespace Imagem_Zoom
         /// <param name="e"></param>
         public void picImagemDaAnalise_Click(object sender, MouseEventArgs e)
         {
-            if (mostrarPontosToolStripMenuItem.Checked)
+            if (tssMostrarPontos.Checked)
             {
                 capturaDoClickDoX = (e.X);
                 capturaDoClickDoY = (e.Y);
@@ -230,7 +226,7 @@ namespace Imagem_Zoom
 
                 num = num + 1;
 
-                pontoDaAnalise.Visible = mostrarPontosToolStripMenuItem.Checked;
+                pontoDaAnalise.Visible = tssMostrarPontos.Checked;
 
                 pontoDaAnalise.Draggable(true);
 
@@ -253,7 +249,7 @@ namespace Imagem_Zoom
                 pic.Controls.Add(pontoDaAnalise);
 
                 userControlMarcas.Add(pontoDaAnalise);
-                atualizarXMLToolStripMenuItem_Click(sender, e);
+                tssAtualizaXML_Click(sender, e);
             }
             else
                 MessageBox.Show("Marque a caixa para poder marcar pontos na imagem ou abra uma imagem!", "Pontos", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -262,10 +258,8 @@ namespace Imagem_Zoom
 
         public Label criaLblPonto(UserControlMarca ponto)
         {
-
             Label lblPonto = new Label();
             Size offset = new Size(5, 19);
-
             lblPonto.Location = (ponto.Location + offset);
             lblPonto.Visible = true;
             lblPonto.Text = ($"Pt_{num}");
@@ -278,7 +272,6 @@ namespace Imagem_Zoom
             lblPonto.Draggable(true);
             txtPts.Add(lblPonto);
             return lblPonto;
-
         }
 
         /// <summary>
@@ -296,10 +289,12 @@ namespace Imagem_Zoom
         /// Apaga um objeto da lista
         /// </summary>
         /// <param name="x"></param>
-        public void apagarPonto(UserControlMarca x)
+        public void apagarPonto(UserControlMarca x, Label y)
         {
             picImagemDaAnalise.Controls.Remove(x);
             userControlMarcas.Remove(x);
+            picImagemDaAnalise.Controls.Remove(y);
+            txtPts.Remove(y);
         }
         /// <summary>
         /// Atualiza as coordenadas do ponto de acordo com o zoom
@@ -339,7 +334,7 @@ namespace Imagem_Zoom
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void mostrarListaDePontosToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tssMostraListaPontos_Click(object sender, EventArgs e)
         {
             if (picImagemDaAnalise.Image != null && userControlMarcas.Count != 0)
             {
@@ -355,9 +350,9 @@ namespace Imagem_Zoom
         /// <param name="e"></param>
         private void mostrarPontosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            mostrarPontosToolStripMenuItem.Checked = !mostrarPontosToolStripMenuItem.Checked;
+            tssMostrarPontos.Checked = !tssMostrarPontos.Checked;
             foreach (UserControlMarca user in userControlMarcas)
-                user.Visible = mostrarPontosToolStripMenuItem.Checked ? true : false;
+                user.Visible = tssMostrarPontos.Checked ? true : false;
 
         }
         #endregion Pontos
@@ -368,7 +363,7 @@ namespace Imagem_Zoom
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void atualizarXMLToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tssAtualizaXML_Click(object sender, EventArgs e)
         {
             XElement escreveXml = new XElement("Atualização");
 
@@ -407,19 +402,19 @@ namespace Imagem_Zoom
 
                 larguraAposZoom = imgOriginal.Width;
                 alturaAposZoom = imgOriginal.Height;
-                atualizarXMLToolStripMenuItem.Enabled = true;
+                tssAtualizarXML.Enabled = true;
                 trbZoomDaImagem.Enabled = true;
-                mostrarPontosToolStripMenuItem.Checked = true;
-                mostrarPontosToolStripMenuItem.Enabled = true;
-                mostrarListaDePontosToolStripMenuItem.Enabled = true;
-                mudarCorDoPontoTextoToolStripMenuItem.Enabled = true;
+                tssMostrarPontos.Checked = true;
+                tssMostrarPontos.Enabled = true;
+                tssMostrarListaPontos.Enabled = true;
+                tssCorDoPonto.Enabled = true;
 
             }
         }
         #endregion Projeto
 
 
-        private void pretoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tssPreto_Click(object sender, EventArgs e)
         {
             foreach (UserControlMarca user in userControlMarcas)
             {
@@ -435,7 +430,7 @@ namespace Imagem_Zoom
             }
         }
 
-        private void brancoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tssBranco_Click(object sender, EventArgs e)
         {
             foreach (UserControlMarca user in userControlMarcas)
             {
@@ -451,7 +446,7 @@ namespace Imagem_Zoom
             }
         }
 
-        private void vermelhoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tssVermelho_Click(object sender, EventArgs e)
         {
             foreach (UserControlMarca user in userControlMarcas)
             {
@@ -467,7 +462,7 @@ namespace Imagem_Zoom
             }
         }
 
-        private void azulToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tssAzul_Click(object sender, EventArgs e)
         {
             foreach (UserControlMarca user in userControlMarcas)
             {
@@ -483,7 +478,7 @@ namespace Imagem_Zoom
             }
         }
 
-        private void verdeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tssVerde_Click(object sender, EventArgs e)
         {
             foreach (UserControlMarca user in userControlMarcas)
             {
@@ -499,7 +494,7 @@ namespace Imagem_Zoom
             }
         }
 
-        private void amareloToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tssAmarelo_Click(object sender, EventArgs e)
         {
             foreach (UserControlMarca user in userControlMarcas)
             {
@@ -515,7 +510,7 @@ namespace Imagem_Zoom
             }
         }
 
-        private void rosaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tssRosa_Click(object sender, EventArgs e)
         {
             foreach (UserControlMarca user in userControlMarcas)
             {
@@ -531,7 +526,7 @@ namespace Imagem_Zoom
             }
         }
 
-        private void lilásToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tssLilas_Click(object sender, EventArgs e)
         {
             foreach (UserControlMarca user in userControlMarcas)
             {

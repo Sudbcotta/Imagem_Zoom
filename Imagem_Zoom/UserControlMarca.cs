@@ -19,6 +19,7 @@ namespace WinFormsApp1
         public Point RelativeLocation { get; set; }
         public byte valorCor;
         public Label LabelPonto { get; set; }
+        public Point RelativeLbl { get; set; }
         public UserControlMarca()
         {
             InitializeComponent();
@@ -60,7 +61,7 @@ namespace WinFormsApp1
             frmMain? f = Application.OpenForms["frmMain"] as frmMain;
             if (f != null)
             {
-                f.apagarPonto(this);
+                f.apagarPonto(this,LabelPonto);
             }
         }
 

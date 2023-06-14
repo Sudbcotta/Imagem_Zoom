@@ -43,22 +43,22 @@
             grpTamanhoDaImagem = new GroupBox();
             grpCoordenadaDoMouse = new GroupBox();
             msMenuDoForms = new MenuStrip();
-            projetoToolStripMenuItem = new ToolStripMenuItem();
-            abrirProjetoToolStripMenuItem = new ToolStripMenuItem();
-            atualizarXMLToolStripMenuItem = new ToolStripMenuItem();
-            ferramentasToolStripMenuItem = new ToolStripMenuItem();
-            mostrarListaDePontosToolStripMenuItem = new ToolStripMenuItem();
-            mostrarPontosToolStripMenuItem = new ToolStripMenuItem();
-            editarToolStripMenuItem = new ToolStripMenuItem();
-            mudarCorDoPontoTextoToolStripMenuItem = new ToolStripMenuItem();
-            pretoToolStripMenuItem = new ToolStripMenuItem();
-            brancoToolStripMenuItem = new ToolStripMenuItem();
-            vermelhoToolStripMenuItem = new ToolStripMenuItem();
-            azulToolStripMenuItem = new ToolStripMenuItem();
-            verdeToolStripMenuItem = new ToolStripMenuItem();
-            amareloToolStripMenuItem = new ToolStripMenuItem();
-            rosaToolStripMenuItem = new ToolStripMenuItem();
-            lilásToolStripMenuItem = new ToolStripMenuItem();
+            tssProjeto = new ToolStripMenuItem();
+            tssAbrirProjeto = new ToolStripMenuItem();
+            tssAtualizarXML = new ToolStripMenuItem();
+            tssFerramentas = new ToolStripMenuItem();
+            tssMostrarListaPontos = new ToolStripMenuItem();
+            tssMostrarPontos = new ToolStripMenuItem();
+            tssEditar = new ToolStripMenuItem();
+            tssCorDoPonto = new ToolStripMenuItem();
+            tssPreto = new ToolStripMenuItem();
+            tssBranco = new ToolStripMenuItem();
+            tssVermelho = new ToolStripMenuItem();
+            tssAzul = new ToolStripMenuItem();
+            tssVerde = new ToolStripMenuItem();
+            tssAmarelo = new ToolStripMenuItem();
+            tssRosa = new ToolStripMenuItem();
+            tssLilas = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)picImagemDaAnalise).BeginInit();
             pnlPlanoDeFundoDaImagem.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)trbZoomDaImagem).BeginInit();
@@ -215,141 +215,141 @@
             // 
             // msMenuDoForms
             // 
-            msMenuDoForms.Items.AddRange(new ToolStripItem[] { projetoToolStripMenuItem, ferramentasToolStripMenuItem, editarToolStripMenuItem });
+            msMenuDoForms.Items.AddRange(new ToolStripItem[] { tssProjeto, tssFerramentas, tssEditar });
             msMenuDoForms.Location = new Point(0, 0);
             msMenuDoForms.Name = "msMenuDoForms";
             msMenuDoForms.Size = new Size(1406, 24);
             msMenuDoForms.TabIndex = 6;
             msMenuDoForms.Text = "menuStrip1";
             // 
-            // projetoToolStripMenuItem
+            // tssProjeto
             // 
-            projetoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { abrirProjetoToolStripMenuItem, atualizarXMLToolStripMenuItem });
-            projetoToolStripMenuItem.Name = "projetoToolStripMenuItem";
-            projetoToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.D0;
-            projetoToolStripMenuItem.Size = new Size(57, 20);
-            projetoToolStripMenuItem.Text = "Projeto";
+            tssProjeto.DropDownItems.AddRange(new ToolStripItem[] { tssAbrirProjeto, tssAtualizarXML });
+            tssProjeto.Name = "tssProjeto";
+            tssProjeto.ShortcutKeys = Keys.Control | Keys.D0;
+            tssProjeto.Size = new Size(57, 20);
+            tssProjeto.Text = "Projeto";
             // 
-            // abrirProjetoToolStripMenuItem
+            // tssAbrirProjeto
             // 
-            abrirProjetoToolStripMenuItem.Name = "abrirProjetoToolStripMenuItem";
-            abrirProjetoToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.O;
-            abrirProjetoToolStripMenuItem.Size = new Size(187, 22);
-            abrirProjetoToolStripMenuItem.Text = "Abrir Projeto";
-            abrirProjetoToolStripMenuItem.Click += abrirProjetoToolStripMenuItem_Click;
+            tssAbrirProjeto.Name = "tssAbrirProjeto";
+            tssAbrirProjeto.ShortcutKeys = Keys.Control | Keys.O;
+            tssAbrirProjeto.Size = new Size(187, 22);
+            tssAbrirProjeto.Text = "Abrir Projeto";
+            tssAbrirProjeto.Click += abrirProjetoToolStripMenuItem_Click;
             // 
-            // atualizarXMLToolStripMenuItem
+            // tssAtualizarXML
             // 
-            atualizarXMLToolStripMenuItem.Enabled = false;
-            atualizarXMLToolStripMenuItem.Name = "atualizarXMLToolStripMenuItem";
-            atualizarXMLToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.S;
-            atualizarXMLToolStripMenuItem.Size = new Size(187, 22);
-            atualizarXMLToolStripMenuItem.Text = "Atualizar XML";
-            atualizarXMLToolStripMenuItem.Click += atualizarXMLToolStripMenuItem_Click;
+            tssAtualizarXML.Enabled = false;
+            tssAtualizarXML.Name = "tssAtualizarXML";
+            tssAtualizarXML.ShortcutKeys = Keys.Control | Keys.S;
+            tssAtualizarXML.Size = new Size(187, 22);
+            tssAtualizarXML.Text = "Atualizar XML";
+            tssAtualizarXML.Click += tssAtualizaXML_Click;
             // 
-            // ferramentasToolStripMenuItem
+            // tssFerramentas
             // 
-            ferramentasToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { mostrarListaDePontosToolStripMenuItem, mostrarPontosToolStripMenuItem });
-            ferramentasToolStripMenuItem.Name = "ferramentasToolStripMenuItem";
-            ferramentasToolStripMenuItem.Size = new Size(84, 20);
-            ferramentasToolStripMenuItem.Text = "Ferramentas";
+            tssFerramentas.DropDownItems.AddRange(new ToolStripItem[] { tssMostrarListaPontos, tssMostrarPontos });
+            tssFerramentas.Name = "tssFerramentas";
+            tssFerramentas.Size = new Size(84, 20);
+            tssFerramentas.Text = "Ferramentas";
             // 
-            // mostrarListaDePontosToolStripMenuItem
+            // tssMostrarListaPontos
             // 
-            mostrarListaDePontosToolStripMenuItem.Enabled = false;
-            mostrarListaDePontosToolStripMenuItem.Name = "mostrarListaDePontosToolStripMenuItem";
-            mostrarListaDePontosToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.L;
-            mostrarListaDePontosToolStripMenuItem.Size = new Size(238, 22);
-            mostrarListaDePontosToolStripMenuItem.Text = "Mostrar Lista de Pontos";
-            mostrarListaDePontosToolStripMenuItem.Click += mostrarListaDePontosToolStripMenuItem_Click;
+            tssMostrarListaPontos.Enabled = false;
+            tssMostrarListaPontos.Name = "tssMostrarListaPontos";
+            tssMostrarListaPontos.ShortcutKeys = Keys.Control | Keys.L;
+            tssMostrarListaPontos.Size = new Size(238, 22);
+            tssMostrarListaPontos.Text = "Mostrar Lista de Pontos";
+            tssMostrarListaPontos.Click += tssMostraListaPontos_Click;
             // 
-            // mostrarPontosToolStripMenuItem
+            // tssMostrarPontos
             // 
-            mostrarPontosToolStripMenuItem.Enabled = false;
-            mostrarPontosToolStripMenuItem.Name = "mostrarPontosToolStripMenuItem";
-            mostrarPontosToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.P;
-            mostrarPontosToolStripMenuItem.Size = new Size(238, 22);
-            mostrarPontosToolStripMenuItem.Text = "Mostrar Pontos";
-            mostrarPontosToolStripMenuItem.Click += mostrarPontosToolStripMenuItem_Click;
+            tssMostrarPontos.Enabled = false;
+            tssMostrarPontos.Name = "tssMostrarPontos";
+            tssMostrarPontos.ShortcutKeys = Keys.Control | Keys.P;
+            tssMostrarPontos.Size = new Size(238, 22);
+            tssMostrarPontos.Text = "Mostrar Pontos";
+            tssMostrarPontos.Click += mostrarPontosToolStripMenuItem_Click;
             // 
-            // editarToolStripMenuItem
+            // tssEditar
             // 
-            editarToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { mudarCorDoPontoTextoToolStripMenuItem });
-            editarToolStripMenuItem.Name = "editarToolStripMenuItem";
-            editarToolStripMenuItem.Size = new Size(49, 20);
-            editarToolStripMenuItem.Text = "Editar";
+            tssEditar.DropDownItems.AddRange(new ToolStripItem[] { tssCorDoPonto });
+            tssEditar.Name = "tssEditar";
+            tssEditar.Size = new Size(49, 20);
+            tssEditar.Text = "Editar";
             // 
-            // mudarCorDoPontoTextoToolStripMenuItem
+            // tssCorDoPonto
             // 
-            mudarCorDoPontoTextoToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { pretoToolStripMenuItem, brancoToolStripMenuItem, vermelhoToolStripMenuItem, azulToolStripMenuItem, verdeToolStripMenuItem, amareloToolStripMenuItem, rosaToolStripMenuItem, lilásToolStripMenuItem });
-            mudarCorDoPontoTextoToolStripMenuItem.Enabled = false;
-            mudarCorDoPontoTextoToolStripMenuItem.Name = "mudarCorDoPontoTextoToolStripMenuItem";
-            mudarCorDoPontoTextoToolStripMenuItem.Size = new Size(178, 22);
-            mudarCorDoPontoTextoToolStripMenuItem.Text = "Cor do Ponto/Texto";
+            tssCorDoPonto.DropDownItems.AddRange(new ToolStripItem[] { tssPreto, tssBranco, tssVermelho, tssAzul, tssVerde, tssAmarelo, tssRosa, tssLilas });
+            tssCorDoPonto.Enabled = false;
+            tssCorDoPonto.Name = "tssCorDoPonto";
+            tssCorDoPonto.Size = new Size(180, 22);
+            tssCorDoPonto.Text = "Cor do Ponto/Texto";
             // 
-            // pretoToolStripMenuItem
+            // tssPreto
             // 
-            pretoToolStripMenuItem.Image = (Image)resources.GetObject("pretoToolStripMenuItem.Image");
-            pretoToolStripMenuItem.Name = "pretoToolStripMenuItem";
-            pretoToolStripMenuItem.Size = new Size(180, 22);
-            pretoToolStripMenuItem.Text = "Preto";
-            pretoToolStripMenuItem.Click += pretoToolStripMenuItem_Click;
+            tssPreto.Image = (Image)resources.GetObject("tssPreto.Image");
+            tssPreto.Name = "tssPreto";
+            tssPreto.Size = new Size(180, 22);
+            tssPreto.Text = "Preto";
+            tssPreto.Click += tssPreto_Click;
             // 
-            // brancoToolStripMenuItem
+            // tssBranco
             // 
-            brancoToolStripMenuItem.Image = (Image)resources.GetObject("brancoToolStripMenuItem.Image");
-            brancoToolStripMenuItem.Name = "brancoToolStripMenuItem";
-            brancoToolStripMenuItem.Size = new Size(180, 22);
-            brancoToolStripMenuItem.Text = "Branco";
-            brancoToolStripMenuItem.Click += brancoToolStripMenuItem_Click;
+            tssBranco.Image = (Image)resources.GetObject("tssBranco.Image");
+            tssBranco.Name = "tssBranco";
+            tssBranco.Size = new Size(180, 22);
+            tssBranco.Text = "Branco";
+            tssBranco.Click += tssBranco_Click;
             // 
-            // vermelhoToolStripMenuItem
+            // tssVermelho
             // 
-            vermelhoToolStripMenuItem.Image = (Image)resources.GetObject("vermelhoToolStripMenuItem.Image");
-            vermelhoToolStripMenuItem.Name = "vermelhoToolStripMenuItem";
-            vermelhoToolStripMenuItem.Size = new Size(180, 22);
-            vermelhoToolStripMenuItem.Text = "Vermelho";
-            vermelhoToolStripMenuItem.Click += vermelhoToolStripMenuItem_Click;
+            tssVermelho.Image = (Image)resources.GetObject("tssVermelho.Image");
+            tssVermelho.Name = "tssVermelho";
+            tssVermelho.Size = new Size(180, 22);
+            tssVermelho.Text = "Vermelho";
+            tssVermelho.Click += tssVermelho_Click;
             // 
-            // azulToolStripMenuItem
+            // tssAzul
             // 
-            azulToolStripMenuItem.Image = Properties.Resources.ptAzul;
-            azulToolStripMenuItem.Name = "azulToolStripMenuItem";
-            azulToolStripMenuItem.Size = new Size(180, 22);
-            azulToolStripMenuItem.Text = "Azul";
-            azulToolStripMenuItem.Click += azulToolStripMenuItem_Click;
+            tssAzul.Image = Properties.Resources.ptAzul;
+            tssAzul.Name = "tssAzul";
+            tssAzul.Size = new Size(180, 22);
+            tssAzul.Text = "Azul";
+            tssAzul.Click += tssAzul_Click;
             // 
-            // verdeToolStripMenuItem
+            // tssVerde
             // 
-            verdeToolStripMenuItem.Image = Properties.Resources.ptVerde;
-            verdeToolStripMenuItem.Name = "verdeToolStripMenuItem";
-            verdeToolStripMenuItem.Size = new Size(180, 22);
-            verdeToolStripMenuItem.Text = "Verde";
-            verdeToolStripMenuItem.Click += verdeToolStripMenuItem_Click;
+            tssVerde.Image = Properties.Resources.ptVerde;
+            tssVerde.Name = "tssVerde";
+            tssVerde.Size = new Size(180, 22);
+            tssVerde.Text = "Verde";
+            tssVerde.Click += tssVerde_Click;
             // 
-            // amareloToolStripMenuItem
+            // tssAmarelo
             // 
-            amareloToolStripMenuItem.Image = Properties.Resources.ptAmarelo;
-            amareloToolStripMenuItem.Name = "amareloToolStripMenuItem";
-            amareloToolStripMenuItem.Size = new Size(180, 22);
-            amareloToolStripMenuItem.Text = "Amarelo";
-            amareloToolStripMenuItem.Click += amareloToolStripMenuItem_Click;
+            tssAmarelo.Image = Properties.Resources.ptAmarelo;
+            tssAmarelo.Name = "tssAmarelo";
+            tssAmarelo.Size = new Size(180, 22);
+            tssAmarelo.Text = "Amarelo";
+            tssAmarelo.Click += tssAmarelo_Click;
             // 
-            // rosaToolStripMenuItem
+            // tssRosa
             // 
-            rosaToolStripMenuItem.Image = Properties.Resources.ptRosa;
-            rosaToolStripMenuItem.Name = "rosaToolStripMenuItem";
-            rosaToolStripMenuItem.Size = new Size(180, 22);
-            rosaToolStripMenuItem.Text = "Rosa";
-            rosaToolStripMenuItem.Click += rosaToolStripMenuItem_Click;
+            tssRosa.Image = Properties.Resources.ptRosa;
+            tssRosa.Name = "tssRosa";
+            tssRosa.Size = new Size(180, 22);
+            tssRosa.Text = "Rosa";
+            tssRosa.Click += tssRosa_Click;
             // 
-            // lilásToolStripMenuItem
+            // tssLilas
             // 
-            lilásToolStripMenuItem.Image = Properties.Resources.ptLilas;
-            lilásToolStripMenuItem.Name = "lilásToolStripMenuItem";
-            lilásToolStripMenuItem.Size = new Size(180, 22);
-            lilásToolStripMenuItem.Text = "Lilás";
-            lilásToolStripMenuItem.Click += lilásToolStripMenuItem_Click;
+            tssLilas.Image = Properties.Resources.ptLilas;
+            tssLilas.Name = "tssLilas";
+            tssLilas.Size = new Size(180, 22);
+            tssLilas.Text = "Lilás";
+            tssLilas.Click += tssLilas_Click;
             // 
             // frmMain
             // 
@@ -398,22 +398,22 @@
         private GroupBox grpCoordenadaDoMouse;
         private GroupBox gbZoom;
         private MenuStrip msMenuDoForms;
-        private ToolStripMenuItem projetoToolStripMenuItem;
-        private ToolStripMenuItem abrirProjetoToolStripMenuItem;
-        private ToolStripMenuItem atualizarXMLToolStripMenuItem;
-        private ToolStripMenuItem ferramentasToolStripMenuItem;
-        private ToolStripMenuItem mostrarListaDePontosToolStripMenuItem;
-        private ToolStripMenuItem mostrarPontosToolStripMenuItem;
+        private ToolStripMenuItem tssProjeto;
+        private ToolStripMenuItem tssAbrirProjeto;
+        private ToolStripMenuItem tssAtualizarXML;
+        private ToolStripMenuItem tssFerramentas;
+        private ToolStripMenuItem tssMostrarListaPontos;
+        private ToolStripMenuItem tssMostrarPontos;
         private PictureBox pbLiscomp;
-        private ToolStripMenuItem editarToolStripMenuItem;
-        private ToolStripMenuItem mudarCorDoPontoTextoToolStripMenuItem;
-        private ToolStripMenuItem pretoToolStripMenuItem;
-        private ToolStripMenuItem brancoToolStripMenuItem;
-        private ToolStripMenuItem vermelhoToolStripMenuItem;
-        private ToolStripMenuItem azulToolStripMenuItem;
-        private ToolStripMenuItem verdeToolStripMenuItem;
-        private ToolStripMenuItem amareloToolStripMenuItem;
-        private ToolStripMenuItem rosaToolStripMenuItem;
-        private ToolStripMenuItem lilásToolStripMenuItem;
+        private ToolStripMenuItem tssEditar;
+        private ToolStripMenuItem tssCorDoPonto;
+        private ToolStripMenuItem tssPreto;
+        private ToolStripMenuItem tssBranco;
+        private ToolStripMenuItem tssVermelho;
+        private ToolStripMenuItem tssAzul;
+        private ToolStripMenuItem tssVerde;
+        private ToolStripMenuItem tssAmarelo;
+        private ToolStripMenuItem tssRosa;
+        private ToolStripMenuItem tssLilas;
     }
 }
