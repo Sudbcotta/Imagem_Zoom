@@ -38,9 +38,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\CottaLISCOMP\\source\\repos\\Sudbcotta\\Imagem_Zoom\\Imagem_Zoom\\Imagem_Zoom.csproj",
+      "projectUniqueName": "C:\\Users\\CottaLISCOMP\\Source\\Repos\\Sudbcotta\\Imagem_Zoom\\Imagem_Zoom\\Imagem_Zoom.csproj",
       "projectName": "Imagem_Zoom",
-      "projectPath": "C:\\Users\\CottaLISCOMP\\source\\repos\\Sudbcotta\\Imagem_Zoom\\Imagem_Zoom\\Imagem_Zoom.csproj",
+      "projectPath": "C:\\Users\\CottaLISCOMP\\Source\\Repos\\Sudbcotta\\Imagem_Zoom\\Imagem_Zoom\\Imagem_Zoom.csproj",
       "packagesPath": "C:\\Users\\CottaLISCOMP\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\CottaLISCOMP\\Source\\Repos\\Sudbcotta\\Imagem_Zoom\\Imagem_Zoom\\obj\\",
       "projectStyle": "PackageReference",

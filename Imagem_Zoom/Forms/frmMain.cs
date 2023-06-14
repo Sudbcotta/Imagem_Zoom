@@ -15,6 +15,7 @@ namespace Imagem_Zoom
     {
         #region propriedades
         private List<UserControlMarca> userControlMarcas { get; set; }
+
         private List<Label> txtPts;
         Image imgOriginal;
         private int posicaoRelativaDoX;
@@ -30,7 +31,6 @@ namespace Imagem_Zoom
         private double zoom;
         private Image ponto;
         private Color txtPt;
-
         #endregion propriedades
 
 
@@ -244,6 +244,7 @@ namespace Imagem_Zoom
                 pontoDaAnalise.LabelPonto = criaLblPonto(pontoDaAnalise);
                 picImagemDaAnalise.Controls.Add(pontoDaAnalise.LabelPonto);
                 pontoDaAnalise.BackgroundImage = ponto;
+                
 
                 PictureBox? pic = (PictureBox)sender;
                 pic.Controls.Add(pontoDaAnalise);
@@ -255,7 +256,11 @@ namespace Imagem_Zoom
                 MessageBox.Show("Marque a caixa para poder marcar pontos na imagem ou abra uma imagem!", "Pontos", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
-
+        /// <summary>
+        /// Cria a label do ponto
+        /// </summary>
+        /// <param name="ponto"></param>
+        /// <returns></returns>
         public Label criaLblPonto(UserControlMarca ponto)
         {
             Label lblPonto = new Label();
@@ -263,7 +268,7 @@ namespace Imagem_Zoom
             lblPonto.Location = (ponto.Location + offset);
             lblPonto.Visible = true;
             lblPonto.Text = ($"Pt_{num}");
-            lblPonto.Font = new Font("Calibri", 10);
+            lblPonto.Font = new Font("Calibri", 10, FontStyle.Bold);
             lblPonto.ForeColor = txtPt;
             lblPonto.BackColor = System.Drawing.Color.Transparent;
             lblPonto.Margin = new Padding(0);
@@ -408,11 +413,11 @@ namespace Imagem_Zoom
                 tssMostrarPontos.Enabled = true;
                 tssMostrarListaPontos.Enabled = true;
                 tssCorDoPonto.Enabled = true;
+                tssApagarTodosPontos.Enabled = true;
 
             }
         }
         #endregion Projeto
-
 
         private void tssPreto_Click(object sender, EventArgs e)
         {
@@ -540,6 +545,17 @@ namespace Imagem_Zoom
                 }
 
             }
+        }
+
+        private void tssApagarPontos_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Você deseja apagar todos os ponto?", "Pontos", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result== DialogResult.Yes)
+            {
+                picImagemDaAnalise.Controls.Clear();
+                txtPts.Clear();
+                userControlMarcas.Clear();
+            }    
         }
     }
 }

@@ -33,7 +33,7 @@ namespace WinFormsApp1
         private void tsmPropriedades_Click(object sender, EventArgs e)
         {
             var form2 = new frmDescricaoDoPonto();
-            form2.ShowDialog(this);
+            form2.Show(this);
 
         }
         /// <summary>
