@@ -19,7 +19,7 @@ namespace WinFormsApp1
         public Point RelativeLocation { get; set; }
         public byte valorCor;
         public Label LabelPonto { get; set; }
-        public Point RelativeLbl { get; set; }
+        
         public UserControlMarca()
         {
             InitializeComponent();
