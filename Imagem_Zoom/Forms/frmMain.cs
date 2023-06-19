@@ -15,7 +15,7 @@ namespace Imagem_Zoom
     {
         #region propriedades
         private List<UserControlMarca> userControlMarcas { get; set; }
-
+        private List<UserControl> labelPontos { get; set; }
         private List<Label> txtPts;
         Image imgOriginal;
         private int posicaoRelativaDoX;
@@ -45,6 +45,8 @@ namespace Imagem_Zoom
             ponto = Properties.Resources.ptPreto;
             txtPt = Color.Black;
             txtPts = new List<Label>();
+            this.TransparencyKey = Color.Transparent;
+            labelPontos = new List<UserControl>();
         }
 
         #endregion Construtor
@@ -218,7 +220,7 @@ namespace Imagem_Zoom
                 capturaDoClickDoX = (e.X);
                 capturaDoClickDoY = (e.Y);
                 UserControlMarca pontoDaAnalise = new UserControlMarca();
-
+                UserControl lblPts = new UserControl();
                 Contador += 1;
 
                 pontoDaAnalise.Name = string.Format($"UserControlMarca{userControlMarcas.Count()}");
@@ -229,7 +231,7 @@ namespace Imagem_Zoom
                 pontoDaAnalise.Visible = tssMostrarPontos.Checked;
 
                 pontoDaAnalise.Draggable(true);
-
+                lblPts.Draggable(true);
                 zoom = trbZoomDaImagem.Value / 100f;
 
                 pontoDaAnalise.RelativeLocation = new Point((int)(capturaDoClickDoX / zoom), (int)(capturaDoClickDoY / zoom));
@@ -273,12 +275,11 @@ namespace Imagem_Zoom
             lblPonto.BackColor = System.Drawing.Color.Transparent;
             lblPonto.Margin = new Padding(0);
             lblPonto.Padding = new Padding(0);
-            lblPonto.Size = new Size(45, 17);
-            lblPonto.Draggable(true);
+            lblPonto.Size = new Size(45, 19);
+            lblPonto.Draggable(true); 
             txtPts.Add(lblPonto);
             return lblPonto;
         }
-
         /// <summary>
         /// Configura a nova coordenada ao arrastar o ponto
         /// </summary>

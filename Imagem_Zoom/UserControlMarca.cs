@@ -23,7 +23,6 @@ namespace WinFormsApp1
         public UserControlMarca()
         {
             InitializeComponent();
-
         }
         /// <summary>
         /// Exibe um formulário ao clicar com o botão esquerdo do mouse em um ponto e selecionar propriedades

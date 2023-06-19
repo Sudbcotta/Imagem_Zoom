@@ -11,6 +11,9 @@
     <Compile Update="Forms\frmDescricaoDoPonto.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="labelPonto.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="UserControlMarca.cs">
       <SubType>UserControl</SubType>
     </Compile>

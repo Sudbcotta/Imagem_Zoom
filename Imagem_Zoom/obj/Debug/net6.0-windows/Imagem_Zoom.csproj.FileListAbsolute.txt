@@ -42,3 +42,4 @@ C:\Users\CottaLISCOMP\source\repos\Sudbcotta\Imagem_Zoom\Imagem_Zoom\obj\Debug\n
 C:\Users\CottaLISCOMP\source\repos\Sudbcotta\Imagem_Zoom\Imagem_Zoom\obj\Debug\net6.0-windows\Imagem_Zoom.pdb
 C:\Users\CottaLISCOMP\source\repos\Sudbcotta\Imagem_Zoom\Imagem_Zoom\obj\Debug\net6.0-windows\Imagem_Zoom.genruntimeconfig.cache
 C:\Users\CottaLISCOMP\source\repos\Sudbcotta\Imagem_Zoom\Imagem_Zoom\obj\Debug\net6.0-windows\ref\Imagem_Zoom.dll
+C:\Users\CottaLISCOMP\Source\Repos\Sudbcotta\Imagem_Zoom\Imagem_Zoom\obj\Debug\net6.0-windows\Imagem_Zoom.labelPonto.resources
