@@ -10,11 +10,13 @@ using System.Windows.Forms;
 
 namespace Imagem_Zoom
 {
-    public partial class labelPonto : UserControl
+    public partial class labelPonto : Label
     {
+        public Point RelativeLocation { get; set; }
         public labelPonto()
         {
             InitializeComponent();
+
         }
     }
 }

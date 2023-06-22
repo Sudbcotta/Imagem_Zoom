@@ -28,35 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblPoint = new Label();
             SuspendLayout();
-            // 
-            // lblPoint
-            // 
-            lblPoint.AutoSize = true;
-            lblPoint.Enabled = false;
-            lblPoint.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            lblPoint.ForeColor = SystemColors.ButtonHighlight;
-            lblPoint.Location = new Point(0, 0);
-            lblPoint.Name = "lblPoint";
-            lblPoint.Size = new Size(45, 15);
-            lblPoint.TabIndex = 0;
-            lblPoint.Text = "Pt_000";
             // 
             // labelPonto
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
-            Controls.Add(lblPoint);
             Name = "labelPonto";
-            Size = new Size(43, 17);
+            Size = new Size(56, 22);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private Label lblPoint;
     }
 }
