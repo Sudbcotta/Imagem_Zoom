@@ -36,6 +36,7 @@
             Name = "labelPonto";
             Size = new Size(56, 22);
             ResumeLayout(false);
+            MouseUp += labelPonto_MouseUp;
         }
 
         #endregion

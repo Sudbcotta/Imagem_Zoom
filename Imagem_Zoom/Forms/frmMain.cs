@@ -3,6 +3,7 @@ using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Drawing.Text;
 using System.Reflection;
+using System.Reflection.Emit;
 using System.Runtime.ConstrainedExecution;
 using System.Windows.Forms;
 using System.Xml;
@@ -16,7 +17,7 @@ namespace Imagem_Zoom
         #region propriedades
         private List<UserControlMarca> userControlMarcas { get; set; }
         private List<labelPonto> labelPontos { get; set; }
-        private List<Label> txtPts;
+        
         Image imgOriginal;
         private int posicaoRelativaDoX;
         private int posicaoRelativaDoY;
@@ -33,7 +34,7 @@ namespace Imagem_Zoom
         private Color txtPt;
         public Point coordRelaLabel;
         #endregion propriedades
-
+        public Size offset = new Size(5, 19);
 
         #region Construtor
 
@@ -45,7 +46,6 @@ namespace Imagem_Zoom
             Contador = 0;
             ponto = Properties.Resources.ptPreto;
             txtPt = Color.Black;
-            txtPts = new List<System.Windows.Forms.Label>();
             this.TransparencyKey = Color.Transparent;
             labelPontos = new List<labelPonto>();
         }
@@ -225,7 +225,7 @@ namespace Imagem_Zoom
                 UserControlMarca pontoDaAnalise = new UserControlMarca();
                 labelPonto lblPts = new labelPonto();
                 Contador += 1;
-
+                
                 pontoDaAnalise.Name = string.Format($"UserControlMarca{userControlMarcas.Count()}");
                 pontoDaAnalise.Id = (int)Contador;
 
@@ -237,6 +237,7 @@ namespace Imagem_Zoom
                 zoom = trbZoomDaImagem.Value / 100f;
 
                 pontoDaAnalise.RelativeLocation = new Point((int)(capturaDoClickDoX / zoom), (int)(capturaDoClickDoY / zoom));
+                lblPts.RelaLocationLbl = new Point((int)(e.X / zoom +10), (int)(e.Y / zoom+10));
 
                 posicaoRelativaDoX = pontoDaAnalise.RelativeLocation.X;
                 posicaoRelativaDoY = pontoDaAnalise.RelativeLocation.Y;
@@ -250,25 +251,21 @@ namespace Imagem_Zoom
                 PictureBox? pic = (PictureBox)sender;
                 pic.Controls.Add(pontoDaAnalise);
                 userControlMarcas.Add(pontoDaAnalise);
-
-                coordRelaLabel = new Point((int)(capturaDoClickDoX / zoom), (int)(capturaDoClickDoY / zoom));
-                
-
-                Size offset = new Size(5, 19);
-                lblPts.Location = new Point(capturaDoClickDoX, capturaDoClickDoY) + offset;
+               
+                lblPts.Location = new Point(e.X + 10, e.Y +10) ;
                 lblPts.Visible = true;
                 lblPts.Text = ($"Pt_{num}");
                 lblPts.Font = new Font("Calibri", 10, FontStyle.Bold);
                 lblPts.ForeColor = txtPt;
-                lblPts.BackColor = System.Drawing.Color.Transparent;
+                lblPts.BackColor = Color.Transparent;
                 lblPts.Margin = new Padding(0);
                 lblPts.Padding = new Padding(0);
                 lblPts.Size = new Size(45, 19);
                 lblPts.Draggable(true);
-                txtPts.Add(lblPts);
+                labelPontos.Add(lblPts);
 
                 pic.Controls.Add(lblPts);
-                txtPts.Add(lblPts);
+                
                 
                 tssAtualizaXML_Click(sender, e);
             }
@@ -287,6 +284,12 @@ namespace Imagem_Zoom
             zoom = trbZoomDaImagem.Value / 100f;
             return new Point((int)(x / zoom), (int)(y / zoom));
         }
+
+        public Point arrastaLabel(int x, int y)
+        {
+            zoom = trbZoomDaImagem.Value / 100f;
+            return new Point((int)(x / zoom), (int)(y / zoom));
+        }
         /// <summary>
         /// Apaga um objeto da lista
         /// </summary>
@@ -295,9 +298,13 @@ namespace Imagem_Zoom
         {
             picImagemDaAnalise.Controls.Remove(x);
             userControlMarcas.Remove(x);
-            //picImagemDaAnalise.Controls.Remove(y);
-            //txtPts.Remove(y);
         }
+        public void apagarLabel(labelPonto y)
+        {
+            picImagemDaAnalise.Controls.Remove(y);
+            labelPontos.Remove(y);
+        }
+
         /// <summary>
         /// Atualiza as coordenadas do ponto de acordo com o zoom
         /// </summary>
@@ -323,13 +330,13 @@ namespace Imagem_Zoom
             foreach (labelPonto lblPts in labelPontos)
             {
 
-                double x = (trbZoomDaImagem.Value / 100f) * coordRelaLabel.X;
-                double y = (trbZoomDaImagem.Value / 100f) * coordRelaLabel.Y;
+                double x1 = (trbZoomDaImagem.Value / 100f) * lblPts.RelaLocationLbl.X;
+                double y1 = (trbZoomDaImagem.Value / 100f) * lblPts.RelaLocationLbl.Y;
 
-                x += -lblPts.Width;
-                y += -lblPts.Height;
+                x1 += -lblPts.Width/2;
+                y1 += -lblPts.Height/2;
 
-                lblPts.Location = new Point((int)x, (int)y);
+                lblPts.Location = new Point((int)x1+10, (int)y1+10);
 
             }
         }
@@ -438,9 +445,17 @@ namespace Imagem_Zoom
                 if (user != null)
                 {
                     user.BackgroundImage = Properties.Resources.ptPreto;
-                    ponto = Properties.Resources.ptPreto;
-                    //user.LabelPonto.ForeColor = (Color.Black);
-                    //txtPt = (Color.Black);
+                    ponto = Properties.Resources.ptPreto;                   
+                }
+
+            }
+            foreach (labelPonto lbl in labelPontos)
+            {
+
+                if (lbl != null)
+                {
+                    lbl.ForeColor = Color.Black;
+                    txtPt = Color.Black;
                 }
 
             }
@@ -455,10 +470,17 @@ namespace Imagem_Zoom
                 {
                     user.BackgroundImage = Properties.Resources.ptBranco;
                     ponto = Properties.Resources.ptBranco;
-                    //user.LabelPonto.ForeColor = (Color.White);
-                    //txtPt = (Color.White);
+                    
                 }
 
+            }
+            foreach (labelPonto lbl in labelPontos)
+            {
+                if (lbl != null)
+                {
+                    lbl.ForeColor = Color.White;
+                    txtPt = Color.White;
+                }
             }
         }
 
@@ -470,9 +492,17 @@ namespace Imagem_Zoom
                 if (user != null)
                 {
                     user.BackgroundImage = Properties.Resources.ptVermelho;
-                    ponto = Properties.Resources.ptVermelho;
-                    //user.LabelPonto.ForeColor = (Color.Red);
-                    //txtPt = (Color.Red);
+                    ponto = Properties.Resources.ptVermelho;                    
+                }
+
+            }
+            foreach (labelPonto lbl in labelPontos)
+            {
+
+                if (lbl != null)
+                {
+                    lbl.ForeColor = Color.Red;
+                    txtPt = Color.Red;
                 }
 
             }
@@ -486,9 +516,17 @@ namespace Imagem_Zoom
                 if (user != null)
                 {
                     user.BackgroundImage = Properties.Resources.ptAzul;
-                    ponto = Properties.Resources.ptAzul;
-                    //user.LabelPonto.ForeColor = (Color.Blue);
-                    //txtPt = (Color.Blue);
+                    ponto = Properties.Resources.ptAzul;                   
+                }
+
+            }
+            foreach (labelPonto lbl in labelPontos)
+            {
+
+                if (lbl != null)
+                {
+                    lbl.ForeColor = Color.Blue;
+                    txtPt = Color.Blue;
                 }
 
             }
@@ -502,11 +540,16 @@ namespace Imagem_Zoom
                 if (user != null)
                 {
                     user.BackgroundImage = Properties.Resources.ptVerde;
-                    ponto = Properties.Resources.ptVerde;
-                    //user.LabelPonto.ForeColor = (Color.LimeGreen);
-                    //txtPt = (Color.LimeGreen);
+                    ponto = Properties.Resources.ptVerde;                   
                 }
-
+            }
+            foreach (labelPonto lbl in labelPontos)
+            {
+                if (lbl != null)
+                {
+                    lbl.ForeColor = Color.LimeGreen;
+                    txtPt = Color.LimeGreen;
+                }
             }
         }
 
@@ -519,10 +562,15 @@ namespace Imagem_Zoom
                 {
                     user.BackgroundImage = Properties.Resources.ptAmarelo;
                     ponto = Properties.Resources.ptAmarelo;
-                    //user.LabelPonto.ForeColor = (Color.Yellow);
-                    //txtPt = (Color.Yellow);
                 }
-
+            }
+            foreach (labelPonto lbl in labelPontos)
+            {
+                if (lbl != null)
+                {
+                    lbl.ForeColor = Color.Yellow;
+                    txtPt = Color.Yellow;
+                }
             }
         }
 
@@ -535,10 +583,15 @@ namespace Imagem_Zoom
                 {
                     user.BackgroundImage = Properties.Resources.ptRosa;
                     ponto = Properties.Resources.ptRosa;
-                    //user.LabelPonto.ForeColor = (Color.HotPink);
-                    //txtPt = (Color.HotPink);
                 }
-
+            }
+            foreach (labelPonto lbl in labelPontos)
+            {
+                if (lbl != null)
+                {
+                    lbl.ForeColor = Color.HotPink;
+                    txtPt = Color.HotPink;
+                }
             }
         }
 
@@ -546,15 +599,20 @@ namespace Imagem_Zoom
         {
             foreach (UserControlMarca user in userControlMarcas)
             {
-
                 if (user != null)
                 {
                     user.BackgroundImage = Properties.Resources.ptLilas;
                     ponto = Properties.Resources.ptLilas;
-                    //user.LabelPonto.ForeColor = (Color.RebeccaPurple);
-                    //txtPt = (Color.RebeccaPurple);
-                }
 
+                }
+            }
+            foreach (labelPonto lbl in labelPontos)
+            {
+                if (lbl != null)
+                {
+                    lbl.ForeColor = Color.RebeccaPurple;
+                    txtPt = Color.RebeccaPurple;
+                }
             }
         }
 
@@ -564,7 +622,7 @@ namespace Imagem_Zoom
             if (result== DialogResult.Yes)
             {
                 picImagemDaAnalise.Controls.Clear();
-                txtPts.Clear();
+                labelPontos.Clear();
                 userControlMarcas.Clear();
             }    
         }

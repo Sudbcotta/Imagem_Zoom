@@ -12,11 +12,21 @@ namespace Imagem_Zoom
 {
     public partial class labelPonto : Label
     {
-        public Point RelativeLocation { get; set; }
+        public Point RelaLocationLbl { get; set; }
         public labelPonto()
         {
             InitializeComponent();
 
+        }
+        private void labelPonto_MouseUp(object sender, MouseEventArgs e)
+        {
+            frmMain? f = Application.OpenForms["frmMain"] as frmMain;
+            if (f != null)
+            {
+                int x = e.X + this.Location.X;
+                int y = e.Y + this.Location.Y;
+                this.RelaLocationLbl = f.arrastaPonto(x, y);
+            }
         }
     }
 }
