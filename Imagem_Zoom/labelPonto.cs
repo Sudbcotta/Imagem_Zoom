@@ -25,7 +25,7 @@ namespace Imagem_Zoom
             {
                 int x = e.X + this.Location.X;
                 int y = e.Y + this.Location.Y;
-                this.RelaLocationLbl = f.arrastaPonto(x, y);
+                this.RelaLocationLbl = f.arrastaLabel(x, y);
             }
         }
     }

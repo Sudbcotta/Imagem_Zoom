@@ -27,5 +27,10 @@ namespace WinFormsApp1
         {
             this.Close();
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

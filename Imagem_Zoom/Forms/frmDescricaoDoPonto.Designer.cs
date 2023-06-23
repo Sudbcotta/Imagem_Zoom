@@ -28,37 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblPt = new Label();
             btnOk = new Button();
             btnCancelar = new Button();
-            gpCentral = new GroupBox();
-            chkVm = new CheckBox();
-            chkXrf = new CheckBox();
-            chkMir = new CheckBox();
-            pnlGroupboxes = new Panel();
-            gpDescricao = new GroupBox();
-            txbDescricao = new TextBox();
-            gpResultados = new GroupBox();
-            txbResultados = new TextBox();
-            gpCentral.SuspendLayout();
-            pnlGroupboxes.SuspendLayout();
-            gpDescricao.SuspendLayout();
-            gpResultados.SuspendLayout();
+            tabControl1 = new TabControl();
+            pageXRF = new TabPage();
+            pageVM = new TabPage();
+            pageMIR = new TabPage();
+            gbMirR = new GroupBox();
+            txtResultados = new RichTextBox();
+            gbMirO = new GroupBox();
+            txtObservacao = new RichTextBox();
+            tabControl1.SuspendLayout();
+            pageMIR.SuspendLayout();
+            gbMirR.SuspendLayout();
+            gbMirO.SuspendLayout();
             SuspendLayout();
-            // 
-            // lblPt
-            // 
-            lblPt.AutoSize = true;
-            lblPt.Location = new Point(16, 13);
-            lblPt.Name = "lblPt";
-            lblPt.Size = new Size(53, 15);
-            lblPt.TabIndex = 0;
-            lblPt.Text = "ID Ponto";
             // 
             // btnOk
             // 
             btnOk.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnOk.Location = new Point(328, 464);
+            btnOk.Location = new Point(324, 464);
             btnOk.Name = "btnOk";
             btnOk.Size = new Size(75, 23);
             btnOk.TabIndex = 2;
@@ -68,7 +57,7 @@
             // btnCancelar
             // 
             btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnCancelar.Location = new Point(409, 464);
+            btnCancelar.Location = new Point(406, 464);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 23);
             btnCancelar.TabIndex = 1;
@@ -76,105 +65,94 @@
             btnCancelar.UseVisualStyleBackColor = true;
             btnCancelar.Click += button1_Click;
             // 
-            // gpCentral
+            // tabControl1
             // 
-            gpCentral.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            gpCentral.Controls.Add(chkVm);
-            gpCentral.Controls.Add(chkXrf);
-            gpCentral.Controls.Add(chkMir);
-            gpCentral.Controls.Add(pnlGroupboxes);
-            gpCentral.Location = new Point(10, 12);
-            gpCentral.Name = "gpCentral";
-            gpCentral.Size = new Size(483, 439);
-            gpCentral.TabIndex = 1;
-            gpCentral.TabStop = false;
+            tabControl1.Controls.Add(pageXRF);
+            tabControl1.Controls.Add(pageVM);
+            tabControl1.Controls.Add(pageMIR);
+            tabControl1.Location = new Point(13, 12);
+            tabControl1.Name = "tabControl1";
+            tabControl1.SelectedIndex = 0;
+            tabControl1.Size = new Size(479, 444);
+            tabControl1.TabIndex = 14;
             // 
-            // chkVm
+            // pageXRF
             // 
-            chkVm.AutoSize = true;
-            chkVm.Location = new Point(128, 29);
-            chkVm.Name = "chkVm";
-            chkVm.Size = new Size(44, 19);
-            chkVm.TabIndex = 13;
-            chkVm.Text = "VM";
-            chkVm.UseVisualStyleBackColor = true;
+            pageXRF.Location = new Point(4, 24);
+            pageXRF.Name = "pageXRF";
+            pageXRF.Padding = new Padding(3);
+            pageXRF.Size = new Size(471, 416);
+            pageXRF.TabIndex = 0;
+            pageXRF.Text = "XRF";
+            pageXRF.UseVisualStyleBackColor = true;
             // 
-            // chkXrf
+            // pageVM
             // 
-            chkXrf.AutoSize = true;
-            chkXrf.Location = new Point(71, 29);
-            chkXrf.Name = "chkXrf";
-            chkXrf.Size = new Size(46, 19);
-            chkXrf.TabIndex = 12;
-            chkXrf.Text = "XRF";
-            chkXrf.UseVisualStyleBackColor = true;
+            pageVM.Location = new Point(4, 24);
+            pageVM.Name = "pageVM";
+            pageVM.Padding = new Padding(3);
+            pageVM.Size = new Size(471, 416);
+            pageVM.TabIndex = 2;
+            pageVM.Text = "VM";
+            pageVM.UseVisualStyleBackColor = true;
             // 
-            // chkMir
+            // pageMIR
             // 
-            chkMir.AutoSize = true;
-            chkMir.Checked = true;
-            chkMir.CheckState = CheckState.Checked;
-            chkMir.Location = new Point(12, 29);
-            chkMir.Name = "chkMir";
-            chkMir.Size = new Size(47, 19);
-            chkMir.TabIndex = 11;
-            chkMir.Text = "MIR";
-            chkMir.UseVisualStyleBackColor = true;
+            pageMIR.Controls.Add(gbMirR);
+            pageMIR.Controls.Add(gbMirO);
+            pageMIR.Location = new Point(4, 24);
+            pageMIR.Name = "pageMIR";
+            pageMIR.Padding = new Padding(3);
+            pageMIR.Size = new Size(471, 416);
+            pageMIR.TabIndex = 1;
+            pageMIR.Text = "MIR";
+            pageMIR.UseVisualStyleBackColor = true;
             // 
-            // pnlGroupboxes
+            // gbMirR
             // 
-            pnlGroupboxes.Controls.Add(gpDescricao);
-            pnlGroupboxes.Controls.Add(gpResultados);
-            pnlGroupboxes.Location = new Point(9, 58);
-            pnlGroupboxes.Name = "pnlGroupboxes";
-            pnlGroupboxes.Size = new Size(468, 372);
-            pnlGroupboxes.TabIndex = 10;
+            gbMirR.Controls.Add(txtResultados);
+            gbMirR.Location = new Point(11, 211);
+            gbMirR.Name = "gbMirR";
+            gbMirR.Size = new Size(430, 190);
+            gbMirR.TabIndex = 1;
+            gbMirR.TabStop = false;
+            gbMirR.Text = "Resultados";
             // 
-            // gpDescricao
+            // txtResultados
             // 
-            gpDescricao.Controls.Add(txbDescricao);
-            gpDescricao.Location = new Point(0, 0);
-            gpDescricao.Name = "gpDescricao";
-            gpDescricao.Size = new Size(468, 181);
-            gpDescricao.TabIndex = 9;
-            gpDescricao.TabStop = false;
-            gpDescricao.Text = "Descrição:";
+            txtResultados.BorderStyle = BorderStyle.FixedSingle;
+            txtResultados.Location = new Point(15, 22);
+            txtResultados.Name = "txtResultados";
+            txtResultados.Size = new Size(397, 152);
+            txtResultados.TabIndex = 1;
+            txtResultados.Text = "";
             // 
-            // txbDescricao
+            // gbMirO
             // 
-            txbDescricao.Dock = DockStyle.Fill;
-            txbDescricao.Location = new Point(3, 19);
-            txbDescricao.Multiline = true;
-            txbDescricao.Name = "txbDescricao";
-            txbDescricao.Size = new Size(462, 159);
-            txbDescricao.TabIndex = 0;
+            gbMirO.Controls.Add(txtObservacao);
+            gbMirO.Location = new Point(11, 12);
+            gbMirO.Name = "gbMirO";
+            gbMirO.Size = new Size(430, 184);
+            gbMirO.TabIndex = 0;
+            gbMirO.TabStop = false;
+            gbMirO.Text = "Observações";
+            gbMirO.Enter += groupBox1_Enter;
             // 
-            // gpResultados
+            // txtObservacao
             // 
-            gpResultados.Controls.Add(txbResultados);
-            gpResultados.Location = new Point(0, 189);
-            gpResultados.Name = "gpResultados";
-            gpResultados.Size = new Size(468, 174);
-            gpResultados.TabIndex = 10;
-            gpResultados.TabStop = false;
-            gpResultados.Text = "Resultados:";
-            // 
-            // txbResultados
-            // 
-            txbResultados.Dock = DockStyle.Fill;
-            txbResultados.Location = new Point(3, 19);
-            txbResultados.Multiline = true;
-            txbResultados.Name = "txbResultados";
-            txbResultados.Size = new Size(462, 152);
-            txbResultados.TabIndex = 8;
+            txtObservacao.BorderStyle = BorderStyle.FixedSingle;
+            txtObservacao.Location = new Point(15, 21);
+            txtObservacao.Name = "txtObservacao";
+            txtObservacao.Size = new Size(397, 149);
+            txtObservacao.TabIndex = 0;
+            txtObservacao.Text = "";
             // 
             // frmDescricaoDoPonto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(505, 499);
-            Controls.Add(lblPt);
-            Controls.Add(gpCentral);
+            Controls.Add(tabControl1);
             Controls.Add(btnOk);
             Controls.Add(btnCancelar);
             MaximizeBox = false;
@@ -183,30 +161,23 @@
             Name = "frmDescricaoDoPonto";
             Text = "Técnicas do Ponto";
             Load += Form2_Load;
-            gpCentral.ResumeLayout(false);
-            gpCentral.PerformLayout();
-            pnlGroupboxes.ResumeLayout(false);
-            gpDescricao.ResumeLayout(false);
-            gpDescricao.PerformLayout();
-            gpResultados.ResumeLayout(false);
-            gpResultados.PerformLayout();
+            tabControl1.ResumeLayout(false);
+            pageMIR.ResumeLayout(false);
+            gbMirR.ResumeLayout(false);
+            gbMirO.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-
-        private Label lblPt;
-        private GroupBox gpCentral;
         private Button btnOk;
         private Button btnCancelar;
-        private Panel pnlGroupboxes;
-        private TextBox txbResultados;
-        private GroupBox gpDescricao;
-        private TextBox txbDescricao;
-        private GroupBox gpResultados;
-        private CheckBox chkVm;
-        private CheckBox chkXrf;
-        private CheckBox chkMir;
+        private TabControl tabControl1;
+        private TabPage pageXRF;
+        private TabPage pageVM;
+        private TabPage pageMIR;
+        private GroupBox gbMirO;
+        private GroupBox gbMirR;
+        private RichTextBox txtObservacao;
+        private RichTextBox txtResultados;
     }
 }

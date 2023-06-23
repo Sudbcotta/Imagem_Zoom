@@ -237,7 +237,7 @@ namespace Imagem_Zoom
                 zoom = trbZoomDaImagem.Value / 100f;
 
                 pontoDaAnalise.RelativeLocation = new Point((int)(capturaDoClickDoX / zoom), (int)(capturaDoClickDoY / zoom));
-                lblPts.RelaLocationLbl = new Point((int)(e.X / zoom +10), (int)(e.Y / zoom+10));
+                lblPts.RelaLocationLbl = new Point((int)(e.X / zoom)+10, (int)(e.Y / zoom)+10);
 
                 posicaoRelativaDoX = pontoDaAnalise.RelativeLocation.X;
                 posicaoRelativaDoY = pontoDaAnalise.RelativeLocation.Y;
