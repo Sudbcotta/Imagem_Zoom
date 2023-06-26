@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <ApplicationIcon>vrau.ico</ApplicationIcon>
+    <ApplicationIcon>logo512.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="vrau.ico" />
+    <Content Include="logo512.ico" />
   </ItemGroup>
 
   <ItemGroup>

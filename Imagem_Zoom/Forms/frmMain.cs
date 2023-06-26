@@ -71,6 +71,8 @@ namespace Imagem_Zoom
                 picImagemDaAnalise.Dispose();
         }
         #endregion Form
+
+        #region Arquivo e Pasta
         /// <summary>
         /// Criação da Pasta e do Arquivo XML
         /// </summary>
@@ -110,6 +112,7 @@ namespace Imagem_Zoom
             imagemDaAnalise = img;
             diretorioDoProjeto = caminhoDoProjeto;
         }
+        #endregion Arquivo e Pasta
 
         #region Manipulação da Imagem
         /// <summary>
@@ -141,8 +144,7 @@ namespace Imagem_Zoom
                     larguraAposZoom = bmp.Width;
                     alturaAposZoom = bmp.Height;
                 }
-
-                gerarInterpolacaoDaImagem.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                gerarInterpolacaoDaImagem.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighSpeed;
                 gerarInterpolacaoDaImagem.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
                 gerarInterpolacaoDaImagem.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighSpeed;
                 gerarInterpolacaoDaImagem.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
@@ -299,7 +301,6 @@ namespace Imagem_Zoom
             picImagemDaAnalise.Controls.Remove(x);
             labelPontos.Remove(x);
         }
-
         /// <summary>
         /// Atualiza as coordenadas do ponto de acordo com o zoom
         /// </summary>
@@ -607,7 +608,7 @@ namespace Imagem_Zoom
                 tssMostrarListaPontos.Enabled = true;
                 tssCorDoPonto.Enabled = true;
                 tssApagarTodosPontos.Enabled = true;
-                tssGerarJpeg.Enabled = true;    
+                tssGerarJpeg.Enabled = true;
             }
         }
         /// <summary>
@@ -637,9 +638,11 @@ namespace Imagem_Zoom
                 }
             }
         }
-        #endregion Projeto
-
-
+        /// <summary>
+        /// sla
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void gerarJPEGComPontosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (picImagemDaAnalise.Image != null)
@@ -647,6 +650,7 @@ namespace Imagem_Zoom
                 gerarJPEG();
             }
         }
+        #endregion Projeto
     }
 }
 
