@@ -13,10 +13,10 @@ namespace Imagem_Zoom
     public partial class labelPonto : Label
     {
         public Point RelaLocationLbl { get; set; }
+        public int IdLabel { get; set; }
         public labelPonto()
         {
             InitializeComponent();
-
         }
         private void labelPonto_MouseUp(object sender, MouseEventArgs e)
         {
@@ -25,7 +25,15 @@ namespace Imagem_Zoom
             {
                 int x = e.X + this.Location.X;
                 int y = e.Y + this.Location.Y;
-                this.RelaLocationLbl = f.arrastaLabel(x, y);
+                this.RelaLocationLbl = f.arrastaPonto(x, y);
+            }
+        }
+        public void tsmApagar_Click(object sender, EventArgs e)
+        {
+            frmMain? f = Application.OpenForms["frmMain"] as frmMain;
+            if (f != null)
+            {
+                f.apagarLabel(this);
             }
         }
     }

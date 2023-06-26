@@ -46,6 +46,7 @@
             tssProjeto = new ToolStripMenuItem();
             tssAbrirProjeto = new ToolStripMenuItem();
             tssAtualizarXML = new ToolStripMenuItem();
+            tssGerarJpeg = new ToolStripMenuItem();
             tssFerramentas = new ToolStripMenuItem();
             tssMostrarListaPontos = new ToolStripMenuItem();
             tssMostrarPontos = new ToolStripMenuItem();
@@ -225,7 +226,7 @@
             // 
             // tssProjeto
             // 
-            tssProjeto.DropDownItems.AddRange(new ToolStripItem[] { tssAbrirProjeto, tssAtualizarXML });
+            tssProjeto.DropDownItems.AddRange(new ToolStripItem[] { tssAbrirProjeto, tssAtualizarXML, tssGerarJpeg });
             tssProjeto.Name = "tssProjeto";
             tssProjeto.ShortcutKeys = Keys.Control | Keys.D0;
             tssProjeto.Size = new Size(57, 20);
@@ -235,7 +236,7 @@
             // 
             tssAbrirProjeto.Name = "tssAbrirProjeto";
             tssAbrirProjeto.ShortcutKeys = Keys.Control | Keys.O;
-            tssAbrirProjeto.Size = new Size(187, 22);
+            tssAbrirProjeto.Size = new Size(200, 22);
             tssAbrirProjeto.Text = "Abrir Projeto";
             tssAbrirProjeto.Click += abrirProjetoToolStripMenuItem_Click;
             // 
@@ -244,9 +245,17 @@
             tssAtualizarXML.Enabled = false;
             tssAtualizarXML.Name = "tssAtualizarXML";
             tssAtualizarXML.ShortcutKeys = Keys.Control | Keys.S;
-            tssAtualizarXML.Size = new Size(187, 22);
+            tssAtualizarXML.Size = new Size(200, 22);
             tssAtualizarXML.Text = "Atualizar XML";
             tssAtualizarXML.Click += tssAtualizaXML_Click;
+            // 
+            // tssGerarJpeg
+            // 
+            tssGerarJpeg.Enabled = false;
+            tssGerarJpeg.Name = "tssGerarJpeg";
+            tssGerarJpeg.Size = new Size(200, 22);
+            tssGerarJpeg.Text = "Gerar .JPEG com Pontos";
+            tssGerarJpeg.Click += gerarJPEGComPontosToolStripMenuItem_Click;
             // 
             // tssFerramentas
             // 
@@ -433,5 +442,6 @@
         private ToolStripMenuItem tssRosa;
         private ToolStripMenuItem tssLilas;
         private ToolStripMenuItem tssApagarTodosPontos;
+        private ToolStripMenuItem tssGerarJpeg;
     }
 }

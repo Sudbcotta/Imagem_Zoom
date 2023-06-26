@@ -17,7 +17,6 @@ namespace Imagem_Zoom
         #region propriedades
         private List<UserControlMarca> userControlMarcas { get; set; }
         private List<labelPonto> labelPontos { get; set; }
-        
         Image imgOriginal;
         private int posicaoRelativaDoX;
         private int posicaoRelativaDoY;
@@ -34,7 +33,6 @@ namespace Imagem_Zoom
         private Color txtPt;
         public Point coordRelaLabel;
         #endregion propriedades
-        public Size offset = new Size(5, 19);
 
         #region Construtor
 
@@ -73,7 +71,6 @@ namespace Imagem_Zoom
                 picImagemDaAnalise.Dispose();
         }
         #endregion Form
-
         /// <summary>
         /// Criação da Pasta e do Arquivo XML
         /// </summary>
@@ -225,7 +222,7 @@ namespace Imagem_Zoom
                 UserControlMarca pontoDaAnalise = new UserControlMarca();
                 labelPonto lblPts = new labelPonto();
                 Contador += 1;
-                
+
                 pontoDaAnalise.Name = string.Format($"UserControlMarca{userControlMarcas.Count()}");
                 pontoDaAnalise.Id = (int)Contador;
 
@@ -237,7 +234,7 @@ namespace Imagem_Zoom
                 zoom = trbZoomDaImagem.Value / 100f;
 
                 pontoDaAnalise.RelativeLocation = new Point((int)(capturaDoClickDoX / zoom), (int)(capturaDoClickDoY / zoom));
-                lblPts.RelaLocationLbl = new Point((int)(e.X / zoom)+10, (int)(e.Y / zoom)+10);
+                lblPts.RelaLocationLbl = new Point((int)(e.X / zoom) + 10, (int)(e.Y / zoom) + 10);
 
                 posicaoRelativaDoX = pontoDaAnalise.RelativeLocation.X;
                 posicaoRelativaDoY = pontoDaAnalise.RelativeLocation.Y;
@@ -246,13 +243,14 @@ namespace Imagem_Zoom
                 capturaDoClickDoY += -pontoDaAnalise.Height / 2;
 
                 pontoDaAnalise.Location = new Point(capturaDoClickDoX, capturaDoClickDoY);
-                
+
                 pontoDaAnalise.BackgroundImage = ponto;
                 PictureBox? pic = (PictureBox)sender;
                 pic.Controls.Add(pontoDaAnalise);
                 userControlMarcas.Add(pontoDaAnalise);
-               
-                lblPts.Location = new Point(e.X + 10, e.Y +10) ;
+
+                lblPts.Location = new Point(e.X + 10, e.Y + 10);
+                lblPts.IdLabel = (int)Contador;
                 lblPts.Visible = true;
                 lblPts.Text = ($"Pt_{num}");
                 lblPts.Font = new Font("Calibri", 10, FontStyle.Bold);
@@ -262,11 +260,10 @@ namespace Imagem_Zoom
                 lblPts.Padding = new Padding(0);
                 lblPts.Size = new Size(45, 19);
                 lblPts.Draggable(true);
-                labelPontos.Add(lblPts);
 
+                labelPontos.Add(lblPts);
                 pic.Controls.Add(lblPts);
-                
-                
+
                 tssAtualizaXML_Click(sender, e);
             }
             else
@@ -284,12 +281,6 @@ namespace Imagem_Zoom
             zoom = trbZoomDaImagem.Value / 100f;
             return new Point((int)(x / zoom), (int)(y / zoom));
         }
-
-        public Point arrastaLabel(int x, int y)
-        {
-            zoom = trbZoomDaImagem.Value / 100f;
-            return new Point((int)(x / zoom), (int)(y / zoom));
-        }
         /// <summary>
         /// Apaga um objeto da lista
         /// </summary>
@@ -299,10 +290,14 @@ namespace Imagem_Zoom
             picImagemDaAnalise.Controls.Remove(x);
             userControlMarcas.Remove(x);
         }
-        public void apagarLabel(labelPonto y)
+        /// <summary>
+        /// Apaga uma label da lista de labels
+        /// </summary>
+        /// <param name="x"></param>
+        public void apagarLabel(labelPonto x)
         {
-            picImagemDaAnalise.Controls.Remove(y);
-            labelPontos.Remove(y);
+            picImagemDaAnalise.Controls.Remove(x);
+            labelPontos.Remove(x);
         }
 
         /// <summary>
@@ -313,7 +308,6 @@ namespace Imagem_Zoom
 
             foreach (UserControlMarca pontoDaAnalise in userControlMarcas)
             {
-
                 double x = (trbZoomDaImagem.Value / 100f) * pontoDaAnalise.RelativeLocation.X;
                 double y = (trbZoomDaImagem.Value / 100f) * pontoDaAnalise.RelativeLocation.Y;
 
@@ -321,23 +315,22 @@ namespace Imagem_Zoom
                 y += -pontoDaAnalise.Height / 2;
 
                 pontoDaAnalise.Location = new Point((int)x, (int)y);
-                
             }
-
         }
+        /// <summary>
+        /// Atualiza a coordenada da label
+        /// </summary>
         private void atualizaCoordenadaLbl()
         {
             foreach (labelPonto lblPts in labelPontos)
             {
-
                 double x1 = (trbZoomDaImagem.Value / 100f) * lblPts.RelaLocationLbl.X;
                 double y1 = (trbZoomDaImagem.Value / 100f) * lblPts.RelaLocationLbl.Y;
 
-                x1 += -lblPts.Width/2;
-                y1 += -lblPts.Height/2;
+                x1 += -lblPts.Width / 2;
+                y1 += -lblPts.Height / 2;
 
-                lblPts.Location = new Point((int)x1+10, (int)y1+10);
-
+                lblPts.Location = new Point((int)x1 + 10, (int)y1 + 10);
             }
         }
         /// <summary>
@@ -376,7 +369,192 @@ namespace Imagem_Zoom
             tssMostrarPontos.Checked = !tssMostrarPontos.Checked;
             foreach (UserControlMarca user in userControlMarcas)
                 user.Visible = tssMostrarPontos.Checked ? true : false;
+            foreach (labelPonto lbl in labelPontos)
+                lbl.Visible = tssMostrarPontos.Checked ? true : false;
+        }
+        /// <summary>
+        /// Colorir os pontos
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tssPreto_Click(object sender, EventArgs e)
+        {
+            foreach (UserControlMarca user in userControlMarcas)
+            {
+                if (user != null)
+                {
+                    user.BackgroundImage = Properties.Resources.ptPreto;
+                    ponto = Properties.Resources.ptPreto;
+                }
+            }
+            foreach (labelPonto lbl in labelPontos)
+            {
 
+                if (lbl != null)
+                {
+                    lbl.ForeColor = Color.Black;
+                    txtPt = Color.Black;
+                }
+
+            }
+        }
+        private void tssBranco_Click(object sender, EventArgs e)
+        {
+            foreach (UserControlMarca user in userControlMarcas)
+            {
+
+                if (user != null)
+                {
+                    user.BackgroundImage = Properties.Resources.ptBranco;
+                    ponto = Properties.Resources.ptBranco;
+
+                }
+
+            }
+            foreach (labelPonto lbl in labelPontos)
+            {
+                if (lbl != null)
+                {
+                    lbl.ForeColor = Color.White;
+                    txtPt = Color.White;
+                }
+            }
+        }
+        private void tssVermelho_Click(object sender, EventArgs e)
+        {
+            foreach (UserControlMarca user in userControlMarcas)
+            {
+
+                if (user != null)
+                {
+                    user.BackgroundImage = Properties.Resources.ptVermelho;
+                    ponto = Properties.Resources.ptVermelho;
+                }
+
+            }
+            foreach (labelPonto lbl in labelPontos)
+            {
+
+                if (lbl != null)
+                {
+                    lbl.ForeColor = Color.Red;
+                    txtPt = Color.Red;
+                }
+
+            }
+        }
+        private void tssAzul_Click(object sender, EventArgs e)
+        {
+            foreach (UserControlMarca user in userControlMarcas)
+            {
+
+                if (user != null)
+                {
+                    user.BackgroundImage = Properties.Resources.ptAzul;
+                    ponto = Properties.Resources.ptAzul;
+                }
+
+            }
+            foreach (labelPonto lbl in labelPontos)
+            {
+
+                if (lbl != null)
+                {
+                    lbl.ForeColor = Color.Blue;
+                    txtPt = Color.Blue;
+                }
+
+            }
+        }
+        private void tssVerde_Click(object sender, EventArgs e)
+        {
+            foreach (UserControlMarca user in userControlMarcas)
+            {
+
+                if (user != null)
+                {
+                    user.BackgroundImage = Properties.Resources.ptVerde;
+                    ponto = Properties.Resources.ptVerde;
+                }
+            }
+            foreach (labelPonto lbl in labelPontos)
+            {
+                if (lbl != null)
+                {
+                    lbl.ForeColor = Color.LimeGreen;
+                    txtPt = Color.LimeGreen;
+                }
+            }
+        }
+        private void tssAmarelo_Click(object sender, EventArgs e)
+        {
+            foreach (UserControlMarca user in userControlMarcas)
+            {
+
+                if (user != null)
+                {
+                    user.BackgroundImage = Properties.Resources.ptAmarelo;
+                    ponto = Properties.Resources.ptAmarelo;
+                }
+            }
+            foreach (labelPonto lbl in labelPontos)
+            {
+                if (lbl != null)
+                {
+                    lbl.ForeColor = Color.Yellow;
+                    txtPt = Color.Yellow;
+                }
+            }
+        }
+        private void tssRosa_Click(object sender, EventArgs e)
+        {
+            foreach (UserControlMarca user in userControlMarcas)
+            {
+
+                if (user != null)
+                {
+                    user.BackgroundImage = Properties.Resources.ptRosa;
+                    ponto = Properties.Resources.ptRosa;
+                }
+            }
+            foreach (labelPonto lbl in labelPontos)
+            {
+                if (lbl != null)
+                {
+                    lbl.ForeColor = Color.HotPink;
+                    txtPt = Color.HotPink;
+                }
+            }
+        }
+        private void tssLilas_Click(object sender, EventArgs e)
+        {
+            foreach (UserControlMarca user in userControlMarcas)
+            {
+                if (user != null)
+                {
+                    user.BackgroundImage = Properties.Resources.ptLilas;
+                    ponto = Properties.Resources.ptLilas;
+
+                }
+            }
+            foreach (labelPonto lbl in labelPontos)
+            {
+                if (lbl != null)
+                {
+                    lbl.ForeColor = Color.RebeccaPurple;
+                    txtPt = Color.RebeccaPurple;
+                }
+            }
+        }
+        private void tssApagarPontos_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Você deseja apagar todos os ponto?", "Pontos", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                picImagemDaAnalise.Controls.Clear();
+                labelPontos.Clear();
+                userControlMarcas.Clear();
+            }
         }
         #endregion Pontos
 
@@ -389,10 +567,7 @@ namespace Imagem_Zoom
         private void tssAtualizaXML_Click(object sender, EventArgs e)
         {
             XElement escreveXml = new XElement("Atualização");
-
-            escreveXml.Add(new XElement("LarguraAtual", larguraAposZoom.ToString()));
-            escreveXml.Add(new XElement("AlturaAtual", alturaAposZoom.ToString()));
-            escreveXml.Add(new XComment("Ponto_"));
+            escreveXml.Add(new XComment($"Ponto_{Contador}"));
             escreveXml.Add(new XElement("Coordenada-X-do-Clique", (posicaoRelativaDoX).ToString()));
             escreveXml.Add(new XElement("Coordenada-Y-do-Clique", (posicaoRelativaDoY).ToString()));
 
@@ -432,199 +607,45 @@ namespace Imagem_Zoom
                 tssMostrarListaPontos.Enabled = true;
                 tssCorDoPonto.Enabled = true;
                 tssApagarTodosPontos.Enabled = true;
+                tssGerarJpeg.Enabled = true;    
+            }
+        }
+        /// <summary>
+        /// Tentativa de gerar um JPEG da imagem com os pontos nela inseridos
+        /// </summary>
+        public void gerarJPEG()
+        {
+            if (picImagemDaAnalise.Image != null)
+            {
+                Bitmap imgControls = new Bitmap(picImagemDaAnalise.Width, picImagemDaAnalise.Height);
 
+                using (Graphics gPeg = Graphics.FromImage(imgControls))
+                {
+                    picImagemDaAnalise.DrawToBitmap(imgControls, picImagemDaAnalise.ClientRectangle);
+                }
+                using (SaveFileDialog salvarJPEG = new SaveFileDialog())
+                {
+                    salvarJPEG.Filter = "Arquivos de Imagem|*.png;*.jpg;*.jpeg;*.bmp";
+                    salvarJPEG.Title = "Salvar Imagem com Pontos/Labels";
+
+                    if (salvarJPEG.ShowDialog() == DialogResult.OK)
+                    {
+                        string nomeArquivo = salvarJPEG.FileName;
+
+                        picImagemDaAnalise.Image.Save(nomeArquivo, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    }
+                }
             }
         }
         #endregion Projeto
 
-        private void tssPreto_Click(object sender, EventArgs e)
+
+        private void gerarJPEGComPontosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (UserControlMarca user in userControlMarcas)
+            if (picImagemDaAnalise.Image != null)
             {
-
-                if (user != null)
-                {
-                    user.BackgroundImage = Properties.Resources.ptPreto;
-                    ponto = Properties.Resources.ptPreto;                   
-                }
-
+                gerarJPEG();
             }
-            foreach (labelPonto lbl in labelPontos)
-            {
-
-                if (lbl != null)
-                {
-                    lbl.ForeColor = Color.Black;
-                    txtPt = Color.Black;
-                }
-
-            }
-        }
-
-        private void tssBranco_Click(object sender, EventArgs e)
-        {
-            foreach (UserControlMarca user in userControlMarcas)
-            {
-
-                if (user != null)
-                {
-                    user.BackgroundImage = Properties.Resources.ptBranco;
-                    ponto = Properties.Resources.ptBranco;
-                    
-                }
-
-            }
-            foreach (labelPonto lbl in labelPontos)
-            {
-                if (lbl != null)
-                {
-                    lbl.ForeColor = Color.White;
-                    txtPt = Color.White;
-                }
-            }
-        }
-
-        private void tssVermelho_Click(object sender, EventArgs e)
-        {
-            foreach (UserControlMarca user in userControlMarcas)
-            {
-
-                if (user != null)
-                {
-                    user.BackgroundImage = Properties.Resources.ptVermelho;
-                    ponto = Properties.Resources.ptVermelho;                    
-                }
-
-            }
-            foreach (labelPonto lbl in labelPontos)
-            {
-
-                if (lbl != null)
-                {
-                    lbl.ForeColor = Color.Red;
-                    txtPt = Color.Red;
-                }
-
-            }
-        }
-
-        private void tssAzul_Click(object sender, EventArgs e)
-        {
-            foreach (UserControlMarca user in userControlMarcas)
-            {
-
-                if (user != null)
-                {
-                    user.BackgroundImage = Properties.Resources.ptAzul;
-                    ponto = Properties.Resources.ptAzul;                   
-                }
-
-            }
-            foreach (labelPonto lbl in labelPontos)
-            {
-
-                if (lbl != null)
-                {
-                    lbl.ForeColor = Color.Blue;
-                    txtPt = Color.Blue;
-                }
-
-            }
-        }
-
-        private void tssVerde_Click(object sender, EventArgs e)
-        {
-            foreach (UserControlMarca user in userControlMarcas)
-            {
-
-                if (user != null)
-                {
-                    user.BackgroundImage = Properties.Resources.ptVerde;
-                    ponto = Properties.Resources.ptVerde;                   
-                }
-            }
-            foreach (labelPonto lbl in labelPontos)
-            {
-                if (lbl != null)
-                {
-                    lbl.ForeColor = Color.LimeGreen;
-                    txtPt = Color.LimeGreen;
-                }
-            }
-        }
-
-        private void tssAmarelo_Click(object sender, EventArgs e)
-        {
-            foreach (UserControlMarca user in userControlMarcas)
-            {
-
-                if (user != null)
-                {
-                    user.BackgroundImage = Properties.Resources.ptAmarelo;
-                    ponto = Properties.Resources.ptAmarelo;
-                }
-            }
-            foreach (labelPonto lbl in labelPontos)
-            {
-                if (lbl != null)
-                {
-                    lbl.ForeColor = Color.Yellow;
-                    txtPt = Color.Yellow;
-                }
-            }
-        }
-
-        private void tssRosa_Click(object sender, EventArgs e)
-        {
-            foreach (UserControlMarca user in userControlMarcas)
-            {
-
-                if (user != null)
-                {
-                    user.BackgroundImage = Properties.Resources.ptRosa;
-                    ponto = Properties.Resources.ptRosa;
-                }
-            }
-            foreach (labelPonto lbl in labelPontos)
-            {
-                if (lbl != null)
-                {
-                    lbl.ForeColor = Color.HotPink;
-                    txtPt = Color.HotPink;
-                }
-            }
-        }
-
-        private void tssLilas_Click(object sender, EventArgs e)
-        {
-            foreach (UserControlMarca user in userControlMarcas)
-            {
-                if (user != null)
-                {
-                    user.BackgroundImage = Properties.Resources.ptLilas;
-                    ponto = Properties.Resources.ptLilas;
-
-                }
-            }
-            foreach (labelPonto lbl in labelPontos)
-            {
-                if (lbl != null)
-                {
-                    lbl.ForeColor = Color.RebeccaPurple;
-                    txtPt = Color.RebeccaPurple;
-                }
-            }
-        }
-
-        private void tssApagarPontos_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show("Você deseja apagar todos os ponto?", "Pontos", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result== DialogResult.Yes)
-            {
-                picImagemDaAnalise.Controls.Clear();
-                labelPontos.Clear();
-                userControlMarcas.Clear();
-            }    
         }
     }
 }

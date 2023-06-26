@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -32,7 +33,6 @@ namespace WinFormsApp1
         {
             var form2 = new frmDescricaoDoPonto();
             form2.Show(this);
-
         }
         /// <summary>
         /// Identifica e altera o valor da coordenada do ponto ao largar o botão do mouse
@@ -54,7 +54,7 @@ namespace WinFormsApp1
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tsmApagar_Click(object sender, EventArgs e)
+        public void tsmApagar_Click(object sender, EventArgs e)
         {
             frmMain? f = Application.OpenForms["frmMain"] as frmMain;
             if (f != null)
@@ -62,6 +62,7 @@ namespace WinFormsApp1
                 f.apagarPonto(this);
             }
         }
+
 
     }
 }

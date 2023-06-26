@@ -30,7 +30,7 @@
         {
             btnOk = new Button();
             btnCancelar = new Button();
-            tabControl1 = new TabControl();
+            tabTEcnicas = new TabControl();
             pageXRF = new TabPage();
             pageVM = new TabPage();
             pageMIR = new TabPage();
@@ -38,10 +38,24 @@
             txtResultados = new RichTextBox();
             gbMirO = new GroupBox();
             txtObservacao = new RichTextBox();
-            tabControl1.SuspendLayout();
+            groupBox1 = new GroupBox();
+            richTextBox1 = new RichTextBox();
+            groupBox2 = new GroupBox();
+            richTextBox2 = new RichTextBox();
+            groupBox3 = new GroupBox();
+            richTextBox3 = new RichTextBox();
+            groupBox4 = new GroupBox();
+            richTextBox4 = new RichTextBox();
+            tabTEcnicas.SuspendLayout();
+            pageXRF.SuspendLayout();
+            pageVM.SuspendLayout();
             pageMIR.SuspendLayout();
             gbMirR.SuspendLayout();
             gbMirO.SuspendLayout();
+            groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
+            groupBox3.SuspendLayout();
+            groupBox4.SuspendLayout();
             SuspendLayout();
             // 
             // btnOk
@@ -65,19 +79,21 @@
             btnCancelar.UseVisualStyleBackColor = true;
             btnCancelar.Click += button1_Click;
             // 
-            // tabControl1
+            // tabTEcnicas
             // 
-            tabControl1.Controls.Add(pageXRF);
-            tabControl1.Controls.Add(pageVM);
-            tabControl1.Controls.Add(pageMIR);
-            tabControl1.Location = new Point(13, 12);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(479, 444);
-            tabControl1.TabIndex = 14;
+            tabTEcnicas.Controls.Add(pageXRF);
+            tabTEcnicas.Controls.Add(pageVM);
+            tabTEcnicas.Controls.Add(pageMIR);
+            tabTEcnicas.Location = new Point(14, 12);
+            tabTEcnicas.Name = "tabTEcnicas";
+            tabTEcnicas.SelectedIndex = 0;
+            tabTEcnicas.Size = new Size(479, 444);
+            tabTEcnicas.TabIndex = 14;
             // 
             // pageXRF
             // 
+            pageXRF.Controls.Add(groupBox3);
+            pageXRF.Controls.Add(groupBox4);
             pageXRF.Location = new Point(4, 24);
             pageXRF.Name = "pageXRF";
             pageXRF.Padding = new Padding(3);
@@ -88,6 +104,8 @@
             // 
             // pageVM
             // 
+            pageVM.Controls.Add(groupBox1);
+            pageVM.Controls.Add(groupBox2);
             pageVM.Location = new Point(4, 24);
             pageVM.Name = "pageVM";
             pageVM.Padding = new Padding(3);
@@ -111,9 +129,9 @@
             // gbMirR
             // 
             gbMirR.Controls.Add(txtResultados);
-            gbMirR.Location = new Point(11, 211);
+            gbMirR.Location = new Point(13, 213);
             gbMirR.Name = "gbMirR";
-            gbMirR.Size = new Size(430, 190);
+            gbMirR.Size = new Size(444, 190);
             gbMirR.TabIndex = 1;
             gbMirR.TabStop = false;
             gbMirR.Text = "Resultados";
@@ -123,16 +141,16 @@
             txtResultados.BorderStyle = BorderStyle.FixedSingle;
             txtResultados.Location = new Point(15, 22);
             txtResultados.Name = "txtResultados";
-            txtResultados.Size = new Size(397, 152);
+            txtResultados.Size = new Size(415, 152);
             txtResultados.TabIndex = 1;
             txtResultados.Text = "";
             // 
             // gbMirO
             // 
             gbMirO.Controls.Add(txtObservacao);
-            gbMirO.Location = new Point(11, 12);
+            gbMirO.Location = new Point(13, 14);
             gbMirO.Name = "gbMirO";
-            gbMirO.Size = new Size(430, 184);
+            gbMirO.Size = new Size(444, 184);
             gbMirO.TabIndex = 0;
             gbMirO.TabStop = false;
             gbMirO.Text = "Observações";
@@ -143,16 +161,92 @@
             txtObservacao.BorderStyle = BorderStyle.FixedSingle;
             txtObservacao.Location = new Point(15, 21);
             txtObservacao.Name = "txtObservacao";
-            txtObservacao.Size = new Size(397, 149);
+            txtObservacao.Size = new Size(415, 149);
             txtObservacao.TabIndex = 0;
             txtObservacao.Text = "";
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(richTextBox1);
+            groupBox1.Location = new Point(13, 213);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(444, 190);
+            groupBox1.TabIndex = 3;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Resultados";
+            // 
+            // richTextBox1
+            // 
+            richTextBox1.BorderStyle = BorderStyle.FixedSingle;
+            richTextBox1.Location = new Point(15, 22);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.Size = new Size(415, 152);
+            richTextBox1.TabIndex = 1;
+            richTextBox1.Text = "";
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(richTextBox2);
+            groupBox2.Location = new Point(13, 14);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(444, 184);
+            groupBox2.TabIndex = 2;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Observações";
+            // 
+            // richTextBox2
+            // 
+            richTextBox2.BorderStyle = BorderStyle.FixedSingle;
+            richTextBox2.Location = new Point(15, 21);
+            richTextBox2.Name = "richTextBox2";
+            richTextBox2.Size = new Size(415, 149);
+            richTextBox2.TabIndex = 0;
+            richTextBox2.Text = "";
+            // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(richTextBox3);
+            groupBox3.Location = new Point(13, 213);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(444, 190);
+            groupBox3.TabIndex = 3;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Resultados";
+            // 
+            // richTextBox3
+            // 
+            richTextBox3.BorderStyle = BorderStyle.FixedSingle;
+            richTextBox3.Location = new Point(15, 22);
+            richTextBox3.Name = "richTextBox3";
+            richTextBox3.Size = new Size(415, 152);
+            richTextBox3.TabIndex = 1;
+            richTextBox3.Text = "";
+            // 
+            // groupBox4
+            // 
+            groupBox4.Controls.Add(richTextBox4);
+            groupBox4.Location = new Point(13, 14);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new Size(444, 184);
+            groupBox4.TabIndex = 2;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "Observações";
+            // 
+            // richTextBox4
+            // 
+            richTextBox4.BorderStyle = BorderStyle.FixedSingle;
+            richTextBox4.Location = new Point(15, 21);
+            richTextBox4.Name = "richTextBox4";
+            richTextBox4.Size = new Size(415, 149);
+            richTextBox4.TabIndex = 0;
+            richTextBox4.Text = "";
             // 
             // frmDescricaoDoPonto
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(505, 499);
-            Controls.Add(tabControl1);
+            Controls.Add(tabTEcnicas);
             Controls.Add(btnOk);
             Controls.Add(btnCancelar);
             MaximizeBox = false;
@@ -161,17 +255,23 @@
             Name = "frmDescricaoDoPonto";
             Text = "Técnicas do Ponto";
             Load += Form2_Load;
-            tabControl1.ResumeLayout(false);
+            tabTEcnicas.ResumeLayout(false);
+            pageXRF.ResumeLayout(false);
+            pageVM.ResumeLayout(false);
             pageMIR.ResumeLayout(false);
             gbMirR.ResumeLayout(false);
             gbMirO.ResumeLayout(false);
+            groupBox1.ResumeLayout(false);
+            groupBox2.ResumeLayout(false);
+            groupBox3.ResumeLayout(false);
+            groupBox4.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
         private Button btnOk;
         private Button btnCancelar;
-        private TabControl tabControl1;
+        private TabControl tabTEcnicas;
         private TabPage pageXRF;
         private TabPage pageVM;
         private TabPage pageMIR;
@@ -179,5 +279,13 @@
         private GroupBox gbMirR;
         private RichTextBox txtObservacao;
         private RichTextBox txtResultados;
+        private GroupBox groupBox1;
+        private RichTextBox richTextBox1;
+        private GroupBox groupBox2;
+        private RichTextBox richTextBox2;
+        private GroupBox groupBox3;
+        private RichTextBox richTextBox3;
+        private GroupBox groupBox4;
+        private RichTextBox richTextBox4;
     }
 }
