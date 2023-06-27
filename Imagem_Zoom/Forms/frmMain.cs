@@ -5,9 +5,11 @@ using System.Drawing.Text;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.ConstrainedExecution;
+using System.Text;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 using WinFormsApp1;
 
 namespace Imagem_Zoom
@@ -32,6 +34,9 @@ namespace Imagem_Zoom
         private Image ponto;
         private Color txtPt;
         public Point coordRelaLabel;
+
+        IDictionary<uint, string[]> pontoXml = new Dictionary<int, string[]>();
+
         #endregion propriedades
 
         #region Construtor
@@ -266,7 +271,7 @@ namespace Imagem_Zoom
                 labelPontos.Add(lblPts);
                 pic.Controls.Add(lblPts);
 
-                tssAtualizaXML_Click(sender, e);
+                //tssAtualizarPontoXML();
             }
             else
                 MessageBox.Show("Marque a caixa para poder marcar pontos na imagem ou abra uma imagem!", "Pontos", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -565,18 +570,25 @@ namespace Imagem_Zoom
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tssAtualizaXML_Click(object sender, EventArgs e)
+        private void tssAtualizarPontoXML()
         {
+            var a = new string[] { posicaoRelativaDoX.ToString(), posicaoRelativaDoY.ToString() };
+
+            pontoXml.Add(Contador, a);
+            //pontoXml.Keys[
+            
             XElement escreveXml = new XElement("Atualização");
             escreveXml.Add(new XComment($"Ponto_{Contador}"));
             escreveXml.Add(new XElement("Coordenada-X-do-Clique", (posicaoRelativaDoX).ToString()));
             escreveXml.Add(new XElement("Coordenada-Y-do-Clique", (posicaoRelativaDoY).ToString()));
+            escreveXml.Add(new XComment($"Ponto_{Contador}"));
 
             XElement arquivoXml = XElement.Load($@"{diretorioDoProjeto + "\\" + imagemDaAnalise}.xml");
 
             arquivoXml.Add(escreveXml);
             arquivoXml.Save($@"{diretorioDoProjeto + "\\" + imagemDaAnalise}.xml");
         }
+
         /// <summary>
         /// Abre o projeto
         /// </summary>
@@ -651,6 +663,29 @@ namespace Imagem_Zoom
             }
         }
         #endregion Projeto
+
+        private void tssAtualizarXMLC(object sender, EventArgs e)
+        {
+            XElement escreveXml = new XElement("Atualização");
+            escreveXml.Add(new XElement("Fator-de-Zoom", ((double)zoom*100f).ToString(),"%"));
+
+            StringBuilder criaString = new StringBuilder();
+
+            foreach(UserControlMarca pts in userControlMarcas)
+            {
+                
+            }
+            XmlSerializer serializar = new XmlSerializer(typeof(List<UserControlMarca>));
+            using(StreamWriter escritor = new StreamWriter("lista.xml"))
+            {
+                serializar.Serialize(escritor, userControlMarcas);
+            }
+
+            XElement arquivoXml = XElement.Load($@"{diretorioDoProjeto + "\\" + imagemDaAnalise}.xml");
+
+            arquivoXml.Add(escreveXml);
+            arquivoXml.Save($@"{diretorioDoProjeto + "\\" + imagemDaAnalise}.xml");
+        }
     }
 }
 

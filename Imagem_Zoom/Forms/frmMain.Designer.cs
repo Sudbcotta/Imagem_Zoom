@@ -247,7 +247,7 @@
             tssAtualizarXML.ShortcutKeys = Keys.Control | Keys.S;
             tssAtualizarXML.Size = new Size(200, 22);
             tssAtualizarXML.Text = "Atualizar XML";
-            tssAtualizarXML.Click += tssAtualizaXML_Click;
+            tssAtualizarXML.Click += tssAtualizarXMLC;
             // 
             // tssGerarJpeg
             // 
